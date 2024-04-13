@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root{
+    --firstBg :#F2613F ;
+    --secdtBg : #0C0C0C;
+    --colorFOnt:#eeee ;
+    --fontText :  "K2D", sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--secdtBg);
+}
+
+.container .party1{
+width: 100%;
+min-height: 100%;
+position: relative;
+background-color:#eee;
+}
+.container .party1 .titleparty{
+position: absolute;
+left: 5%;
+bottom: 5%;
+color: #FFF;
+font-family: var(--fontText);
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.container .party1 img{
+width: 70%;
+height: 100vh;
+object-fit: cover;
+}
+.container .party2{
+    width:500px;
+    min-height: 100vh;
+background-color: var(--firstBg);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+flex-wrap: wrap;
+position: absolute;
+gap: 15px;
+right: 0;
+}
+.container .party2 .titleForm{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.container .party2 form{
+width: 450px;
+height: auto;
+background-color: rgba(100, 148, 237, 0);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+flex-wrap: wrap;
+gap: 25px;
+padding: 15px;
+position: relative;
+}
+.container .party2 form input{
+    width: 400px;
+height: 59px;
+flex-shrink: 0;
+border-radius: 5px;
+background: #D9D9D9;
+border: none;
+outline: none;
+padding: 10px;
+text-align: left;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+color: #151515;
+}
+.container .party2 form input::placeholder{
+    text-align: left;
+    font-family: var(--fontText);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+color: #373737;
+}
+.container .party2 form label{
+    width: 95%;
+    background-color: #0c0c0c00;
+    color: #FFF;
+    text-align: left;
+    font-family: var(--fontText);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.container .party2 form button{
+    width: 270px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 5px;
+background: #D9D9D9;
+color: #000;
+text-align: center;
+font-family: var(--fontText);
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+transition: all .5s ease;
+}
+.container .party2 form button:hover{
+
+background: #1a1a1a;
+color: var(--firstBg);
+text-align: center;
+font-family: var(--fontText);
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2 form span{
+width: 90%;
+background-color: rgba(137, 43, 226, 0);
+text-align: right;
+position: absolute;
+bottom: 18%;
+}
+.container .party2 form span a{
+    width: 100%;
+
+
+    color: #FFF;
+text-align: right;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.container .party2 .accountfind{
+    color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2 .accountfind a{
+    color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+text-decoration: underline;
+}
+
+.container .party2 .partyContact{
+    width: 70%;
+    background-color: rgba(30, 180, 210, 0);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container .party2 .partyContact .titleContact{
+    color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2 .partyContact .partybtn{
+    margin: auto;
+width: 200px;
+
+}
+.container .party2 .partyContact .partybtn ul{
+display: flex;
+justify-content: space-around;
+align-items: center;
+flex-direction: row;
+}
+.container .party2 .partyContact .partybtn ul li{
+list-style-type: none;
+}
+.container .party2 .partyContact .partybtn ul li a img{
+    width: 40px;
+height: 40px;
+flex-shrink: 0;
+background-color: #D9D9D9;
+border-radius: 50%;
+padding: 5px;
+}
+.container .party2 .editeby{
+
+position: absolute;
+bottom: 1%;
+right: 2%;
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+
+
+
+/*create Accooiunt */
+
+.container .party2-cre {
+    width:500px;
+    min-height: 100vh;
+background-color: var(--firstBg);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+flex-wrap: wrap;
+position: absolute;
+gap: 10px;
+right: 0;
+}
+.container .party2-cre  .titleForm{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.container .party2-cre form{
+    width: 450px;
+    height: auto;
+    background-color: rgba(218, 236, 21, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    position: relative;
+    }
+    .container .party2-cre form input{
+        width: 400px;
+    height: 55px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #D9D9D9;
+    border: none;
+    outline: none;
+    padding: 10px;
+    text-align: left;
+    font-family: var(--fontText);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: #151515;
+    }
+    .container .party2-cre form input::placeholder{
+        text-align: left;
+        font-family: var(--fontText);
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    color: #373737;
+    }
+    .container .party2-cre form label{
+        width: 95%;
+        background-color: #0c0c0c00;
+        color: #FFF;
+        text-align: left;
+        font-family: var(--fontText);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+    }
+    .container .party2-cre form button{
+        width: 270px;
+        height: 48px;
+        flex-shrink: 0;
+        border-radius: 5px;
+    background: #D9D9D9;
+    color: #000;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    transition: all .5s ease;
+    }
+    .container .party2-cre form button:hover{
+
+    background: #1a1a1a;
+    color: var(--firstBg);
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    }
+    .container .party2-cre form span{
+    width: 90%;
+    background-color: rgba(137, 43, 226, 0);
+    text-align: right;
+    position: absolute;
+    bottom: 18%;
+    }
+    .container .party2-cre form span a{
+        width: 100%;
+
+
+        color: #FFF;
+    text-align: right;
+    font-family: var(--fontText);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    }
+
+.container .party2-cre .accountfind{
+    color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2-cre .accountfind a{
+    color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+text-decoration: underline;
+}
+
+.container .party2-cre .partyContact{
+    width: 70%;
+    background-color: rgba(30, 180, 210, 0);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container .party2-cre .partyContact .titleContact{
+    color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2-cre .partyContact .partybtn{
+    margin: auto;
+width: 200px;
+
+}
+.container .party2-cre .partyContact .partybtn ul{
+display: flex;
+justify-content: space-around;
+align-items: center;
+flex-direction: row;
+}
+.container .party2-cre .partyContact .partybtn ul li{
+list-style-type: none;
+}
+.container .party2-cre .partyContact .partybtn ul li a img{
+    width: 40px;
+height: 40px;
+flex-shrink: 0;
+background-color: #D9D9D9;
+border-radius: 50%;
+padding: 5px;
+}
+.container .party2-cre .editeby{
+
+position: absolute;
+bottom: 1%;
+right: 2%;
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+
+/*finish party */
