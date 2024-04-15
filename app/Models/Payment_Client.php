@@ -11,6 +11,11 @@ class Payment_Client extends Model
     protected $fillable = [
         'id_Client',
         'Montant_Pay',
-        
+
     ];
+    public function client()
+     {
+        return $this->belongsTo(Client::class);
+
+    }
 }

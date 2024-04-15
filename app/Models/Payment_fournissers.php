@@ -13,4 +13,9 @@ class Payment_fournissers extends Model
         'Montant_Pay',
 
     ];
+    public function fournisseur()
+     {
+        return $this->belongsTo(Fournisseur::class);
+
+    }
 }

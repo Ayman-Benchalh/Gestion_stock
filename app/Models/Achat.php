@@ -15,4 +15,12 @@ class Achat extends Model
         'Prix_Vente',
 
     ];
+    public function produit()
+    {
+        return $this->hasMany(Produit::class);
+    }
+    public function fournisseur()
+    {
+        return $this->belongsTo(Fournisseur::class);
+    }
 }

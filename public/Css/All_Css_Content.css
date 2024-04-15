@@ -8,25 +8,62 @@
 }
 *{
     margin: 0;
-    padding: 0;
+    padding:0 ;
     box-sizing: border-box;
+
 }
 
 .container{
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     background-color: var(--secdtBg);
+overflow: hidden;
+
+}
+::-webkit-scrollbar{
+    width: .5rem;
+    height:1rem ;
+}
+::-webkit-scrollbar-thumb{border-radius: 15px;
+    background-color: var(--firstBg);
+}
+::-webkit-scrollbar-track{
+    background-color: var(--secdtBg);
 }
 
 .container .party1{
 width: 100%;
-min-height: 100%;
+height: 100vh;
 position: relative;
-background-color:#eee;
+background-color:#eeeeee00;
+}
+
+.container .party1 .errorsStyle{
+    width: 100%;
+background-color: #1a1a1a;
+z-index: 9999;
+position: absolute;
+top: 0;
+left: 0;
+padding: 20px;
+font-size: 20px;
+color: var(--firstBg);
+font-style: normal;
+font-family: var(--fontText);
+font-weight: 600;
+line-height: normal;
+
+}
+.container .party1 .errorsStyle ul{
+display: flex;
+gap: 15px ;
+}
+.container .party1 .errorsStyle ul li{
+list-style-type: none;
 }
 .container .party1 .titleparty{
 position: absolute;
@@ -56,6 +93,7 @@ flex-wrap: wrap;
 position: absolute;
 gap: 15px;
 right: 0;
+top: 0;
 }
 .container .party2 .titleForm{
     color: #FFF;
@@ -130,6 +168,7 @@ font-style: normal;
 font-weight: 800;
 line-height: normal;
 transition: all .5s ease;
+border: none;
 }
 .container .party2 form button:hover{
 
@@ -249,6 +288,7 @@ flex-wrap: wrap;
 position: absolute;
 gap: 10px;
 right: 0;
+top: 0;
 }
 .container .party2-cre  .titleForm{
     color: #FFF;
@@ -324,6 +364,7 @@ right: 0;
     font-weight: 800;
     line-height: normal;
     transition: all .5s ease;
+    border:  none;
     }
     .container .party2-cre form button:hover{
 
@@ -429,3 +470,833 @@ line-height: normal;
 }
 
 /*finish party */
+
+
+/* party OTP */
+
+.container .party2-OTP {
+    width:500px;
+    min-height: 100vh;
+background-color: var(--firstBg);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+flex-wrap: wrap;
+position: absolute;
+gap: 20px;
+right: 0;
+top: 0;
+}
+.container .party2-OTP  .titleForm{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.container .party2-OTP  .minititle{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.container .party2-OTP form{
+    width: 450px;
+    height: auto;
+    background-color: rgba(218, 236, 21, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    position: relative;
+    }
+.party2-OTP form .groupeInput{
+    width: 80%;
+    background-color: rgba(63, 44, 184, 0);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px;
+}
+.party2-OTP form  label{
+    width: 80%;
+    color: #FFF;
+    text-align: left;
+    font-family: var(--fontText);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.party2-OTP form  .groupeInput input{
+    width: 48px;
+    height: 65px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #D9D9D9;
+    color: #151515ef;
+text-align: center;
+font-family: var(--fontText);
+font-size: 35px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+border: none;
+outline: none;
+}
+.party2-OTP form  .groupeInput input::placeholder{
+
+    color: rgba(49, 49, 49, 0.77);
+text-align: center;
+font-family: var(--fontText);
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.container .party2-OTP  form button{
+    width: 270px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 5px;
+background: #D9D9D9;
+color: #000;
+text-align: center;
+font-family: var(--fontText);
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+transition: all .5s ease;
+border:  none;
+}
+.container .party2-OTP  form button:hover{
+
+background: #1a1a1a;
+color: var(--firstBg);
+text-align: center;
+font-family: var(--fontText);
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2-OTP  form span{
+width: 90%;
+background-color: rgba(137, 43, 226, 0);
+text-align: right;
+position: absolute;
+bottom: 18%;
+}
+.container .party2-OTP  form span a{
+    width: 100%;
+
+
+    color: #FFF;
+text-align: right;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+
+
+.container .party2-OTP  .partyContact{
+width: 70%;
+background-color: rgba(30, 180, 210, 0);
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.container .party2-OTP  .partyContact .titleContact{
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2-OTP  .partyContact .partybtn{
+margin: auto;
+width: 200px;
+
+}
+.container .party2-OTP  .partyContact .partybtn ul{
+display: flex;
+justify-content: space-around;
+align-items: center;
+flex-direction: row;
+}
+.container .party2-OTP .partyContact .partybtn ul li{
+list-style-type: none;
+}
+.container .party2-OTP  .partyContact .partybtn ul li a img{
+width: 40px;
+height: 40px;
+flex-shrink: 0;
+background-color: #D9D9D9;
+border-radius: 50%;
+padding: 5px;
+}
+.container .party2-OTP  .editeby{
+
+position: absolute;
+bottom: 1%;
+right: 2%;
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+
+.container .party2-OTP  .accountfind{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    }
+.container .party2-OTP .accountfind a{
+        color: #FFF;
+        text-align: center;
+        font-family: var(--fontText);
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        text-decoration: underline;
+}
+
+
+.container .party1 .SuccesStyle{
+    width: 100%;
+background-color: #1a1a1a;
+z-index: 9999;
+position: absolute;
+top: 0;
+left: 0;
+padding: 20px;
+font-size: 20px;
+color: #3cff2ec5;
+font-style: normal;
+font-family: var(--fontText);
+font-weight: 600;
+line-height: normal;
+
+}
+.container .party1 .SuccesStyle ul{
+display: flex;
+gap: 15px ;
+}
+.container .party1 .SuccesStyle ul li{
+list-style-type: none;
+}
+/* finish party*/
+
+/* start party OUblie password*/
+
+.container .party2-Oubl {
+    width:500px;
+    min-height: 100vh;
+background-color: var(--firstBg);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+flex-wrap: wrap;
+position: absolute;
+gap: 20px;
+right: 0;
+top: 0;
+}
+.container .party2-Oubl  .titleForm{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.container .party2-Oubl  .minititle{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.container .party2-Oubl form{
+    width: 450px;
+    height: auto;
+    background-color: rgba(218, 236, 21, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    position: relative;
+    }
+.party2-Oubl form .groupeInput{
+    width: 80%;
+    background-color: rgba(63, 44, 184, 0);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px;
+}
+.party2-Oubl form  label{
+    width: 90%;
+    background-color: #0c0c0c00;
+    color: #FFF;
+    text-align: left;
+    font-family: var(--fontText);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.container .party2-Oubl form input{
+    width: 379px;
+height: 59px;
+flex-shrink: 0;
+border-radius: 5px;
+background: #D9D9D9;
+border: none;
+outline: none;
+padding: 10px;
+text-align: left;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+color: #151515;
+}
+.container .party2-Oubl form input::placeholder{
+    text-align: left;
+    font-family: var(--fontText);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+color: #373737;
+}
+.container .party2-Oubl  form button{
+    width: 270px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 5px;
+background: #D9D9D9;
+color: #000;
+text-align: center;
+font-family: var(--fontText);
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+transition: all .5s ease;
+border:  none;
+}
+.container .party2-Oubl  form button:hover{
+
+background: #1a1a1a;
+color: var(--firstBg);
+text-align: center;
+font-family: var(--fontText);
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2-Oubl  form span{
+width: 90%;
+background-color: rgba(137, 43, 226, 0);
+text-align: right;
+position: absolute;
+bottom: 18%;
+}
+.container .party2-Oubl  form span a{
+    width: 100%;
+
+
+    color: #FFF;
+text-align: right;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+
+
+.container .party2-Oubl  .partyContact{
+width: 70%;
+background-color: rgba(30, 180, 210, 0);
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.container .party2-Oubl  .partyContact .titleContact{
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+.container .party2-Oubl  .partyContact .partybtn{
+margin: auto;
+width: 200px;
+
+}
+.container .party2-Oubl  .partyContact .partybtn ul{
+display: flex;
+justify-content: space-around;
+align-items: center;
+flex-direction: row;
+}
+.container .party2-Oubl .partyContact .partybtn ul li{
+list-style-type: none;
+}
+.container .party2-Oubl  .partyContact .partybtn ul li a img{
+width: 40px;
+height: 40px;
+flex-shrink: 0;
+background-color: #D9D9D9;
+border-radius: 50%;
+padding: 5px;
+}
+.container .party2-Oubl  .editeby{
+
+position: absolute;
+bottom: 1%;
+right: 2%;
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+
+.container .party2-Oubl  .accountfind{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    }
+.container .party2-Oubl .accountfind a{
+        color: #FFF;
+        text-align: center;
+        font-family: var(--fontText);
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        text-decoration: underline;
+}
+
+/* finish party*/
+
+
+/* dashbord party */
+.dashbordHome{
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(137, 43, 226, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashbordHome .partyNav{
+    width: 159px;
+    height: 100vh;
+    flex-shrink: 0;
+    background-color: var(--firstBg);
+    border-radius: 0px 15px 15px 0px;
+background: #F2613F;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+}
+.dashbordHome .partyNav ul{
+width: 100%;
+height: 100%;
+
+background-color: rgba(165, 42, 42, 0);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 15px;
+
+}
+.dashbordHome .partyNav ul li{
+list-style-type: none;
+background-color: #08db6400;
+
+
+}
+.dashbordHome .partyNav ul li a{
+text-decoration: none;
+width: 69px;
+height: 88px;
+flex-shrink: 0;
+border-radius: 29px;
+background: #1E1E1E;
+display: flex;
+justify-content: center;
+transition: all .5s ease;
+align-items: center;
+}
+.dashbordHome .partyNav ul li a:hover{
+
+background: #481E14;
+
+}
+
+.dashbordHome .partyContent{
+    width: 90%;
+    min-height: 100vh;
+    background-color: #3125b000;
+}
+.dashbordHome .partyContent .navSide{
+    width: 90%;
+min-height: 86px;
+flex-shrink: 0;
+border-radius: 0px 0px 15px 15px;
+background: linear-gradient(90deg, #F2613F 0%, #8C3824 100%);
+margin:auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+padding:20px;
+}
+.dashbordHome .partyContent .navSide .titleNav{
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 3.96px;
+    padding:0 50px;
+}
+.dashbordHome .partyContent .navSide .ProFileNav a{
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1E1E1E;
+    border-radius: 50%;
+
+}
+#focueBtn a{
+background-color: #481E14;
+}
+.bntclose{
+    width: auto;
+height: 43px;
+flex-shrink: 0;
+
+color: #FFF;
+font-family: var(--fontText);
+font-size: 13px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+position: absolute;
+bottom: 2%;
+
+
+margin: auto;
+}
+.bntclose a {
+width: 100%;
+height: 100%;
+    border-radius: 29px;
+    background: #1E1E1E;
+color: #FFF;
+font-family: var(--fontText);
+font-size: 13px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+padding: 0 10px;
+text-decoration: none;
+
+
+}
+
+
+.sectionConteent{
+    width: 90%;
+    min-height: 600px;
+    margin: auto;
+    background-color: rgba(128, 255, 0, 0);
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px 0;
+}
+.sectionConteent .minCotrolle{
+    width: 600px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: #1e1e1e00;
+}
+.sectionConteent .minCotrolle .partyContrBnt{
+    width: 100%;
+  background-color: rgba(120, 100, 86, 0);
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+
+
+}
+
+/* .sectionConteent .minCotrolle  .partyContrBnt .bntconfig{
+    width: 173px;
+    height: 204px;
+    flex-shrink: 0;
+    border-radius: 19px;
+background-color: #F2613F;
+display: flex;
+justify-content: center;
+align-items: center;
+} */
+.sectionConteent .minCotrolle  .partyContrBnt .bntconfig a{
+    width: 173px;
+    height: 204px;
+    flex-shrink: 0;
+    border-radius: 19px;
+background-color: #F2613F;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+text-decoration: none;
+gap: 10px;
+transition: all .5s ease;
+}
+.sectionConteent .minCotrolle .partyContrBnt .bntconfig a:hover{
+ transform: scale(1.1);
+}
+.sectionConteent .minCotrolle  .partyContrBnt .bntconfig .titlebtnconf{
+    color: #FFF;
+    font-family: var(--fontText);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.sectionConteent .minCotrolle .partycalendre{
+    width: 100%;
+    height: 201px;
+    flex-shrink: 0;
+    border-radius: 19px;
+    background: linear-gradient(90deg, #481E14 0%, #F2613F 100%);
+}
+.sectionConteent .userProfil{
+    width: 448px;
+    min-height:650px;
+    flex-shrink: 0;
+    border-radius: 19px;
+background: linear-gradient(180deg, #F2613F 0%, #8C3824 50%);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 10px;
+padding: 15px;
+
+}
+.sectionConteent .userProfil .profile{
+    width: 170px;
+    height: 170px;
+    flex-shrink: 0;
+    background-color: #1E1E1E;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.sectionConteent .userProfil .Nomomplet{
+    color: #D9D9D9;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.sectionConteent .userProfil .TotalPrix{
+    width: 100%;
+    color: rgba(217, 217, 217, 0.83);
+text-align: center;
+font-family: var(--fontText);
+font-size: 32px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+background-color: rgba(0, 255, 255, 0);
+}
+.sectionConteent .userProfil .TotalPrix span{
+    color: #1E1E1E;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.sectionConteent .userProfil .editBar{
+
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.sectionConteent .userProfil .editBar ul{
+
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 25px;
+}
+.sectionConteent .userProfil .editBar ul li{
+list-style-type: none;
+}
+.sectionConteent .userProfil .editBar ul li a{
+    width: 54px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #1E1E1E;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.sectionConteent .userProfil .partymessage{
+    width: 425px;
+    height: 287px;
+    flex-shrink: 0;
+    border-radius: 27px;
+    background: #1E1E1E;
+    position: relative;
+    margin:15px auto;
+overflow-y: scroll;
+
+}
+.sectionConteent .userProfil .partymessage::-webkit-scrollbar-track{
+background-color: transparent;
+
+}
+.sectionConteent .userProfil .titlemaessage{
+    width: 100%;
+    background-color: rgba(0, 0, 255, 0);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.sectionConteent .userProfil .partymessage .message{
+    width: 398px;
+    height: 74px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    background: #60352A;
+    color: #FFF;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin: 15px auto;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+.sectionConteent .userProfil .partymessage .message .contentmessage{
+width: 90%;
+    color: #FFF;
+font-family: var(--fontText);
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin: 15px auto;
+
+}
+/*finish party dash bord*/

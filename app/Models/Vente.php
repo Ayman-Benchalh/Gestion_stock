@@ -15,4 +15,12 @@ class Vente extends Model
         'Prix_Vente',
 
     ];
+    public function produit()
+    {
+        return $this->hasMany(Produit::class);
+    }
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

@@ -5,7 +5,9 @@
         <img src="{{ asset('Image/bglogin.svg') }}" alt="image">
         <div class="titleparty">GESTION DE STOCK 2024 </div>
 
-        @if ($errors->any())
+
+
+            @if ($errors->any())
             <div class="errorsStyle">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -14,32 +16,37 @@
                 </ul>
             </div>
         @endif
-        @if (session()->has('errorMessage'))
-        <div class="errorsStyle">
-                {{ session()->get('errorMessage') }}
-            </div>
+            @if (session()->has('errorMessage'))
+            <div class="errorsStyle">
+                    {{ session()->get('errorMessage') }}
+                </div>
 
-        @endif
+            @endif
+
 
     </div>
-    <div class="party2-cre">
+    <div class="party2-OTP">
         <div class="titleForm">
-            S'inscrire
+            verife OTP
         </div>
-        <form action="{{ route('CreatAccountP') }}" method="post">
+        <div class="minititle">Entre  le Code OTP Pour Reinitialiser</div>
+        <form action="{{ route('verficOTP_P') }}" method="post">
             @csrf
-            <label for="NomComplet">Nom Complet</label>
-            <input type="text" name="NomComplet" id="NomComplet"  placeholder="enter Nom et prenom" value="{{ old('NomComplet') }}">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email"  placeholder="enter email" value="{{ old('email') }}">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="enter password">
 
-            <button type="submit"> nouveau Account </button>
+            <label for="Num">Entre 4 numero</label>
+            <div class="groupeInput">
+
+                <input type="text" maxlength="1" name="Num1" id="Num" placeholder="0">
+                <input type="text"  maxlength="1" name="Num2" id="Num" placeholder="0">
+                <input type="text"  maxlength="1" name="Num3" id="Num" placeholder="0">
+                <input type="text" maxlength="1"  name="Num4" id="Num" placeholder="0">
+            </div>
+
+            <button type="submit"> checke code </button>
         </form>
-        <div class="accountfind">J'ai un compte,<a href="{{ route('IndexUser') }}"> connectez-vous</a> </div>
+        <div class="accountfind">I Have Account ,<a class="accountfindAbnt" href="{{ route('IndexUser') }}">Login</a></div>
         <div class="partyContact">
-            <div class="titleContact">Contacter le support</div>
+            <div class="titleContact">Contact Souport </div>
             <div class="partybtn">
                 <ul>
                     <li><a href="tel:+212710317523"><img src="{{ asset('Image/Headset.png') }}" alt="img"></a></li>
@@ -50,7 +57,7 @@
             </div>
         </div>
         <div class="editeby">Edite By , Benchalh / Akka</div>
-
     </div>
 </div>
+
 @endsection

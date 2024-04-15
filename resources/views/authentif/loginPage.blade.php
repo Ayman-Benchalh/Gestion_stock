@@ -4,9 +4,32 @@
     <div class="party1">
         <img src="{{ asset('Image/bglogin.svg') }}" alt="image">
         <div class="titleparty">GESTION DE STOCK 2024 </div>
-        <div class="errorsStyle">@error('error')
-                    <span>{{ $message }}</span>
-        @enderror</div>
+
+
+
+            @if ($errors->any())
+            <div class="errorsStyle">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+            @if (session()->has('errorMessage'))
+            <div class="errorsStyle">
+                    {{ session()->get('errorMessage') }}
+                </div>
+
+            @endif
+            @if (session()->has('MessageSucces'))
+            <div class="SuccesStyle">
+                    {{ session()->get('MessageSucces') }}
+                </div>
+
+            @endif
+
+
     </div>
     <div class="party2">
         <div class="titleForm">
@@ -18,17 +41,17 @@
             <input type="email" name="email" id="email"  placeholder="enter email" value="{{ old('email') }}">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="enter password">
-            <span><a href="#">Reset Password</a></span>
+            <span><a href="{{ route('ForgetPassword') }}">Mot de passe oublié</a></span>
             <button type="submit"> Click now </button>
         </form>
-        <div class="accountfind">I don’t Have Account ,<a href="{{ route('CreatAccount') }}">Create One now</a></div>
+        <div class="accountfind">Je n'ai pas de compte ,<a href="{{ route('CreatAccount') }}">Create an account</a></div>
         <div class="partyContact">
-            <div class="titleContact">Contact Souport </div>
+            <div class="titleContact">Contacter le support </div>
             <div class="partybtn">
                 <ul>
-                    <li><a href="#"><img src="{{ asset('Image/Headset.png') }}" alt="img"></a></li>
-                    <li><a href="#"><img src="{{ asset('Image/Linkedin.png') }}" alt="img"></a></li>
-                    <li><a href="#"><img src="{{ asset('Image/Instagram.png') }}" alt="img"></a></li>
+                    <li><a href="tel:+212710317523"><img src="{{ asset('Image/Headset.png') }}" alt="img"></a></li>
+                    <li><a target="_blank" href="https://www.linkedin.com/in/ayman-benchalh-469973233/"><img src="{{ asset('Image/Linkedin.png') }}" alt="img"></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/aymnabbenchalh/"><img src="{{ asset('Image/Instagram.png') }}" alt="img"></a></li>
 
                 </ul>
             </div>

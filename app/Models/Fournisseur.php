@@ -15,4 +15,13 @@ class Fournisseur extends Model
         'telephone',
         'Montant'
     ];
+
+    public function achat() {
+       return $this->hasMany(Achat::class);
+    }
+    public function payment_fournissers()
+    {
+       return $this->hasMany(Payment_Client::class);
+
+   }
 }

@@ -15,5 +15,8 @@ class Produit extends Model
         'Prix',
 
     ];
+    public function vente(){
+        return $this->belongsTo(Vente::class);
+    }
 
 }
