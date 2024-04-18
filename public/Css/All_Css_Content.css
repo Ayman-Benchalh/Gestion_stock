@@ -1143,11 +1143,33 @@ transition: all .5s ease;
     line-height: normal;
 }
 .sectionConteent .minCotrolle .partycalendre{
-    width: 100%;
-    height: 201px;
+    width:110%;
+    min-height: 201px;
     flex-shrink: 0;
     border-radius: 19px;
     background: linear-gradient(90deg, #481E14 0%, #F2613F 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px ;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+/* .sectionConteent .minCotrolle .partycalendre .calendar{
+    width: 200px;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+background-color: rgba(255, 43, 43, 0.432);
+} */
+
+.sectionConteent .minCotrolle .partycalendre .paramchat{
+    width: 300px;
+    min-height: 316px;
+background-color: rgb(15, 23, 42 );
+
+border-radius: 15px;
 }
 .sectionConteent .userProfil{
     width: 448px;
@@ -1300,3 +1322,337 @@ margin: 15px auto;
 
 }
 /*finish party dash bord*/
+
+
+.vanilla-calendar-day{
+margin: 5px;
+}
+
+
+/*party ajoute produit*/
+.titleAjoute{
+    width: 90%;
+    color: #FFF;
+text-align: left;
+font-family: var(--fontText);
+font-size: 40px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+margin: 15px 0;
+}
+.sectionAjouteporduit{
+    width: 85%;
+min-height: 500px;
+flex-shrink: 0;
+border-radius: 19px;
+background: #F2613F;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 15px;
+
+}
+.sectionAjouteporduit form{
+background-color: rgba(208, 255, 0, 0);
+width: 90%;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+gap: 20px;
+
+}
+.sectionAjouteporduit  form .unitearty{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgba(93, 0, 255, 0);
+}
+.sectionAjouteporduit  form .unitearty .titlenom{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.sectionAjouteporduit form .unitearty input{
+
+    width: 647px;
+    height: 69px;
+    flex-shrink: 0;
+    border-radius: 15px;
+background: #60352A;
+border: none;
+outline: none;
+color: #FFF;
+text-align: left;
+font-family: var(--fontText);
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 0 15px;
+
+}
+.sectionAjouteporduit form .unitearty select{
+
+    width:647px;
+    height: 69px;
+    flex-shrink: 0;
+    border-radius: 15px;
+background: #60352A;
+border: none;
+outline: none;
+color: #FFF;
+text-align: left;
+font-family: var(--fontText);
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 0 15px;
+border: none;
+outline: none;
+}
+.sectionAjouteporduit form .unitearty #selectClient{
+
+    width:460px;
+    height: 69px;
+    flex-shrink: 0;
+    border-radius: 15px;
+background: #60352A;
+border: none;
+outline: none;
+color: #FFF;
+text-align: left;
+font-family: var(--fontText);
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 0 15px;
+border: none;
+outline: none;
+}
+.sectionAjouteporduit form .unitearty input::placeholder{
+
+
+color: #ffffffbd;
+text-align: left;
+font-family: var(--fontText);
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.sectionAjouteporduit form .unitearty ul {
+    width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-direction: row;
+flex-wrap: wrap;
+gap: 15px;
+margin: auto;
+background-color: rgba(0, 0, 255, 0);
+}
+.sectionAjouteporduit form .unitearty ul li{
+    display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+flex-wrap: wrap;
+    list-style-type: none;
+    gap: 20px;
+}
+.sectionAjouteporduit form button{
+    width: 404px;
+    height: 68px;
+    flex-shrink: 0;
+    border-radius: 18px;
+background: #1E1E1E;
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 36px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+border: none;
+margin: auto;
+}
+.messageSucc{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    font-size: 25px;
+    color: #3cff2ec5;
+    font-style: normal;
+    font-family: var(--fontText);
+    font-weight: 600;
+    line-height: normal;
+}
+.errorsStyle{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    font-size: 25px;
+    color: crimson;
+    font-style: normal;
+    font-family: var(--fontText);
+    font-weight: 600;
+    line-height: normal;
+}
+
+ .errorsStyle ul{
+    display: flex;
+    gap: 15px ;
+    }
+.errorsStyle ul li{
+    list-style-type: none;
+    }
+
+/* finish party ajoute produit*/
+
+
+/* start party vente */
+
+.sectionVente{
+    width: 85%;
+min-height: 500px;
+flex-shrink: 0;
+border-radius: 19px;
+background: #F2613F;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+.sectionVente form{
+background-color: rgba(0, 21, 255, 0);
+width: 90%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+flex-direction: column;
+flex-wrap: wrap;
+gap: 20px;
+
+}
+.sectionVente form  .sectionCart{
+width: 90%;
+background-color: rgba(128, 255, 0, 0);
+display: flex;
+justify-content: center;
+align-self: center;
+flex-wrap: wrap;
+padding: 15px;
+gap: 40px;
+}
+.sectionVente form  .sectionCart .cart{
+    width: 273px;
+    height: 327px;
+    flex-shrink: 0;
+    border-radius: 31px;
+background: rgba(49, 49, 49, 0.80);
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 20px;
+
+}
+.sectionVente form  .sectionCart .cart input{
+position: absolute;
+top: 7%;
+right:7%;
+width: 30px;
+height: 30px;
+flex-shrink: 0;
+accent-color: var(--firstBg);
+
+}
+
+.sectionVente form button{
+    width: 404px;
+    height: 68px;
+    flex-shrink: 0;
+    border-radius: 18px;
+background: #1E1E1E;
+border:  none;
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 36px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin: auto;
+}
+.sectionVente form .titlecart{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.sectionVente form .typecart{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.btnadd{
+    width: 167px;
+height: 63px;
+flex-shrink: 0;
+border-radius: 11px;
+border: 1px solid #D9D9D9;
+background: rgba(217, 217, 217, 0.70);
+color: #F2613F;
+text-align: center;
+font-family: var(--fontText);
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-decoration: none;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: all .5s ease;
+}
+.btnadd:hover{
+
+  background-color: var(--secdtBg);
+  color: var(--firstBg);
+  border: 1px solid var(--firstBg);
+}
+/* finish party vente */

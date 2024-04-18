@@ -16,7 +16,7 @@ class Client extends Model
         'Montant'
     ];
 
-    public function vente(){
+    public function ventes(){
         return $this->hasMany(vente::class);
     }
     public function payment_client()

@@ -1,11 +1,18 @@
 @extends('index')
+@section('script')
+    <link  href="{{ asset('CalendJs/vanilla-calendar.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('CalendJs/vanilla-calendar.min.js') }}" defer></script>
+    <script src="{{ asset('chartJS/chart_mini.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
+
+@endsection
 @section('Content')
 <div class="container">
     <div class="dashbordHome">
         <div class="partyNav">
             <ul>
                 <li id="focueBtn">
-                    <a href="#">
+                    <a href="{{ route('DashBord_user') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34" fill="none">
                         <path d="M16 34V22H24V34H34V18H40L20 0L0 18H6V34H16Z" fill="#D9D9D9"/>
                     </svg>
@@ -13,7 +20,7 @@
 
                 </li>
                 <li >
-                    <a href="#" >
+                    <a href="{{ route('Vente') }}" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M42.0597 29.3333H17.631L18.1764 32H40.5446C41.828 32 42.7792 33.1918 42.4948 34.4433L42.0351 36.4663C43.5927 37.2223 44.6667 38.819 44.6667 40.6667C44.6667 43.2668 42.5401 45.3703 39.9313 45.3328C37.4461 45.2971 35.4022 43.2803 35.3351 40.7956C35.2984 39.4383 35.8422 38.2082 36.7353 37.3333H19.2647C20.1294 38.1804 20.6667 39.3605 20.6667 40.6667C20.6667 43.3178 18.456 45.4526 15.7775 45.3282C13.3992 45.2178 11.4649 43.2961 11.3399 40.9184C11.2434 39.0823 12.2096 37.4638 13.6775 36.6196L7.82358 8H2C0.895417 8 0 7.10459 0 6V4.66667C0 3.56209 0.895417 2.66667 2 2.66667H10.5441C11.4942 2.66667 12.3131 3.33509 12.5035 4.26584L13.2673 8H45.9992C47.2826 8 48.2338 9.19175 47.9494 10.4433L44.01 27.7766C43.8031 28.6872 42.9936 29.3333 42.0597 29.3333ZM33.5857 18.6667H30V13.6667C30 13.1144 29.5522 12.6667 29 12.6667H27C26.4477 12.6667 26 13.1144 26 13.6667V18.6667H22.4142C21.5233 18.6667 21.0772 19.7438 21.7072 20.3738L27.2929 25.9595C27.6834 26.35 28.3166 26.35 28.7072 25.9595L34.2929 20.3738C34.9228 19.7438 34.4767 18.6667 33.5857 18.6667Z" fill="#D9D9D9"/>
                       </svg>
@@ -61,7 +68,7 @@
         </div>
         <div class="partyContent">
             <div class="navSide">
-                <div class="titleNav">DrogriAbdo</div>
+                <div class="titleNav">Droguerie Issam</div>
                 <div class="ProFileNav">
                     <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -82,21 +89,21 @@
                 <div class="minCotrolle">
                             <div class="partyContrBnt">
                                         <div class="bntconfig">
-                                            <a href="#">
+                                            <a href="{{ route('Ajoute_Client') }}">
                                             <img src="{{ asset('Image/Client.png') }}" alt="img">
                                             <div class="titlebtnconf">Ajoute Client</div>
                                             </a>
                                         </div>
                                         <div class="bntconfig">
 
-                                                <a href="#">
+                                                <a href="{{ route('Ajoute_Fournisseur') }}">
                                                     <img src="{{ asset('Image/fornisseu.png') }}" alt="img">
                                                     <div class="titlebtnconf">Ajoute Fournis</div>
                                                     </a>
                                                 </div>
 
                                         <div class="bntconfig">
-                                            <a href="#">
+                                            <a href="{{ route('Ajoute_produit') }}">
                                                 <img src="{{ asset('Image/Products.png') }}" alt="img">
                                                 <div class="titlebtnconf">Ajoute Produit</div>
                                             </a>
@@ -121,7 +128,16 @@
                                         </div>
 
                             </div>
-                    <div class="partycalendre"></div>
+                    <div class="partycalendre">
+
+                        <div class="calendar" id="calendar" ></div>
+                        <div class="paramchat">
+                            <canvas class="myChart" id="myChart" ></canvas>
+                        </div>
+
+
+
+                    </div>
                 </div>
                 <div class="userProfil">
                     <div class="profile">
@@ -214,5 +230,29 @@
     </div>
 
 </div>
+<script>
+
+     document.addEventListener('DOMContentLoaded', () => {
+        const calendar = new VanillaCalendar('#calendar');
+        calendar.init();
+      });
+</script>
+<Script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Client', 'Fournisseur', 'Produit', 'Vente', 'Achat'],
+        datasets: [{
+        label: 'Data User 2024',
+        // data: [{{ $dataClient }},{{ $dataFourni }}, {{ $dataProduit }}, {{ $dataVente }}, {{ $dataAchat }}],
+        data: [20,15,30,45,10],
+        borderWidth: 1
+        }]
+    },
+
+    });
+</Script>
 
 @endsection

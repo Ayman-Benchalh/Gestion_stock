@@ -17,11 +17,11 @@ class Fournisseur extends Model
     ];
 
     public function achat() {
-       return $this->hasMany(Achat::class);
+       return $this->hasMany(Achat::class,'id_fournisseur');
     }
-    public function payment_fournissers()
+    public function payments()
     {
-       return $this->hasMany(Payment_Client::class);
+       return $this->hasMany(Payment_Client::class,'id_Fournisseur');
 
    }
 }

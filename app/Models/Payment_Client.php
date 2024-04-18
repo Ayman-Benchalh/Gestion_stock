@@ -13,9 +13,9 @@ class Payment_Client extends Model
         'Montant_Pay',
 
     ];
-    public function client()
+    public function clients()
      {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class ,'id_Client');
 
     }
 }

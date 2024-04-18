@@ -15,8 +15,8 @@ class Produit extends Model
         'Prix',
 
     ];
-    public function vente(){
-        return $this->belongsTo(Vente::class);
+    public function ventes(){
+        return $this->belongsTo(Vente::class,'id_produit');
     }
 
 }

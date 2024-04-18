@@ -12,7 +12,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        //
+        return view('AjouteProduits');
     }
 
     /**
@@ -28,7 +28,37 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nomproduit=$request->nomproduit;
+        $designation=$request->designation;
+        $quantité=$request->quantité;
+        $prix=$request->prix;
+        $dataProduit= Produit::where('Nom_Prod',$nomproduit)->first();
+
+        $request->validate([
+            'nomproduit'=>['required','min:4'],
+            'designation'=>['required','min:4'],
+            'quantité'=>['required','min:1'],
+            'prix'=>['required','min:1'],
+        ]);
+        if(!$dataProduit){
+                // Produit::create([
+                //     'Nom_Prod'=>$nomproduit,
+                //     'Designation_Prod'=> $designation,
+                //     'Quantité'=>$quantité,
+                //     'Prix'=>$prix,
+                // ]);
+                return to_route('Ajoute_produit')->with('success','Le produit est Bien Ajoute ');
+        }else{
+            // Produit::where('Nom_Prod',$nomproduit)->update([
+            //     'Quantité'=>$quantité,
+            //     'Prix'=>$prix,
+            // ]);
+            return to_route('Ajoute_produit')->with('success','Le produit est bien mise à jour');
+
+        }
+
+
+
     }
 
     /**

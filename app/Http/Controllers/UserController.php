@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achat;
+use App\Models\Client;
+use App\Models\Fournisseur;
+use App\Models\Produit;
 use App\Models\User;
+use App\Models\Vente;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -148,6 +153,12 @@ class UserController extends Controller
 
     }
     public function DashBord_User(){
-        return view('dashBordPage');
+        $dataClient= Client::all()->count();
+        $dataFourni= Fournisseur::all()->count();
+        $dataProduit= Produit::all()->count();
+        $dataAchat= Achat::all()->count();
+        $dataVente= Vente::all()->count();
+
+        return view('dashBordPage' ,compact('dataClient','dataFourni','dataProduit','dataAchat','dataVente'));
      }
 }

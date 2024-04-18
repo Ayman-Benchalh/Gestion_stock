@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\VenteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,4 +25,14 @@ Route::Post('/ResetOTP_P',[UserController::class,'ResetOTP_Post'])->name('ResetO
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/DashBord',[UserController::class,'DashBord_User'])->name('DashBord_user');
+    Route::get('/AjouteProduit',[ProduitController::class,'index'])->name('Ajoute_produit');
+    Route::post('/AjouteProduit',[ProduitController::class,'store'])->name('Ajoute_produit');
+    Route::get('/AjouteFournisseur',[FournisseurController::class,'index'])->name('Ajoute_Fournisseur');
+    Route::post('/AjouteFournisseur',[FournisseurController::class,'store'])->name('Ajoute_Fournisseur');
+    Route::get('/AjouteClient',[ClientController::class,'index'])->name('Ajoute_Client');
+    Route::post('/AjouteClient',[ClientController::class,'store'])->name('Ajoute_Client');
+    Route::get('/Vente',[VenteController::class,'index'])->name('Vente');
+    Route::post('/Vente',[VenteController::class,'store'])->name('Vente');
+    Route::get('/Vente_produit',[VenteController::class,'create'])->name('Vente_produit');
+    Route::post('/Vente_produit',[VenteController::class,'store2'])->name('Vente_produit');
 });

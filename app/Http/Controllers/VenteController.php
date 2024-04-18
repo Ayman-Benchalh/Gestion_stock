@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Produit;
 use App\Models\Vente;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ class VenteController extends Controller
      */
     public function index()
     {
-        //
+       return view('Vente');
     }
 
     /**
@@ -20,7 +22,10 @@ class VenteController extends Controller
      */
     public function create()
     {
-        //
+        $dataProduit = Produit::all();
+        $dataCLientt = Client::all();
+
+        return view('Vente_Produit',compact('dataProduit','dataCLientt'));
     }
 
     /**
@@ -28,7 +33,22 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $btn1 =$request->btn1;
+        // dd($btn1);
+        if($btn1=='1_Produit'){
+            return to_route('Vente_produit');
+        }else{
+            return redirect()->to_route('');
+        }
+    }
+    public function store2(Request $request)
+    {
+        $selectproduit =$request->selectproduit;
+        $quantite =$request->quantite;
+        $prix =$request->prix;
+        $selectClient =$request->selectClient;
+        dd($selectproduit,$quantite, $prix , $selectClient);
+
     }
 
     /**

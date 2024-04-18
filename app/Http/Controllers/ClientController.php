@@ -12,7 +12,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+       return view('AjouteClient');
     }
 
     /**
@@ -28,7 +28,39 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $NomComplet=$request->NomComplet;
+        $email=$request->email;
+        $Adresse=$request->Adresse;
+        $Telephone=$request->Telephone;
+        // dd($nomproduit ,$designation,$quantité,$prix);
+        $dataProduit= Client::where('email',$email)->first();
+
+        $request->validate([
+            'NomComplet'=>['required','min:4'],
+            'email'=>['required','min:5'],
+            'Adresse'=>['required','min:3'],
+            'Telephone'=>['required','min:10'],
+        ]);
+        if(!$dataProduit){
+               Client::create([
+                    'nom_Complet'=>$NomComplet,
+                    'email'=>$email,
+                    'Adresse'=> $Adresse,
+                    'telephone'=>$Telephone,
+                    'Montant'=>0,
+                ]);
+                return to_route('Ajoute_Client')->with('success','Client est Bien Ajoute ');
+        }else{
+                Client::where('email',$email)->update([
+                'nom_Complet'=>$NomComplet,
+                'email'=>$email,
+                'Adresse'=> $Adresse,
+                'telephone'=>$Telephone,
+
+            ]);
+            return to_route('Ajoute_Client')->with('success',' Client est bien mise à jour');
+
+        }
     }
 
     /**
