@@ -15,7 +15,7 @@ class Payment_Client extends Model
     ];
     public function clients()
      {
-        return $this->belongsTo(Client::class ,'id_Client');
+        return $this->belongsTo(Client::class,'id_Client');
 
     }
 }

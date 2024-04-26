@@ -9,6 +9,7 @@ class Produit extends Model
 {
     use HasFactory;
     protected $fillable = [
+
         'Nom_Prod',
         'Designation_Prod',
         'Quantité',
@@ -16,7 +17,7 @@ class Produit extends Model
 
     ];
     public function ventes(){
-        return $this->belongsTo(Vente::class,'id_produit');
+        return $this->belongsTo(Vente::class);
     }
 
 }

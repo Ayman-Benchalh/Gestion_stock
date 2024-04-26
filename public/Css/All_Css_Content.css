@@ -169,6 +169,7 @@ font-weight: 800;
 line-height: normal;
 transition: all .5s ease;
 border: none;
+cursor: pointer;
 }
 .container .party2 form button:hover{
 
@@ -365,6 +366,7 @@ top: 0;
     line-height: normal;
     transition: all .5s ease;
     border:  none;
+    cursor: pointer;
     }
     .container .party2-cre form button:hover{
 
@@ -579,6 +581,7 @@ font-weight: 800;
 line-height: normal;
 transition: all .5s ease;
 border:  none;
+cursor: pointer;
 }
 .container .party2-OTP  form button:hover{
 
@@ -819,6 +822,7 @@ font-weight: 800;
 line-height: normal;
 transition: all .5s ease;
 border:  none;
+cursor: pointer;
 }
 .container .party2-Oubl  form button:hover{
 
@@ -1340,6 +1344,7 @@ font-style: normal;
 font-weight: 800;
 line-height: normal;
 margin: 15px 0;
+position: relative;
 }
 .sectionAjouteporduit{
     width: 85%;
@@ -1485,6 +1490,7 @@ font-weight: 600;
 line-height: normal;
 border: none;
 margin: auto;
+cursor: pointer;
 }
 .messageSucc{
     position: absolute;
@@ -1609,6 +1615,7 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 margin: auto;
+cursor: pointer;
 }
 .sectionVente form .titlecart{
     color: #FFF;
@@ -1656,3 +1663,214 @@ transition: all .5s ease;
   border: 1px solid var(--firstBg);
 }
 /* finish party vente */
+
+/* party vente groupe*/
+
+.sectionAjoutegroupporduit{
+        width: 85%;
+    min-height: 500px;
+    flex-shrink: 0;
+    border-radius: 19px;
+    background: #F2613F;
+    display: flex;
+    justify-content: start;
+   justify-content: center;
+   flex-wrap: wrap;
+    padding: 15px;
+    gap: 15px;
+    position: relative;
+}
+.sectionTable{
+   width: 100%;
+
+
+}
+ .selectClient{
+position: absolute;
+right: 0;
+top: -10%;
+}
+.selectClient select{
+    max-width:700px;
+    height: 69px;
+    flex-shrink: 0;
+    border-radius: 15px;
+
+    background-color: var(--secdtBg);
+    border: 1px solid var(--firstBg);
+
+    outline: none;
+    color: #FFF;
+    text-align: left;
+    font-family: var(--fontText);
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 0 15px;
+
+}
+.sectionTable table{
+    width: 100%;
+    border-collapse: collapse;
+
+
+}
+
+.sectionTable table tr th{
+    width: auto;
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-bottom: #1E1E1E 3px solid;
+
+padding: 25px 0;
+border-radius: 10px;
+background-color: rgba(137, 43, 226, 0);
+
+}
+
+.sectionTable table tr td form button{
+    width: 62px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 9px;
+background: #1E1E1E;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+margin: auto;
+border: none;
+
+}
+
+.sectionTable table tr td{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    padding: 10px;
+    background-color: rgba(137, 43, 226, 0);
+    transition: all .5s ease;
+    border: 1px solid rgba(137, 43, 226, 0) ;
+
+
+    flex-direction: row;
+}
+.sectionTable table tr:hover td{
+background-color: #373737;
+
+}
+
+.sectionTable table  tfoot tr td{
+    width: 100%;
+background-color: rgba(137, 43, 226, 0);
+
+}
+
+.sectionTable table  tfoot tr:hover td{
+    background-color: #37373700;
+
+}
+.sectionTable table  tfoot tr form  button {
+    width: 90%;
+    height: 68px;
+    flex-shrink: 0;
+    border-radius: 18px;
+background: #60352A;
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 36px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+border: none;
+cursor: pointer;
+}
+.sectionverif{
+width: 100%;
+background-color: rgba(165, 42, 42, 0);
+display: flex;
+justify-content: space-between;
+
+align-items: center;
+flex-wrap: wrap;
+margin: auto;
+}
+.sectionverif .Totalproduit , .TotalPrix{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.sectionverif .Totalproduit span , .TotalPrix span{
+    color: #1E1E1E;
+    font-family: var(--fontText);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.sectionverif form button{
+    width: 404px;
+    height: 68px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    background: #1E1E1E;
+    color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 36px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+border: none;
+cursor: pointer;
+}
+/*
+.sectionTable {
+width: 80%;
+background-color: chartreuse;
+display: flex;
+justify-content: center;
+align-items: center;
+    }
+table{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+        width:auto;
+        height: 300px;
+
+
+        background-color: cadetblue;
+    }
+.sectionTable table tr{
+ width: auto!important;
+background-color: brown;
+
+    }
+.sectionTable table tr th ,td{
+width: 100%;
+padding: 0;
+margin: 0;
+
+} */
+
+
+/*finish party */

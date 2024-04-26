@@ -84,15 +84,12 @@
                 <div class="titleAjoute">Vente Produit
 
                 </div>
-                @if ($errors->any())
+                @if (session()->has('errorMessage'))
                 <div class="errorsStyle">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                  {{ session()->get('errorMessage')}}
                 </div>
             @endif
+
                 @if (session()->has('success'))
                     <div class="messageSucc">{{ session()->get('success') }}</div>
                 @endif
@@ -106,9 +103,9 @@
                                     <li><div class="titlenom">Produit  : </div></li>
                                     <li>
                                         <select onchange="myfinc({{ $dataProduit }})" name="selectproduit" id="selectproduit">
-                                            <option value="">select produit</option>
+                                            <option value="refr">select produit</option>
                                             @foreach ( $dataProduit as $produit)
-                                            <option  value="{{ $produit->Nom_Prod }}" id="{{ $produit->Prix }}" >{{ $produit->Nom_Prod }}</option>
+                                            <option  value="{{ $produit->id }}" id="{{ $produit->Prix }}" >{{ $produit->Nom_Prod }}</option>
                                             @endforeach
                                         </select>
                                       </li>
@@ -117,7 +114,7 @@
                             <div class="unitearty">
                                 <ul>
                                     <li><div class="titlenom">Quantite :</div></li>
-                                    <li><input type="text" oninput="myfinc2()" name="quantite" id="quantite" value="{{ old('quantite') }}" placeholder="quantite produit"></li>
+                                    <li><input type="text" oninput="myfinc2()" name="quantite" id="quantite" value="1" placeholder="quantite produit"></li>
                                 </ul>
                             </div>
                             <div class="unitearty">
@@ -134,7 +131,7 @@
                                         <select name="selectClient" id="selectClient">
                                             <option >select Client</option>
                                             @foreach ( $dataCLientt as $produit)
-                                            <option value="{{ $produit->nom_Complet }}">{{ $produit->nom_Complet }}</option>
+                                            <option value="{{ $produit->id }}">{{ $produit->nom_Complet }}</option>
                                             @endforeach
                                         </select>
                                         <a class="btnadd" href="{{ route('Ajoute_Client') }}">Add client</a>
@@ -161,21 +158,24 @@
     const quantite = document.getElementById('quantite');
     // selectproduit.onchange=myfinc;
     const myfinc=(data)=>{
+
      return  data.forEach(element => {
-            if(element.Nom_Prod == selectproduit.value){
+        let dataprix=element.Prix
+            if(element.id == selectproduit.value){
                 return prix.value=element.Prix
-            }else{
-                // return prix.value=0
+            }else if(selectproduit.value=='refr'){
+                return prix.value=0
             }
           });
     }
     const myfinc2=()=>{
         // console.log(quantite.value ,prix.value);
+        let dataprix=prix.value
         dataprixTotal =quantite.value*prix.value
-        if(quantite.value>0){
+        if(quantite.value>1){
             return prix.value = dataprixTotal
-        }else{
-            // return prix.value = dataprixTotal
+        }else if(quantite.value==0){
+            return prix.value = dataprix
         }
 
     }

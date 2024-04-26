@@ -97,7 +97,7 @@
                     </label>
                     <label for="redio2" class="cart">
                         <img src="{{ asset('Image/4062005 1.png') }}" alt="img">
-                        <div class="typecart">1 plus++</div>
+                        <div class="typecart">1 pluseur</div>
                         <div class="titlecart"> produit</div>
                         <input type="radio" name="btn1" id="redio2" value="pluse_produit">
                     </label>
