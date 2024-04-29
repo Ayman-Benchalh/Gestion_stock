@@ -44,6 +44,12 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/Vente_Groupe_produit/{IdClient?}',[VenteController::class,'show'])->name('Vente_Groupe_produit');
     Route::post('/Vente_Groupe_produit_P',[VenteController::class,'store2'])->name('Vente_Groupe_produit_P');
+    Route::delete('/Vente_Groupe_produit_D',[VenteController::class,'destroy'])->name('Vente_Groupe_produit_D');
+
+    Route::post('/Vente_one_en_G',[VenteController::class,'AjouteVente_group'])->name('Vente_one_for_Groupe');
+    // // Route::get('/Vente_Avoute_Groupe_produit',[VenteController::class,'AjouteVente_group'])->name('Vente_Avoute_Groupe_produit');
+    // Route::get('/Vente_One_of_groupe_Produit',[VenteController::class,'AjouteVente_group'])->name('Vente_One_of_groupe_Produit');
+    Route::post('/Vente_One_of_groupe_Produit',[VenteController::class,'AjouteVente_group_ps'])->name('Vente_One_of_groupe_Produit');
 
     Route::get('/Pay_client/{codeClient}',[PaymentClientController::class,'index'])->name('Pay_client');
     Route::post('/Pay_client',[PaymentClientController::class,'store'])->name('Pay_client_add');

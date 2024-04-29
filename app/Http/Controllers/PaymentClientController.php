@@ -33,7 +33,7 @@ class PaymentClientController extends Controller
      */
     public function index($codeClient)
     {
-        $dataVente_deClient=Vente::where('id_client',$codeClient)->get();
+        $dataVente_deClient=Vente::where('id_client',$codeClient)->where('validation_Vente',0)->get();
         // dd($dataVente_deClient);
        return view('Pay_ClientPage',compact('dataVente_deClient'));
     }
@@ -62,12 +62,12 @@ class PaymentClientController extends Controller
                 'RestPay'=>['required'],
             ]);
             $dataClient= Client::where('nom_Complet',$PayClient)->first();
+            //   dd($ddsr->id);
+            $dataPaymentClient= Payment_Client::where('id_Client',$dataClient->id)->first();
+            //   dd($dataClient->Montant);
             Client::where('nom_Complet',$PayClient)->update([
-                    'Montant'=>$RestPay
+                    'Montant'=>$dataClient->Montant +$RestPay
             ]);
-        //   dd($ddsr->id);
-        $dataPaymentClient= Payment_Client::where('id_Client',$dataClient->id)->first();
-    //   dd($dataClient->id);
             if(!$dataPaymentClient){
                 Vente::where('id_client',$dataClient->id)->update([
                     'validation_Vente'=> true,
@@ -76,14 +76,14 @@ class PaymentClientController extends Controller
                     'id_Client'=> $dataClient->id,
                     'Montant_Pay'=> $ToTalPay
                 ]);
-               
+
 
             }else{
                 Vente::where('id_client',$dataClient->id)->update([
                     'validation_Vente'=> true,
                 ]);
                 Payment_Client::where('id_Client',$dataClient->id)->update([
-                    'Montant_Pay'=> $ToTalPay
+                    'Montant_Pay'=>$ToTalPay
                 ]);
             }
 
@@ -102,13 +102,15 @@ class PaymentClientController extends Controller
     public  function show($idClient)
     {
         $dataClient=Client::findOrFail($idClient);
-        $dataVente=Vente::where('id_client',$idClient)->get();
+        $dataVente=Vente::where('id_client',$idClient)->where('facture_imprimé',0)->get();
         $dataPayment=Payment_Client::where('id_client',$idClient)->first();
         $dataUser=User::findOrFail(session()->get('id_User'));
 
         // // $dataVente=Vente::findOrFail(12);
         // dd($dataVente,$dataPayment);
-
+        vente::where('id_client',$idClient)->update([
+            'facture_imprimé'=>true,
+        ]);
         $dataVenteAll=Vente::where('id_client',$idClient)->get();
         // dd($dataVenteAll);
         $data = compact( 'dataClient','dataVente','dataUser','dataPayment');

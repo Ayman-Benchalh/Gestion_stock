@@ -41,18 +41,18 @@ class ProduitController extends Controller
             'prix'=>['required','min:1'],
         ]);
         if(!$dataProduit){
-                // Produit::create([
-                //     'Nom_Prod'=>$nomproduit,
-                //     'Designation_Prod'=> $designation,
-                //     'Quantité'=>$quantité,
-                //     'Prix'=>$prix,
-                // ]);
+                Produit::create([
+                    'Nom_Prod'=>$nomproduit,
+                    'Designation_Prod'=> $designation,
+                    'Quantité'=>$quantité,
+                    'Prix'=>$prix,
+                ]);
                 return to_route('Ajoute_produit')->with('success','Le produit est Bien Ajoute ');
         }else{
-            // Produit::where('Nom_Prod',$nomproduit)->update([
-            //     'Quantité'=>$quantité,
-            //     'Prix'=>$prix,
-            // ]);
+            Produit::where('Nom_Prod',$nomproduit)->update([
+                'Quantité'=>$quantité,
+                'Prix'=>$prix,
+            ]);
             return to_route('Ajoute_produit')->with('success','Le produit est bien mise à jour');
 
         }

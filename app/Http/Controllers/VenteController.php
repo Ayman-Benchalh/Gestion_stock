@@ -69,6 +69,7 @@ class VenteController extends Controller
                 'Quantite_vente'=> $quantite,
                 'Prix_Vente'=> $prix,
                 'validation_Vente'=> false,
+                'facture_imprimé'=>false
                 ]);
                 History_Vente::create([
                 'id_produit'=> $selectproduitId,
@@ -88,6 +89,7 @@ class VenteController extends Controller
                         'Quantite_vente'=> $quantite,
                         'Prix_Vente'=> $prix,
                         'validation_Vente'=> false,
+                        'facture_imprimé'=>false
                         ]);
 
                          History_Vente::create([
@@ -99,7 +101,16 @@ class VenteController extends Controller
                     return to_route('Pay_client',['codeClient'=>$selectClientID])->with('success',"La vente s'est bien passée, elle est maintenant payée.");
 
             }else{
-                  return back()->with('errorMessage',"c'est Vente est deja passe Choise Un autre produit");
+                Vente::where('id_client',$selectClientID)->where('id_produit',$selectproduitId)->update([
+                    'id_produit'=> $selectproduitId,
+                    'id_client'=> $selectClientID,
+                    'Quantite_vente'=> $quantite,
+                    'Prix_Vente'=> $prix,
+                    'validation_Vente'=> false,
+                    'facture_imprimé'=>false
+                ]);
+                return to_route('Pay_client',['codeClient'=>$selectClientID])->with('success',"la Vente est encore Ajoute un foise");
+
             }
 
 
@@ -118,14 +129,68 @@ class VenteController extends Controller
     {
         //  dd(session());
         $dataClient = Client::all();
-        $dataVenteClient=Vente::where('id_client',$IdClient)->get();
-        // dd($dataVenteClient);
-        return view('Vente_Groupe_produit',compact('dataClient','dataVenteClient'));
+        $dataClientOne = Client::find($IdClient);
+        $dataVenteClient=Vente::where('id_client',$IdClient)->where('validation_Vente',0)->get();
+        // dd($dataClientOne);
+        return view('Vente_Groupe_produit',compact('dataClient','dataVenteClient','dataClientOne'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+    public function AjouteVente_group(Request $request)
+    {
+        // dd($request->id_client);
+        $dataProduit = Produit::all();
+        $dataClientOne = Client::find($request->id_client);
+       return view('Vente_One_of_groupe_Produit',compact('dataProduit','dataClientOne'));
+    }
+    public function AjouteVente_group_ps(Request $request)
+    {
+        $selectproduitId =$request->selectproduit;
+        $quantite =$request->quantite;
+        $prix =$request->prix;
+        $ClientId =$request->id_client;
+        $request->validate([
+            'selectproduit'=>['required','exists:produits,id'],
+            'quantite'=>['required'],
+            'prix'=>['required'],
+            'id_client'=>['required','exists:clients,id'],
+        ]);
+       $dataVente = Vente::where('id_client',$ClientId)->where('id_produit',$selectproduitId)->get()->ToArray();
+
+        if(!$dataVente){
+            Vente::create([
+                'id_produit'=> $selectproduitId,
+                'id_client'=> $ClientId,
+                'Quantite_vente'=> $quantite,
+                'Prix_Vente'=> $prix,
+                'validation_Vente'=> false,
+                'facture_imprimé'=>false
+                ]);
+            History_Vente::create([
+                    'id_produit'=> $selectproduitId,
+                    'id_client'=> $ClientId,
+                    'Quantite_vente'=> $quantite,
+                    'Prix_Vente'=> $prix,
+                    ]);
+
+            return to_route('Vente_Groupe_produit',['IdClient'=> $ClientId])->with('success',"La vente s'est bien Ajoute dans les groupe de vente");
+        }else{
+            Vente::where('id_client',$ClientId)->where('id_produit',$selectproduitId)->update([
+                'id_produit'=> $selectproduitId,
+                'id_client'=> $ClientId,
+                'Quantite_vente'=> $quantite,
+                'Prix_Vente'=> $prix,
+                'validation_Vente'=> false,
+                'facture_imprimé'=>false
+            ]);
+            return to_route('Vente_Groupe_produit',['IdClient'=> $ClientId])->with('success',"la Vente est encore Ajoute un foise ");
+        }
+        // dd($request->id_client);
+    //     $dataProduit = Produit::all();
+    //    return view('Vente_One_of_groupe_Produit',compact('dataProduit'));
+    }
     public function edit(Vente $vente)
     {
         //
@@ -142,8 +207,10 @@ class VenteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vente $vente)
+    public function destroy(Request $request)
     {
-        //
+        Vente::findOrFail($request->id_vente)->delete();
+        // dd($dataDeletVente);
+       return to_route('Vente_Groupe_produit',['IdClient'=>$request->id_Client]);
     }
 }

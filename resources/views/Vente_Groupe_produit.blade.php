@@ -87,6 +87,10 @@
             <div class="sectionConteent">
                 <div class="titleAjoute">
                     vente groupe
+
+                    <div class="nameClient">
+                        Nom Client :  @if($dataClientOne){{ $dataClientOne->nom_Complet }} @endif
+                    </div>
                     <div class="selectClient">
                         <select name="selectproduit" id="selectproduit" onchange="myfunselect(event)">
                             <Option>Select Client</Option>
@@ -114,6 +118,9 @@
                 @if (session()->has('success'))
                     <div class="messageSucc">{{ session()->get('success') }}</div>
                 @endif
+                @if (session()->has('errorMessage'))
+                    <div class="errorsStyle">{{ session()->get('errorMessage') }}</div>
+                @endif
 
 
                 <div class="sectionAjoutegroupporduit">
@@ -137,18 +144,21 @@
                                             Oop Aucun produit vente ce client
                                             </td>
                                         </tr>
+
                                 @elseif ($dataVenteClient)
                                             @foreach ($dataVenteClient as $key => $dataItm)
+
                                             <tr>
-                                                <td>{{  $key++ }}</td>
+                                                <td>{{  $key+1 }}</td>
                                                 <td>{{  $dataItm->produits->Nom_Prod}}</td>
                                                 <td>{{ $dataItm->Quantite_vente }}</td>
                                                 <td id="prix">{{  $dataItm->Prix_Vente }}</td>
                                                 <td>
-                                                    <form action="" method="post">
+                                                    <form action="{{ route('Vente_Groupe_produit_D') }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <input type="hidden" name="id_vente" value="{{ $dataItm->id }}">
+                                                    <input type="hidden" name="id_Client" value="{{ $dataItm->id_client }}">
                                                     <button type="submit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
                                                         <g clip-path="url(#clip0_25_260)">
@@ -269,22 +279,49 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="5">
-                                        <form action="" method="post">
+                                        <form action="{{ route('Vente_one_for_Groupe') }}" method="post">
                                             @csrf
+                                            <input type="hidden">
+                                                @if($dataClientOne)
+
+                                                    <input type="hidden" name="id_client" id="id_client" value="{{ $dataClientOne->id }}">
+                                                @endif
+
+
                                                 <button type="submit">Ajoute produit</button>
 
                                         </form>
-                                    </td>
+                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                     <div class="sectionverif">
                         <div class="Totalproduit">Total produit : <span id="NumProduit">3</span></div>
-                        <form action="" method="post">
-                            @csrf
-                            <button type="submit">Pay de Vente </button>
-                        </form>
+
+
+
+                                @if($dataVenteClient->ToArray())
+
+                                    <form action="{{ route('Pay_client',['codeClient'=>$dataClientOne->id]) }}" method="get">
+                                        @csrf
+
+                                            <button type="submit">Pay de Vente </button>
+
+                                    </form>
+                                    @else
+                                        <a  class="btnform">Pay de Vente</a>
+                                @endif
+
+
+
+
+
+
+
+
+
+
                         <div class="TotalPrix">Total Prix : <span id="NumPrixTotal">3478 </span><span> &dollar; </span></div>
                     </div>
                 </div>
@@ -352,10 +389,13 @@
         }
         myfunprintPrix(tbaleprix)
         const selectproduit=document.getElementById('selectproduit')
-       const myfunselect =(event)=>{
-        const btnchange=document.getElementById('btnchange')
 
-                btnchange.href=`${selectproduit.value}`;
+       const myfunselect =(event)=>{
+        const btnchange=document.getElementById('btnchange');
+
+         btnchange.href=`${selectproduit.value}`;
+
+
 
               return  btnchange.click();
        }

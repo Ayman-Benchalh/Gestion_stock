@@ -155,7 +155,7 @@
             <tbody>
                 @foreach ($dataVente as $key=>$itemVente)
                     <tr>
-                        <td>N {{ $key+1 }}</td>
+                        <td> {{ $key+1 }}</td>
                         <td>{{ $itemVente->produits->Nom_Prod}}</td>
                         <td>{{ $itemVente->Quantite_vente }}</td>
                         <td>{{ $itemVente->produits->Prix }}</td>

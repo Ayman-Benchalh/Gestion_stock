@@ -1345,6 +1345,14 @@ font-weight: 800;
 line-height: normal;
 margin: 15px 0;
 position: relative;
+background-color: rgba(0, 0, 255, 0);
+}
+.nameClient{
+    position: absolute;
+    top: 25%;
+    right: 30%;
+    font-weight: 500;
+    font-size: 25px;
 }
 .sectionAjouteporduit{
     width: 85%;
@@ -1838,6 +1846,27 @@ font-weight: 600;
 line-height: normal;
 border: none;
 cursor: pointer;
+}
+.sectionverif .btnform{
+    width: 404px;
+    height: 68px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    background: #1E1E1E;
+    color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 36px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+border: none;
+cursor: pointer;
+text-decoration: none;
+cursor: no-drop;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 /*
 .sectionTable {

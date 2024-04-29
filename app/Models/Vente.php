@@ -15,6 +15,7 @@ class Vente extends Model
         'Quantite_vente',
         'Prix_Vente',
         'validation_Vente',
+        'facture_imprimé',
 
     ];
     public function produits()
