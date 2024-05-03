@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('Designation_Prod');
             $table->string('Quantité');
             $table->string('Prix');
+            $table->string('Nom_Fournisseur');
             $table->timestamps();
         });
     }

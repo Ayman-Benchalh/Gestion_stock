@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AchatController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\PaymentClientController;
+use App\Http\Controllers\PaymentFournissersController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\VenteController;
@@ -53,6 +55,26 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/Pay_client/{codeClient}',[PaymentClientController::class,'index'])->name('Pay_client');
     Route::post('/Pay_client',[PaymentClientController::class,'store'])->name('Pay_client_add');
+
+
+    Route::get('/Achat',[AchatController::class,'index'])->name('Achat');
+    Route::post('/Achat',[AchatController::class,'store'])->name('Achat');
+
+
+    Route::get('/Achat_produit',[AchatController::class,'create'])->name('Achat_produit');
+    Route::post('/Achat_produit',[AchatController::class,'store2'])->name('Achat_produit');
+
+    Route::get('/Achat_Groupe_produit/{IdFournisseur?}',[AchatController::class,'show'])->name('Achat_Groupe_produit');
+    Route::post('/Achat_Groupe_produit_P',[AchatController::class,'store2'])->name('Achat_Groupe_produit_P');
+    Route::delete('/Achat_Groupe_produit_D',[AchatController::class,'destroy'])->name('Achat_Groupe_produit_D');
+
+    Route::post('/Achat_one_en_G',[AchatController::class,'AjouteAchat_group'])->name('Achat_one_for_Groupe');
+
+    Route::post('/Achat_One_of_groupe_Produit',[AchatController::class,'AjouteAchat_group_ps'])->name('Achat_One_of_groupe_Produit');
+ 
+
+    Route::get('/Pay_fournisseur/{codeFournisseur}',[PaymentFournissersController::class,'index'])->name('Pay_fournisseur');
+    Route::post('/Pay_fournisseur',[PaymentFournissersController::class,'store'])->name('Pay_fournisseur_add');
 
 
     Route::get('/Pdf_Facture',[PaymentClientController::class,'show'])->name('Pdf_facture');

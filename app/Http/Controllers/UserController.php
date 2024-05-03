@@ -158,7 +158,8 @@ class UserController extends Controller
         $dataProduit= Produit::all()->count();
         $dataAchat= Achat::all()->count();
         $dataVente= Vente::all()->count();
+        $dataVenteall= Vente::all();
 
-        return view('dashBordPage' ,compact('dataClient','dataFourni','dataProduit','dataAchat','dataVente'));
+        return view('dashBordPage' ,compact('dataClient','dataFourni','dataProduit','dataAchat','dataVente','dataVenteall'));
      }
 }

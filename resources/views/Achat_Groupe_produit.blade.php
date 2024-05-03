@@ -18,14 +18,14 @@
                     </a>
 
                 </li>
-                <li  id="focueBtn">
+                <li >
                     <a href="{{ route('Vente') }}" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M42.0597 29.3333H17.631L18.1764 32H40.5446C41.828 32 42.7792 33.1918 42.4948 34.4433L42.0351 36.4663C43.5927 37.2223 44.6667 38.819 44.6667 40.6667C44.6667 43.2668 42.5401 45.3703 39.9313 45.3328C37.4461 45.2971 35.4022 43.2803 35.3351 40.7956C35.2984 39.4383 35.8422 38.2082 36.7353 37.3333H19.2647C20.1294 38.1804 20.6667 39.3605 20.6667 40.6667C20.6667 43.3178 18.456 45.4526 15.7775 45.3282C13.3992 45.2178 11.4649 43.2961 11.3399 40.9184C11.2434 39.0823 12.2096 37.4638 13.6775 36.6196L7.82358 8H2C0.895417 8 0 7.10459 0 6V4.66667C0 3.56209 0.895417 2.66667 2 2.66667H10.5441C11.4942 2.66667 12.3131 3.33509 12.5035 4.26584L13.2673 8H45.9992C47.2826 8 48.2338 9.19175 47.9494 10.4433L44.01 27.7766C43.8031 28.6872 42.9936 29.3333 42.0597 29.3333ZM33.5857 18.6667H30V13.6667C30 13.1144 29.5522 12.6667 29 12.6667H27C26.4477 12.6667 26 13.1144 26 13.6667V18.6667H22.4142C21.5233 18.6667 21.0772 19.7438 21.7072 20.3738L27.2929 25.9595C27.6834 26.35 28.3166 26.35 28.7072 25.9595L34.2929 20.3738C34.9228 19.7438 34.4767 18.6667 33.5857 18.6667Z" fill="#D9D9D9"/>
                       </svg>
                     </a>
                 </li>
-                <li>
+                <li id="focueBtn">
                     <a href="{{ route('Achat') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44" viewBox="0 0 48 44" fill="none">
                             <path d="M42.0597 27.3333H17.631L18.1764 30H40.5446C41.828 30 42.7792 31.1918 42.4948 32.4433L42.0351 34.4663C43.5927 35.2223 44.6667 36.819 44.6667 38.6667C44.6667 41.2668 42.5401 43.3703 39.9313 43.3328C37.4461 43.2971 35.4022 41.2803 35.3351 38.7956C35.2984 37.4383 35.8422 36.2082 36.7353 35.3333H19.2647C20.1294 36.1804 20.6667 37.3605 20.6667 38.6667C20.6667 41.3178 18.456 43.4526 15.7775 43.3282C13.3992 43.2178 11.4649 41.2961 11.3399 38.9184C11.2434 37.0823 12.2096 35.4638 13.6775 34.6196L7.82358 6H2C0.895417 6 0 5.10459 0 4V2.66667C0 1.56209 0.895417 0.666672 2 0.666672H10.5441C11.4942 0.666672 12.3131 1.33509 12.5035 2.26584L13.2673 6H45.9992C47.2826 6 48.2338 7.19175 47.9494 8.44325L44.01 25.7766C43.8031 26.6872 42.9936 27.3333 42.0597 27.3333ZM34 14.6667H30V11.3333C30 10.5969 29.4031 10 28.6667 10H27.3333C26.5969 10 26 10.5969 26 11.3333V14.6667H22C21.2636 14.6667 20.6667 15.2636 20.6667 16V17.3333C20.6667 18.0698 21.2636 18.6667 22 18.6667H26V22C26 22.7364 26.5969 23.3333 27.3333 23.3333H28.6667C29.4031 23.3333 30 22.7364 30 22V18.6667H34C34.7364 18.6667 35.3333 18.0698 35.3333 17.3333V16C35.3333 15.2636 34.7364 14.6667 34 14.6667Z" fill="#D9D9D9"/>
@@ -86,17 +86,17 @@
             </div>
             <div class="sectionConteent">
                 <div class="titleAjoute">
-                    vente groupe
+                    Achat groupe
 
                     <div class="nameClient">
-                        Nom Client :  @if($dataClientOne){{ $dataClientOne->nom_Complet }} @endif
+                        Nom Client :  @if($dataFourniOne){{ $dataFourniOne->nom_Complet }} @endif
                     </div>
                     <div class="selectClient">
                         <select name="selectproduit" id="selectproduit" onchange="myfunselect(event)">
                             <Option>Select Client</Option>
-                            @foreach ( $dataClient as $clientitem)
-                                <option value="{{ $clientitem->id }}">
-                                        {{ $clientitem->nom_Complet }}
+                            @foreach ( $dataFourni as $fournitem)
+                                <option value="{{ $fournitem->id }}">
+                                        {{ $fournitem->nom_Complet }}
                                 </option>
                                 @endforeach
 
@@ -138,27 +138,27 @@
                             </thead>
                             <tbody class="table">
 
-                                @if(count($dataVenteClient)==0)
+                                @if(count($dataAchatFourni)==0)
                                         <tr>
                                             <td colspan="5">
                                             Oop Aucun produit vente ce client
                                             </td>
                                         </tr>
 
-                                @elseif ($dataVenteClient)
-                                            @foreach ($dataVenteClient as $key => $dataItm)
+                                @elseif ($dataAchatFourni)
+                                            @foreach ($dataAchatFourni as $key => $dataItm)
 
                                             <tr>
                                                 <td>{{  $key+1 }}</td>
                                                 <td>{{  $dataItm->produits->Nom_Prod}}</td>
-                                                <td>{{ $dataItm->Quantite_vente }}</td>
-                                                <td id="prix">{{  $dataItm->Prix_Vente }}</td>
+                                                <td>{{ $dataItm->Quantite_Achat }}</td>
+                                                <td id="prix">{{  $dataItm->Prix_Achat }}</td>
                                                 <td>
-                                                    <form action="{{ route('Vente_Groupe_produit_D') }}" method="post">
+                                                    <form action="{{ route('Achat_Groupe_produit_D') }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <input type="hidden" name="id_vente" value="{{ $dataItm->id }}">
-                                                    <input type="hidden" name="id_Client" value="{{ $dataItm->id_client }}">
+                                                    <input type="hidden" name="id_Achat" value="{{ $dataItm->id }}">
+                                                    <input type="hidden" name="id_fournisseur" value="{{ $dataItm->id_fournisseur }}">
                                                     <button type="submit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
                                                         <g clip-path="url(#clip0_25_260)">
@@ -279,14 +279,14 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="5">
-                                        <form action="{{ route('Vente_one_for_Groupe') }}" method="post">
+                                        <form action="{{ route('Achat_one_for_Groupe') }}" method="post">
                                             @csrf
                                             <input type="hidden">
-                                                @if($dataClientOne)
+                                                @if($dataFourniOne)
 
-                                                    <input type="hidden" name="id_client" id="id_client" value="{{ $dataClientOne->id }}">
+                                                    <input type="hidden" name="id_Fournisseur" id="id_client" value="{{ $dataFourniOne->id }}">
                                                     <button type="submit">Ajoute produit</button>
-                                          
+
                                                 @endif
 
 
@@ -302,16 +302,16 @@
 
 
 
-                                @if($dataVenteClient->ToArray())
+                                @if($dataAchatFourni->ToArray())
 
-                                    <form action="{{ route('Pay_client',['codeClient'=>$dataClientOne->id]) }}" method="get">
+                                    <form action="{{ route('Pay_fournisseur',['codeFournisseur'=>$dataFourniOne->id]) }}" method="get">
                                         @csrf
 
-                                            <button type="submit">Pay de Vente </button>
+                                            <button type="submit">Pay de Achat </button>
 
                                     </form>
                                     @else
-                                        <a  class="btnform">Pay de Vente</a>
+                                        <a  class="btnform">Pay de Achat</a>
                                 @endif
 
 
@@ -323,7 +323,7 @@
 
 
 
-                        <div class="TotalPrix">Total Prix : <span id="NumPrixTotal">3478 </span><span> &dollar; </span></div>
+                        <div class="TotalPrix">Total Prix : <span id="NumPrixTotal">0 </span><span> &dollar; </span></div>
                     </div>
                 </div>
 

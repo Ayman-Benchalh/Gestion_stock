@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_produit');
             $table->integer('Quantite_vente');
             $table->integer('Prix_Vente');
+            $table->boolean('validation_Vente');
+            $table->boolean('facture_imprimé');
             $table->foreign('id_client')->references('id')->on('clients');
             $table->foreign('id_produit')->references('id')->on('produits');
             $table->timestamps();

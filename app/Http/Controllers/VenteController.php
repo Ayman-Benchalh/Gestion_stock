@@ -67,7 +67,7 @@ class VenteController extends Controller
                 'id_produit'=> $selectproduitId,
                 'id_client'=> $selectClientID,
                 'Quantite_vente'=> $quantite,
-                'Prix_Vente'=> $prix,
+                'Prix_Vente'=> $prix* $quantite,
                 'validation_Vente'=> false,
                 'facture_imprimé'=>false
                 ]);
@@ -87,7 +87,7 @@ class VenteController extends Controller
                         'id_produit'=> $selectproduitId,
                         'id_client'=> $selectClientID,
                         'Quantite_vente'=> $quantite,
-                        'Prix_Vente'=> $prix,
+                        'Prix_Vente'=>  $prix* $quantite,
                         'validation_Vente'=> false,
                         'facture_imprimé'=>false
                         ]);
@@ -105,7 +105,7 @@ class VenteController extends Controller
                     'id_produit'=> $selectproduitId,
                     'id_client'=> $selectClientID,
                     'Quantite_vente'=> $quantite,
-                    'Prix_Vente'=> $prix,
+                    'Prix_Vente'=>  $prix* $quantite,
                     'validation_Vente'=> false,
                     'facture_imprimé'=>false
                 ]);

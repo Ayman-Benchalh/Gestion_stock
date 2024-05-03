@@ -46,6 +46,7 @@ class ProduitController extends Controller
                     'Designation_Prod'=> $designation,
                     'Quantité'=>$quantité,
                     'Prix'=>$prix,
+                    'Nom_Fournisseur'=>null,
                 ]);
                 return to_route('Ajoute_produit')->with('success','Le produit est Bien Ajoute ');
         }else{

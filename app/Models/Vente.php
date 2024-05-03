@@ -18,10 +18,7 @@ class Vente extends Model
         'facture_imprimé',
 
     ];
-    public function produits()
-    {
-        return $this->hasOne(Produit::class,'id','id_produit');
-    }
+    
     public function clients()
     {
         return $this->belongsTo(Client::class,'id_client');

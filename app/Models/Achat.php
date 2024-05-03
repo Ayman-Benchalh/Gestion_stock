@@ -11,13 +11,15 @@ class Achat extends Model
     protected $fillable = [
         'id_fournisseur',
         'id_produit',
-        'Quantite_vente',
-        'Prix_Vente',
+        'Quantite_Achat',
+        'Prix_Achat',
+        'validation_Achat',
+        'facture_imprimé',
 
     ];
     public function produits()
     {
-        return $this->hasMany(Produit::class,'id_produit');
+        return $this->hasOne(Produit::class,'id','id_produit');
     }
     public function fournisseurs()
     {

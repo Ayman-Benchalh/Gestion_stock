@@ -14,6 +14,7 @@ class Produit extends Model
         'Designation_Prod',
         'Quantité',
         'Prix',
+        'Nom_Fournisseur',
 
     ];
     public function ventes(){

@@ -12,7 +12,7 @@
         <h3>verif your account with this Code ,in 5  min</h3>
 
         <h2>Code  :  <code>{{ $token }}</code></h2>
-<a href=""></a>
+
         <h3>copye this code in your application  </h3>
 
         <h3>Copyright,@benchalh 2024</h3>

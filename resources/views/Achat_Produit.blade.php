@@ -6,7 +6,7 @@
     <div class="dashbordHome">
         <div class="partyNav">
             <ul>
-                <li id="focueBtn">
+                <li >
                     <a href="{{ route('DashBord_user') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34" fill="none">
                         <path d="M16 34V22H24V34H34V18H40L20 0L0 18H6V34H16Z" fill="#D9D9D9"/>
@@ -21,7 +21,7 @@
                       </svg>
                     </a>
                 </li>
-                <li>
+                <li id="focueBtn">
                     <a href="{{ route('Achat') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="44" viewBox="0 0 48 44" fill="none">
                             <path d="M42.0597 27.3333H17.631L18.1764 30H40.5446C41.828 30 42.7792 31.1918 42.4948 32.4433L42.0351 34.4663C43.5927 35.2223 44.6667 36.819 44.6667 38.6667C44.6667 41.2668 42.5401 43.3703 39.9313 43.3328C37.4461 43.2971 35.4022 41.2803 35.3351 38.7956C35.2984 37.4383 35.8422 36.2082 36.7353 35.3333H19.2647C20.1294 36.1804 20.6667 37.3605 20.6667 38.6667C20.6667 41.3178 18.456 43.4526 15.7775 43.3282C13.3992 43.2178 11.4649 41.2961 11.3399 38.9184C11.2434 37.0823 12.2096 35.4638 13.6775 34.6196L7.82358 6H2C0.895417 6 0 5.10459 0 4V2.66667C0 1.56209 0.895417 0.666672 2 0.666672H10.5441C11.4942 0.666672 12.3131 1.33509 12.5035 2.26584L13.2673 6H45.9992C47.2826 6 48.2338 7.19175 47.9494 8.44325L44.01 25.7766C43.8031 26.6872 42.9936 27.3333 42.0597 27.3333ZM34 14.6667H30V11.3333C30 10.5969 29.4031 10 28.6667 10H27.3333C26.5969 10 26 10.5969 26 11.3333V14.6667H22C21.2636 14.6667 20.6667 15.2636 20.6667 16V17.3333C20.6667 18.0698 21.2636 18.6667 22 18.6667H26V22C26 22.7364 26.5969 23.3333 27.3333 23.3333H28.6667C29.4031 23.3333 30 22.7364 30 22V18.6667H34C34.7364 18.6667 35.3333 18.0698 35.3333 17.3333V16C35.3333 15.2636 34.7364 14.6667 34 14.6667Z" fill="#D9D9D9"/>
@@ -81,48 +81,77 @@
                 </div>
             </div>
             <div class="sectionConteent">
-                <div class="titleAjoute">Ajoute Client
+                <div class="titleAjoute">Achat Produit
 
                 </div>
-                @if ($errors->any())
+                @if (session()->has('errorMessage'))
                 <div class="errorsStyle">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                  {{ session()->get('errorMessage')}}
                 </div>
             @endif
+
                 @if (session()->has('success'))
                     <div class="messageSucc">{{ session()->get('success') }}</div>
                 @endif
 
 
                 <div class="sectionAjouteporduit">
-                    <form action="{{ route('Ajoute_Client') }}" method="post">
+                    <form action="{{ route('Achat_produit') }}" method="post">
                         @csrf
-                         <div class="unitearty">
+                         <div class="unitearty" id="selectParty">
                                 <ul>
-                                    <li><div class="titlenom">Nom Complet : </div></li>
-                                    <li><input type="text" name="NomComplet" id="NomComplet" value="{{ old('NomComplet') }}" placeholder="Nom et prenom"></li>
+                                    <li><div class="titlenom">Produit  : </div></li>
+
+                                      <li>
+                                        <select onchange="myfinc({{ $dataProduit }})"  name="selectproduit" id="selectproduitadd">
+                                            <option value="{{ null }}">select produit</option>
+                                            @foreach ( $dataProduit as $produit)
+                                            <option  value="{{ $produit->id }}" id="{{ $produit->Prix }}" >{{ $produit->Nom_Prod }}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <a class="btnadd" onclick="AjouteProduit()">  Add Produit</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="unitearty" id="AjouteNom1" style="display: none">
+                                <ul>
+                                    <li><div class="titlenom">Nom Produit :</div></li>
+                                    <li><input type="text" name="NomProduit" id="NomProduit"  placeholder="Nom produit"></li>
+                                </ul>
+                            </div>
+                            <div class="unitearty" id="AjouteNom2" style="display: none">
+                                <ul>
+                                    <li><div class="titlenom">Desig Produit :</div></li>
+                                    <li><input type="text" name="desigProduit" id="desigProduit"  placeholder="Designation produit"></li>
                                 </ul>
                             </div>
                             <div class="unitearty">
                                 <ul>
-                                    <li><div class="titlenom">Email :</div></li>
-                                    <li><input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="@email.com"></li>
+                                    <li><div class="titlenom">Quantite :</div></li>
+                                    <li><input type="text"  name="quantite" id="quantite" value="10" placeholder="quantite produit"></li>
                                 </ul>
                             </div>
                             <div class="unitearty">
                                 <ul>
-                                    <li><div class="titlenom">Adresse  :</div></li>
-                                    <li><input type="text" name="Adresse" id="Adresse" value="{{ old('Adresse') }}"  placeholder="ville adresse "></li>
+                                    <li><div class="titlenom">Prix :</div></li>
+                                    <li>
+                                        <input type="number" name="prix" id="prix"  placeholder="prix produit"></li>
                                 </ul>
                             </div>
                             <div class="unitearty">
                                 <ul>
-                                    <li><div class="titlenom">Telephone  :</div></li>
-                                    <li><input type="text" name="Telephone" id="Telephone" value="{{ old('Telephone') }}" placeholder="+212..."></li>
+                                    <li><div class="titlenom">Fourni :</div></li>
+                                    <li>
+                                        <select name="selectFourni" id="selectClient">
+                                            <option value="{{ null }}">select Fourni</option>
+                                            @foreach ( $dataCLientt as $produit)
+                                            <option value="{{ $produit->id }}">{{ $produit->nom_Complet }}</option>
+                                            @endforeach
+                                        </select>
+                                        <a class="btnadd" href="{{ route('Ajoute_Fournisseur') }}">Add Fourni</a>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -139,6 +168,47 @@
     </div>
 
 </div>
+<script>
+    const selectproduit = document.getElementById('selectproduitadd');
+    const prix = document.getElementById('prix');
+    const quantite = document.getElementById('quantite');
+    // selectproduit.onchange=myfinc;
+    const myfinc=(data)=>{
 
+     return  data.forEach(element => {
+
+        let dataprix=element.Prix
+            if(element.id == selectproduit.value){
+                return prix.value=element.Prix
+            }else if(selectproduit.value=='refr'){
+                return prix.value=0
+            }
+          });
+    }
+    // const myfinc2=()=>{
+    //     // console.log(quantite.value ,prix.value);
+    //     let dataprix=prix.value
+    //     dataprixTotal =quantite.value*prix.value
+    //     if(quantite.value>1){
+    //         return prix.value = dataprixTotal
+    //     }else if(quantite.value==0){
+    //         return prix.value = dataprix
+    //     }
+
+    // }
+    const AjouteProduit=()=>{
+        const selectParty = document.getElementById('selectParty');
+        const AjouteNom1 = document.getElementById('AjouteNom1');
+        const AjouteNom2 = document.getElementById('AjouteNom2');
+        selectParty.style.display='none';
+        selectParty.value=null;
+        AjouteNom1.style.display='block';
+        AjouteNom2.style.display='block';
+
+    }
+
+
+
+</script>
 
 @endsection
