@@ -21,12 +21,18 @@ class AchatController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($IdFournisseur=null)
     {
-        $dataProduit = Produit::all();
-        $dataCLientt = Fournisseur::all();
+        // dd($IdFournisseur);
+        $dataFourni = Fournisseur::all();
+        $dataFourniOne = Fournisseur::findOrfail($IdFournisseur);
+        // $dataCLientone = Fournisseur::find($IdFournisseur);
 
-        return view('Achat_Produit',compact('dataProduit','dataCLientt'));
+        // $dataCLientt = Fournisseur::all();
+        $dataProduit = Produit::where('Nom_Fournisseur',$dataFourniOne->nom_Complet)->get();
+
+        // dd( $dataProduit);
+        return view('Achat_Produit',compact('dataProduit','dataFourni','dataFourniOne'));
     }
 
     /**
@@ -37,7 +43,7 @@ class AchatController extends Controller
        $btn1 =$request->btn1;
         // dd($btn1);
         if($btn1=='1_Produit'){
-            return to_route('Achat_produit');
+            return to_route('Achat_produit_de',['IdFournisseur'=>1]);
         }else{
             return to_route('Achat_Groupe_produit',['IdFournisseur'=>0]);
         }
@@ -52,10 +58,11 @@ class AchatController extends Controller
         $prix =$request->prix;
         $selectFourniID =$request->selectFourni;
         $dataFourniss = Fournisseur::findOrfail($selectFourniID);
+
         $dataAchat = Achat::where('id_fournisseur',$selectFourniID)->where('id_produit',$selectproduitId)->get()->ToArray();
         $dataproduit=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',null)->first();
         $dataproduitthree=Produit::where('id',$selectproduitId)->first();
-        $NameProduitNew=$dataproduitthree->Nom_Prod.'_N'. Str::random(3);
+
         if($selectproduitId){
                     $request->validate([
                             'selectproduit'=>['required','exists:produits,id'],
@@ -64,48 +71,15 @@ class AchatController extends Controller
                             'selectFourni'=>['required','exists:fournisseurs,id'],
                         ]);
 
-                    // $dataProduit = Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->get()->ToArray();
-                    // $dataAchat = Achat::where('id_produit',$selectproduitId)->where('id_fournisseur',$selectFourniID)->get()->ToArray();
+                       $dataproduitTow=Produit::where('Nom_Prod', $dataproduitthree->Nom_Prod)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
 
-                    // dd($dataAchat);
-                    // $dataAchat=Achat::where('id_produit',$selectproduitId)->where('id_fournisseur',$selectFourniID)->get();
                     if(!$dataAchat){
                         if($dataproduit){
                             Produit::findOrfail($selectproduitId)->update([
                                 'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
                              ]);
-                        }else{
-                            $dataproduitfor=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
-                            if($dataproduitfor){
-                                Produit::findOrfail($selectproduitId)->update([
-
-                                    'Quantité'=>$dataproduitfor->Quantité+$quantite,
-                                    'Prix'=>$prix,
-                                 ]);
-                            }else{
-                                Produit::create([
-                                'Nom_Prod'=>$NameProduitNew,
-                                'Designation_Prod'=>$dataproduitthree->Designation_Prod,
-                                'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
-                                'Quantité'=>$quantite,
-                                'Prix'=>$prix,
-                            ]);
-                            }
-
-
-                        }
-                            // Achat::create([
-                            //     'id_fournisseur'=>$selectFourniID,
-                            //     'id_produit'=>$selectproduitId,
-                            //     'Quantite_Achat'=> $quantite,
-                            //     'Prix_Achat'=> $prix,
-                            //     'validation_Achat'=> false,
-                            //     'facture_imprimé'=> false,
-                            // ]);
-                     $dataproduitTow=Produit::where('Nom_Prod',$NameProduitNew)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
-                        if($dataproduitTow){
-                            Achat::create([
-                                'id_produit'=> $dataproduitTow->id,
+                             Achat::create([
+                                'id_produit'=> $selectproduitId,
                                 'id_fournisseur'=> $selectFourniID,
                                 'Quantite_Achat'=> $quantite,
                                 'Prix_Achat'=> $prix*$quantite,
@@ -113,19 +87,50 @@ class AchatController extends Controller
                                 'facture_imprimé'=>false
                                 ]);
                         }else{
-                            return back()->with('error','Achat echec par ce que le produit il a deja un fournisseur');
+                            $dataproduitfor=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
+
+                            if($dataproduitfor){
+                                Produit::findOrfail($selectproduitId)->update([
+
+                                    'Quantité'=>$dataproduitfor->Quantité+$quantite,
+                                    'Prix'=>$prix,
+                                 ]);
+                                 Achat::create([
+                                    'id_produit'=> $selectproduitId,
+                                    'id_fournisseur'=> $selectFourniID,
+                                    'Quantite_Achat'=> $quantite,
+                                    'Prix_Achat'=> $prix*$quantite,
+                                    'validation_Achat'=> false,
+                                    'facture_imprimé'=>false
+                                    ]);
+                            }else{
+                                Produit::create([
+                                'Nom_Prod'=>$dataproduitthree->Nom_Prod,
+                                'Designation_Prod'=>$dataproduitthree->Designation_Prod,
+                                'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
+                                'Quantité'=>$quantite,
+                                'Prix'=>$prix,
+                                    ]);
+                                $dataproduitTow=Produit::where('Nom_Prod',$dataproduitthree->Nom_Prod)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
+
+                                    Achat::create([
+                                        'id_produit'=> $dataproduitTow->id,
+                                        'id_fournisseur'=> $selectFourniID,
+                                        'Quantite_Achat'=> $quantite,
+                                        'Prix_Achat'=> $prix*$quantite,
+                                        'validation_Achat'=> false,
+                                        'facture_imprimé'=>false
+                                        ]);
+                            }
+
+
                         }
-                        //  dd('create sucssec');
+
                         return to_route('Pay_fournisseur',['codeFournisseur'=>$selectFourniID])->with('success','Achat est passe bien');
                     }else{
 
-                        // Achat::where('id_produit',$selectproduitId)->where('id_fournisseur',$selectFourniID)->update([
-                        //     'Quantite_Achat'=> $quantite,
-                        //     'Prix_Achat'=> $prix,
-                        //     'validation_Achat'=> false,
-                        //     'facture_imprimé'=> false,
-                        // ]);
-                        Achat::where('id_fournisseur',$selectFourniID)->where('id_produit',$selectproduitId)->update([
+
+                        Achat::create([
                             'id_produit'=> $selectproduitId,
                             'id_fournisseur'=> $selectFourniID,
                             'Quantite_Achat'=> $quantite,
@@ -133,7 +138,7 @@ class AchatController extends Controller
                             'validation_Achat'=> false,
                             'facture_imprimé'=>false
                         ]);
-                        //  dd('update sucssec');
+
                         return to_route('Pay_fournisseur',['codeFournisseur'=>$selectFourniID])->with('success','Update Achat est passe bien');
                     }
 
@@ -172,17 +177,15 @@ class AchatController extends Controller
 
 
             }else{
-                // Produit::where('Nom_Prod',$NomProduit)->update([
-                //     'Designation_Prod'=>$desigProduit,
-                //     'Quantité'=>$quantite,
-                //     'Prix'=>$prix,
-                // ]);
+
                 $dataproduit=Produit::where('Nom_Prod',$NomProduit)->where('Nom_Fournisseur',null)->first();
+
+                // $NameProduitNew=$dataproduitthree->Nom_Prod.'_N_'.rand(1,100);
                 if($dataproduit){
                     Produit::findOrfail($datapro->id)->update([
                         'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
                         'Designation_Prod'=>$desigProduit,
-                        'Quantité'=>$quantite,
+                        'Quantité'=>$dataproduit->Quantité+$quantite,
                         'Prix'=>$prix,
                      ]);
                 }else{
@@ -195,43 +198,26 @@ class AchatController extends Controller
                          ]);
                     }else{
                         Produit::create([
-                        'Nom_Prod'=>$NameProduitNew,
-                        'Designation_Prod'=>$dataproduitthree->Designation_Prod,
+                        'Nom_Prod'=>$NomProduit,
+                        'Designation_Prod'=>$desigProduit,
                         'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
                         'Quantité'=>$quantite,
                         'Prix'=>$prix,
                     ]);
                     }
-                        // Produit::create([
-                        //         'Nom_Prod'=>$NomProduit,
-                        //         'Designation_Prod'=>$desigProduit,
-                        //         'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
-                        //         'Designation_Prod'=>$desigProduit,
-                        //         'Quantité'=>$quantite,
-                        //         'Prix'=>$prix,
-                        // ]);
 
-                }
-               $dataAchte= Achat::where('id_produit',$datapro->id)->where('id_fournisseur',$selectFourniID)->get();
-                if(!$dataAchte){
-                    Achat::create([
-                        'id_fournisseur'=>$selectFourniID,
-                        'id_produit'=>$datapro->id,
-                        'Quantite_Achat'=> $quantite,
-                        'Prix_Achat'=> $prix,
-                        'validation_Achat'=> false,
-                        'facture_imprimé'=> false,
-                     ]);
-                }else{
-                    Achat::where('id_produit',$datapro->id)->where('id_fournisseur',$selectFourniID)->update([
-                        'Quantite_Achat'=> $quantite,
-                        'Prix_Achat'=> $prix,
-                        'validation_Achat'=> false,
-                        'facture_imprimé'=> false,
-                    ]);
+
                 }
 
 
+                Achat::create([
+                    'id_fournisseur'=>$selectFourniID,
+                    'id_produit'=>$datapro->id,
+                    'Quantite_Achat'=> $quantite,
+                    'Prix_Achat'=> $prix,
+                    'validation_Achat'=> false,
+                    'facture_imprimé'=> false,
+                 ]);
                 // dd(' this prduit its in data base');
                 return to_route('Pay_fournisseur',['codeFournisseur'=>$selectFourniID])->with('success','Achat est passe bien est update produit');
             }
@@ -249,18 +235,19 @@ class AchatController extends Controller
      */
     public function show($IdFournisseur=null)
     {
-        //  dd(session());
+    //   dd($IdFournisseur);
         $dataFourni = Fournisseur::all();
         $dataFourniOne = Fournisseur::find($IdFournisseur);
         $dataAchatFourni=Achat::where('id_fournisseur',$IdFournisseur)->where('validation_Achat',0)->get();
         // dd($dataClientOne);
         return view('Achat_Groupe_produit',compact('dataFourni','dataFourniOne','dataAchatFourni'));
     }
-    public function AjouteAchat_group(Request $request)
+    public function AjouteAchat_group(Request $request,$idFournisseur)
     {
-        // dd($request->id_client);
-        $dataProduit = Produit::all();
-        $dataFourniOne = Fournisseur::find($request->id_Fournisseur);
+        // dd($idFournisseur);
+        $dataFourniOne = Fournisseur::find($idFournisseur);
+        $dataProduit = Produit::where('Nom_Fournisseur',$dataFourniOne->nom_Complet)->get();
+        // dd( $dataProduit );
        return view('Achat_One_of_groupe_Produit',compact('dataProduit','dataFourniOne'));
     }
     public function AjouteAchat_group_ps(Request $request)
@@ -275,7 +262,8 @@ class AchatController extends Controller
         $dataAchat = Achat::where('id_fournisseur',$fournisseurID)->where('id_produit',$selectproduitId)->get()->ToArray();
         $dataproduit=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',null)->first();
         $dataproduitthree=Produit::where('id',$selectproduitId)->first();
-        $NameProduitNew=$dataproduitthree->Nom_Prod.'_N'. Str::random(3);
+
+
         if($selectproduitId){
 
                 $request->validate([
@@ -288,65 +276,76 @@ class AchatController extends Controller
 
 
 
-                // dd($dataproduitthree);
                         if(!$dataAchat){
-                                if($dataproduit){
-                                    Produit::findOrfail($selectproduitId)->update([
-                                        'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
-                                     ]);
-                                }else{
-                                    $dataproduitfor=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
-                                    if($dataproduitfor){
-                                        Produit::findOrfail($selectproduitId)->update([
 
-                                            'Quantité'=>$dataproduitfor->Quantité+$quantite,
-                                            'Prix'=>$prix,
-                                         ]);
+                                    if($dataproduit){
+
+                                        Produit::findOrfail($selectproduitId)->update([
+                                            'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
+                                        ]);
+                                        $dataproduitfor=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
+
+                                        Achat::create([
+                                            'id_produit'=> $dataproduitfor->id,
+                                            'id_fournisseur'=> $fournisseurID,
+                                            'Quantite_Achat'=> $quantite,
+                                            'Prix_Achat'=> $prix*$quantite,
+                                            'validation_Achat'=> false,
+                                            'facture_imprimé'=>false
+                                            ]);
+
                                     }else{
-                                        Produit::create([
-                                        'Nom_Prod'=>$NameProduitNew,
-                                        'Designation_Prod'=>$dataproduitthree->Designation_Prod,
-                                        'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
-                                        'Quantité'=>$quantite,
-                                        'Prix'=>$prix,
-                                    ]);
+                                        $dataproduitfor=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
+                                        if($dataproduitfor){
+                                            Produit::findOrfail($selectproduitId)->update([
+
+                                                'Quantité'=>$dataproduitfor->Quantité+$quantite,
+                                                'Prix'=>$prix,
+                                            ]);
+                                            Achat::create([
+                                                'id_produit'=> $dataproduitfor->id,
+                                                'id_fournisseur'=> $fournisseurID,
+                                                'Quantite_Achat'=> $quantite,
+                                                'Prix_Achat'=> $prix*$quantite,
+                                                'validation_Achat'=> false,
+                                                'facture_imprimé'=>false
+                                                ]);
+                                        }else{
+                                            Produit::create([
+                                            'Nom_Prod'=>$dataproduitthree->Nom_Prod,
+                                            'Designation_Prod'=>$dataproduitthree->Designation_Prod,
+                                            'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
+                                            'Quantité'=>$quantite,
+                                            'Prix'=>$prix,
+                                                ]);
+                                            $dataproduitTow=Produit::where('Nom_Prod',$dataproduitthree->Nom_Prod)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
+
+                                            Achat::create([
+                                                    'id_produit'=> $dataproduitTow->id,
+                                                    'id_fournisseur'=> $fournisseurID,
+                                                    'Quantite_Achat'=> $quantite,
+                                                    'Prix_Achat'=> $prix*$quantite,
+                                                    'validation_Achat'=> false,
+                                                    'facture_imprimé'=>false
+                                                    ]);
+                                        }
+
+
                                     }
 
 
-                                }
-                        $dataproduitTow=Produit::where('Nom_Prod',$NameProduitNew)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
-                        if($dataproduitTow){
-                            Achat::create([
-                                'id_produit'=> $dataproduitTow->id,
-                                'id_fournisseur'=> $fournisseurID,
-                                'Quantite_Achat'=> $quantite,
-                                'Prix_Achat'=> $prix*$quantite,
-                                'validation_Achat'=> false,
-                                'facture_imprimé'=>false
-                                ]);
-                        }else{
-                            return back()->with('error','Achat echec par ce que le produit il a deja un fournisseur');
-                        }
-
-
-
-                            // History_Vente::create([
-                            //         'id_produit'=> $selectproduitId,
-                            //         'id_client'=> $ClientId,
-                            //         'Quantite_vente'=> $quantite,
-                            //         'Prix_Vente'=> $prix,
-                            //         ]);
-
                             return to_route('Achat_Groupe_produit',['IdFournisseur'=> $fournisseurID])->with('success',"La vente s'est bien Ajoute dans les groupe de vente");
                         }else{
-                            Achat::where('id_fournisseur',$fournisseurID)->where('id_produit',$selectproduitId)->update([
+
+
+                            Achat::create([
                                 'id_produit'=> $selectproduitId,
                                 'id_fournisseur'=> $fournisseurID,
                                 'Quantite_Achat'=> $quantite,
                                 'Prix_Achat'=> $prix*$quantite,
                                 'validation_Achat'=> false,
                                 'facture_imprimé'=>false
-                            ]);
+                                ]);
                             return to_route('Achat_Groupe_produit',['IdFournisseur'=> $fournisseurID])->with('success',"la Vente est encore Ajoute un foise ");
                         }
 
@@ -359,9 +358,9 @@ class AchatController extends Controller
                 'prix'=>['required'],
                 'id_fournisseur'=>['required','exists:fournisseurs,id'],
             ]);
-            // dd('llll',$selectproduitId , $NomProduit ,$desigProduit, $quantite,$prix,$fournisseurID );
+
             $datapro= Produit::where('Nom_Prod',$NomProduit)->first();
-            // $NameProduitNew=$dataproduitthree->Nom_Prod.'_N'. Str::random(3);
+
             if(!$datapro){
                 Produit::create([
                         'Nom_Prod'=>$NomProduit,
@@ -380,76 +379,57 @@ class AchatController extends Controller
                     'facture_imprimé'=> false,
                  ]);
 
-                //  dd('produit is created now insert in table achat ',$datapro2->id);
+
                 return to_route('Achat_Groupe_produit',['IdFournisseur'=> $fournisseurID])->with('success',"La vente s'est bien Ajoute dans les groupe de vente");
 
 
             }else{
                 $dataproduit=Produit::where('Nom_Prod',$NomProduit)->where('Nom_Fournisseur',null)->first();
-                if($dataproduit){
-                    Produit::findOrfail($datapro->id)->update([
-                        'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
-                        'Designation_Prod'=>$desigProduit,
-                        'Quantité'=>$datapro->Quantité+$quantite,
-                        'Prix'=>$prix,
-                     ]);
-                }else{
-                    $dataproduitfor=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
-                    if($dataproduitfor){
-                        Produit::findOrfail($selectproduitId)->update([
-                            'Quantité'=>$dataproduitfor->Quantité+$quantite,
+                    if($dataproduit){
+                        Produit::findOrfail($datapro->id)->update([
+                            'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
+                            'Designation_Prod'=>$desigProduit,
+                            'Quantité'=>$datapro->Quantité+$quantite,
                             'Prix'=>$prix,
-                         ]);
+                        ]);
                     }else{
-                        Produit::create([
-                        'Nom_Prod'=>$NameProduitNew,
-                        'Designation_Prod'=>$dataproduitthree->Designation_Prod,
-                        'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
-                         'Quantité'=>$quantite,
-                        'Prix'=>$prix,
-                    ]);
+                            $dataproduitfor=Produit::where('id',$selectproduitId)->where('Nom_Fournisseur',$dataFourniss->nom_Complet)->first();
+                            if($dataproduitfor){
+                                Produit::findOrfail($selectproduitId)->update([
+                                    'Quantité'=>$dataproduitfor->Quantité+$quantite,
+                                    'Prix'=>$prix,
+                                ]);
+                            }else{
+                                Produit::create([
+                                'Nom_Prod'=>$dataproduitthree->Nom_Prod,
+                                'Designation_Prod'=>$dataproduitthree->Designation_Prod,
+                                'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
+                                'Quantité'=>$quantite,
+                                'Prix'=>$prix,
+                            ]);
+                        }
+
+
+
                     }
 
-                        // Produit::create([
-                        //         'Nom_Prod'=>$NomProduit,
-                        //         'Designation_Prod'=>$desigProduit,
-                        //         'Nom_Fournisseur'=>$dataFourniss->nom_Complet,
-                        //         'Designation_Prod'=>$desigProduit,
-                        //         'Quantité'=>$quantite,
-                        //         'Prix'=>$prix,
-                        // ]);
-
-                }
-               $dataAchte= Achat::where('id_produit',$datapro->id)->where('id_fournisseur',$fournisseurID)->get();
-                if(!$dataAchte){
-                    Achat::create([
-                        'id_fournisseur'=>$fournisseurID,
-                        'id_produit'=>$datapro->id,
-                        'Quantite_Achat'=> $quantite,
-                        'Prix_Achat'=> $prix*$quantite,
-                        'validation_Achat'=> false,
-                        'facture_imprimé'=> false,
-                     ]);
-                }else{
-                    Achat::where('id_produit',$datapro->id)->where('id_fournisseur',$fournisseurID)->update([
-                        'Quantite_Achat'=> $quantite,
-                        'Prix_Achat'=> $prix*$quantite,
-                        'validation_Achat'=> false,
-                        'facture_imprimé'=> false,
-                    ]);
-                }
+                        Achat::create([
+                            'id_fournisseur'=>$fournisseurID,
+                            'id_produit'=>$datapro->id,
+                            'Quantite_Achat'=> $quantite,
+                            'Prix_Achat'=> $prix*$quantite,
+                            'validation_Achat'=> false,
+                            'facture_imprimé'=> false,
+                        ]);
 
 
-                // dd(' this prduit its in data base');
                 return to_route('Achat_Groupe_produit',['IdFournisseur'=> $fournisseurID])->with('success',"La vente s'est bien Ajoute dans les groupe de vente");
             }
 
 
         }
 
-        // dd($request->id_client);
-    //     $dataProduit = Produit::all();
-    //    return view('Vente_One_of_groupe_Produit',compact('dataProduit'));
+
     }
 
     /**
@@ -472,7 +452,8 @@ class AchatController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request)
-    { Achat::findOrFail($request->id_fournisseur)->delete();
+    {
+         Achat::findOrFail($request->id_Achat)->delete();
         // dd($dataDeletVente);
        return to_route('Achat_Groupe_produit',['IdFournisseur'=>$request->id_fournisseur]);
     }

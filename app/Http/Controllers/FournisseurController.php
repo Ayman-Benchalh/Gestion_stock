@@ -68,7 +68,9 @@ class FournisseurController extends Controller
      */
     public function show(Fournisseur $fournisseur)
     {
-        //
+        $dataFourni = Fournisseur::paginate(5);
+
+        return view('All_fournisseur_page',compact('dataFourni'));
     }
 
     /**
@@ -90,8 +92,17 @@ class FournisseurController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fournisseur $fournisseur)
+    public function destroy(Request $request)
     {
-        //
+
+        $dataFourni = Fournisseur::paginate(5);
+      $dataFourniAll=  Fournisseur::findOrfail($request->idClient);
+      if($dataFourniAll){
+        $dataFourniAll->delete();
+        return redirect()->route('Ajoute_Fournisseur_all',compact('dataFourni'))->with('success','Client est supprimer bien');
+      }else{
+        return redirect()->route('Ajoute_Fournisseur_all',compact('dataFourni'))->with('errorMessage','Error le Client est Ne pas supprimer ');
+      }
+
     }
 }

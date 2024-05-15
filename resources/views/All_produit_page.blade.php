@@ -1,12 +1,16 @@
 
 @extends('index')
-
+@section('script')
+<link href="https://unpkg.com/tabulator-tables@6.2.0/dist/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.0/dist/js/tabulator.min.js"></script>
+<link href="/dist/css/tabulator_simple.min.css" rel="stylesheet">
+@endsection
 @section('Content')
 <div class="container">
     <div class="dashbordHome">
         <div class="partyNav">
             <ul>
-                <li >
+                <li id="focueBtn">
                     <a href="{{ route('DashBord_user') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34" fill="none">
                         <path d="M16 34V22H24V34H34V18H40L20 0L0 18H6V34H16Z" fill="#D9D9D9"/>
@@ -14,7 +18,7 @@
                     </a>
 
                 </li>
-                <li id="focueBtn">
+                <li  >
                     <a href="{{ route('Vente') }}" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M42.0597 29.3333H17.631L18.1764 32H40.5446C41.828 32 42.7792 33.1918 42.4948 34.4433L42.0351 36.4663C43.5927 37.2223 44.6667 38.819 44.6667 40.6667C44.6667 43.2668 42.5401 45.3703 39.9313 45.3328C37.4461 45.2971 35.4022 43.2803 35.3351 40.7956C35.2984 39.4383 35.8422 38.2082 36.7353 37.3333H19.2647C20.1294 38.1804 20.6667 39.3605 20.6667 40.6667C20.6667 43.3178 18.456 45.4526 15.7775 45.3282C13.3992 45.2178 11.4649 43.2961 11.3399 40.9184C11.2434 39.0823 12.2096 37.4638 13.6775 36.6196L7.82358 8H2C0.895417 8 0 7.10459 0 6V4.66667C0 3.56209 0.895417 2.66667 2 2.66667H10.5441C11.4942 2.66667 12.3131 3.33509 12.5035 4.26584L13.2673 8H45.9992C47.2826 8 48.2338 9.19175 47.9494 10.4433L44.01 27.7766C43.8031 28.6872 42.9936 29.3333 42.0597 29.3333ZM33.5857 18.6667H30V13.6667C30 13.1144 29.5522 12.6667 29 12.6667H27C26.4477 12.6667 26 13.1144 26 13.6667V18.6667H22.4142C21.5233 18.6667 21.0772 19.7438 21.7072 20.3738L27.2929 25.9595C27.6834 26.35 28.3166 26.35 28.7072 25.9595L34.2929 20.3738C34.9228 19.7438 34.4767 18.6667 33.5857 18.6667Z" fill="#D9D9D9"/>
@@ -28,8 +32,8 @@
                           </svg>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('Voir_Credi',['clientOrFrouni'=>'client']) }}">
+                <li >
+                    <a href="{{ route('Voir_Credi',['clientOrFrouni'=>'client']) }}" id="focueBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M12 39C9.8 39 7.91667 38.2411 6.35 36.7234C4.78333 35.2057 4 33.3813 4 31.25V15.75C4 13.6188 4.78333 11.7943 6.35 10.2766C7.91667 8.75885 9.8 8 12 8H36C38.2 8 40.0833 8.75885 41.65 10.2766C43.2167 11.7943 44 13.6188 44 15.75V31.25C44 33.3813 43.2167 35.2057 41.65 36.7234C40.0833 38.2411 38.2 39 36 39H12ZM12 15.75H36C36.7333 15.75 37.4333 15.8307 38.1 15.9922C38.7667 16.1536 39.4 16.412 40 16.7672V15.75C40 14.6844 39.6087 13.7725 38.826 13.0142C38.042 12.2547 37.1 11.875 36 11.875H12C10.9 11.875 9.95867 12.2547 9.176 13.0142C8.392 13.7725 8 14.6844 8 15.75V16.7672C8.6 16.412 9.23333 16.1536 9.9 15.9922C10.5667 15.8307 11.2667 15.75 12 15.75ZM8.3 22.0469L30.55 27.2781C30.85 27.3427 31.15 27.3427 31.45 27.2781C31.75 27.2135 32.0333 27.0844 32.3 26.8906L39.25 21.2719C38.8833 20.7875 38.4167 20.3923 37.85 20.0861C37.2833 19.7787 36.6667 19.625 36 19.625H12C11.1333 19.625 10.3753 19.8426 9.726 20.2779C9.07533 20.7145 8.6 21.3042 8.3 22.0469Z" fill="#D9D9D9"/>
                       </svg></a>
@@ -81,33 +85,125 @@
                 </div>
             </div>
             <div class="sectionConteent">
-                <div class="titleAjoute">Type vante </div>
+                <div class="titleAjoute">
+                   Produit
+                    <a class="btnAjoute" href="{{ route('Ajoute_produit') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                            <path d="M21.875 10.1562H14.8438V3.125C14.8438 2.26221 14.144 1.5625 13.2812 1.5625H11.7188C10.856 1.5625 10.1562 2.26221 10.1562 3.125V10.1562H3.125C2.26221 10.1562 1.5625 10.856 1.5625 11.7188V13.2812C1.5625 14.144 2.26221 14.8438 3.125 14.8438H10.1562V21.875C10.1562 22.7378 10.856 23.4375 11.7188 23.4375H13.2812C14.144 23.4375 14.8438 22.7378 14.8438 21.875V14.8438H21.875C22.7378 14.8438 23.4375 14.144 23.4375 13.2812V11.7188C23.4375 10.856 22.7378 10.1562 21.875 10.1562Z" fill="#F2613F"/>
+                          </svg>
+                        Ajoute Produit</a>
+                </div>
+                @if ($errors->any())
+                <div class="errorsStyle">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+                @if (session()->has('success'))
+                    <div class="messageSucc">{{ session()->get('success') }}</div>
+                @endif
+                @if (session()->has('errorMessage'))
+                    <div class="errorsStyle">{{ session()->get('errorMessage') }}</div>
+                @endif
+
+
+                <div class="sectionAjoutegroupporduit">
+                    <div class="sectionTable-1 edittd">
+                   @if (!$dataProduit->count() )
+
+                        <div class="notFoundMsg">Data Not Found</div>
+                    @else
+                        <table id="tbld" style="padding: 10px">
+                            <thead>
+                                <tr>
+                                    <th>ID  </th>
+                                    <th>Nom Produit</th>
+                                    <th>Designation</th>
+
+                                    <th>Quantité </th>
+                                    <th>Prix </th>
+                                    <th>Catégorie </th>
+                                    <th>Nom_Fournisseur </th>
+
+                                    <th>delete </th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="table">
+
+
+                                    @foreach ($dataProduit as $key=> $itmProduit)
+                                    <tr>
+                                            <td>{{$itmProduit->id}}</td>
+                                            <td >{{  $itmProduit->Nom_Prod}}</td>
+                                            <td >{{Str::limit($itmProduit->Designation_Prod, 10, '...')  }}</td>
+
+                                            <td>{{Str::limit($itmProduit->Quantité, 10, '...')  }}</td>
+                                            <td>{{Str::limit(  $itmProduit->Prix, 6, '...')}}</td>
+                                            @if($itmProduit->Catégorie)
+                                            <td>{{Str::limit(  $itmProduit->Catégorie, 6, '...')}}</td>
+                                            @else
+                                            <td style="background-color: rgba(220, 20, 60, 0.684)">Null</td>
+
+
+                                            @endif
+                                            <td>{{  $itmProduit->Nom_Fournisseur}}</td>
+
+                                            <td>
+                                                <form action="{{ route('Ajoute_Fournisseur_dl') }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <input type="hidden"  name="idClient" value="{{ $itmProduit->id }}">
+                                                    <button id="btnfromdelete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+
+                                                </form>
+                                            </td>
+
+
+                                        </tr>
+                                    @endforeach
 
 
 
-                <div class="sectionVente">
-                 <form action="{{ route('Vente') }}" method="post">
-                    @csrf
-                    <div class="sectionCart">
-                         <label for="redio1" class="cart">
-                        <img src="{{ asset('Image/9402212 1.png') }}" alt="img">
-                        <div class="typecart">1</div>
-                        <div class="titlecart"> produit</div>
-                        <input type="radio" checked  name="btn1" id="redio1" value="1_Produit">
-                    </label>
-                    <label for="redio2" class="cart">
-                        <img src="{{ asset('Image/4062005 1.png') }}" alt="img">
-                        <div class="typecart">plusieurs </div>
-                        <div class="titlecart"> produit</div>
-                        <input type="radio" name="btn1" id="redio2" value="pluse_produit">
-                    </label>
 
+                            {{-- {{ dd($dataPrint) }} --}}
+
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8">
+                                        @if ($dataProduit)
+                                            <div class="paginate">
+                                                @if ($dataProduit->lastPage()>1)
+
+
+                                                        @if ( $dataProduit->currentPage()>1)
+
+                                                            <a class="bntPrev" href="?page={{ $dataProduit->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
+                                                        @endif
+                                                        <div class="pageCureent">{{ $dataProduit->currentPage() }}  Page [ {{ $dataProduit->lastPage() }} ]</div>
+                                                        @if ( $dataProduit->currentPage()<$dataProduit->lastPage())
+                                                        <a class="btnNext" href="?page={{ $dataProduit->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
+                                                        @endif
+                                                @endif
+                                            </div>
+                                        @endif
+
+
+
+                                    </td>
+                                </tr>
+
+
+                            </tfoot>
+                         @endif
+                        </table>
                     </div>
 
-
-                    <button type="submit">Continuer</button>
-
-                </form>
                 </div>
 
 
@@ -117,7 +213,81 @@
 
     </div>
 
-</div>
+{{-- </div>
+<script>
+    const selectproduit = document.getElementById('selectproduit');
+    const prix = document.getElementById('prix');
+    const quantite = document.getElementById('quantite');
+    // selectproduit.onchange=myfinc;
+    const myfinc=(data)=>{
 
+     return  data.forEach(element => {
+        let dataprix=element.Prix
+            if(element.id == selectproduit.value){
+                return prix.value=element.Prix
+            }else{
+                return prix.value=dataprix
+            }
+          });
+    }
+    const myfinc2=()=>{
+        // console.log(quantite.value ,prix.value);
+        let dataprix=prix.value
+        dataprixTotal =quantite.value*prix.value
+        if(quantite.value>0){
+            return prix.value = dataprixTotal
+        }else if(quantite.value==0){
+            return prix.value = dataprix
+        }
+
+    }
+
+
+</script> --}}
+<Script>
+    //     const tbale=document.querySelectorAll('.table tr')
+    //     console.log(tbale.length);
+    //     const myfunprintPor=()=>{
+    //         const NumProduit=document.getElementById('NumProduit')
+    //         console.log(NumProduit.innerHTML);
+    //         return NumProduit.innerHTML=tbale.length;
+    //     }
+    //     myfunprintPor()
+    //     const tbaleprix=document.querySelectorAll('.table tr #prix')
+    //     // console.log(tbaleprix);
+    //     const myfunprintPrix=(tbaleprix)=>{
+    //         const NumPrixTotal=document.getElementById('NumPrixTotal')
+    //         let NumPrix=0
+    //         tbaleprix.forEach(element => {
+
+    //           return  NumPrix+=parseInt(element.innerHTML)
+    //         });
+    //         console.log(NumPrixTotal.innerHTML);
+    //             return NumPrixTotal.innerHTML=NumPrix
+    //         // console.log(NumPrixTotal);
+    //         // return NumProduit.innerHTML=tbale.length;
+    //     }
+    //     myfunprintPrix(tbaleprix)
+    //     const selectproduit=document.getElementById('selectproduit')
+
+    //    const myfunselect =(event)=>{
+    //     const btnchange=document.getElementById('btnchange');
+
+    //      btnchange.href=`${selectproduit.value}`;
+
+
+
+    //           return  btnchange.click();
+    //    }
+
+    // const bntnext=document.getElementById('bntnext');
+    //     const myfunNext=(event)=>{
+    //         console.log(bntnext,event.target.value);
+    //         bntnext.href=`${event.target.value}`;
+    //         return bntnext.click();
+    //     }
+
+
+</Script>
 
 @endsection

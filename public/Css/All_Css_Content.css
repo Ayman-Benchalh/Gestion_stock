@@ -1301,7 +1301,8 @@ background-color: transparent;
     height: 74px;
     flex-shrink: 0;
     border-radius: 18px;
-    background: #60352A;
+
+    background: crimson;
     color: #FFF;
 font-family: var(--fontText);
 font-size: 15px;
@@ -1353,6 +1354,7 @@ background-color: rgba(0, 0, 255, 0);
     right: 30%;
     font-weight: 500;
     font-size: 25px;
+
 }
 .sectionAjouteporduit{
     width: 85%;
@@ -1816,6 +1818,8 @@ border: none;
 
 }
 
+
+
 .sectionTable table tr td{
     color: #FFF;
     text-align: center;
@@ -1862,6 +1866,27 @@ font-weight: 600;
 line-height: normal;
 border: none;
 cursor: pointer;
+}
+.sectionTable table  tfoot tr td .btnAjoute{
+    width: 90%;
+    height: 68px;
+    flex-shrink: 0;
+    border-radius: 18px;
+background: #60352A;
+color: #FFF;
+text-align: center;
+font-family: var(--fontText);
+font-size: 36px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+border: none;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+text-decoration: none;
+margin: auto;
 }
 .sectionverif{
 width: 100%;
@@ -1962,3 +1987,346 @@ margin: 0;
 
 
 /*finish party */
+
+
+/* party voir stock*/
+
+
+
+.sectionTable-1 table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(100, 148, 237, 0);
+
+
+}
+
+
+.sectionTable-1 table tr th{
+    width: auto;
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-bottom: #1E1E1E 3px solid;
+    /* border-right: #1E1E1E 3px solid; */
+
+padding: 25px;
+border-radius: 10px;
+background-color: rgba(137, 43, 226, 0);
+
+}
+.sectionTable-1 table tr th:last-child{
+
+    border-right: #1e1e1e00 3px solid;
+
+
+}
+
+.sectionTable-1 table tr td{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    padding: 15px 10px;
+    background-color: rgba(137, 43, 226, 0);
+    transition: all .5s ease;
+    border: 1px solid rgba(137, 43, 226, 0) ;
+
+    border-bottom: #1E1E1E 3px solid;
+
+    flex-direction: row;
+}
+.sectionTable-1 table tr td:last-child{
+
+
+    border-bottom: #1E1E1E 3px solid;
+
+}
+.sectionTable-1 table tr td form button{
+
+
+   width: 50px;
+   height:  50px;
+   border: none;
+   border-radius: 8px;
+   background-color: #151515;
+   color: var(--firstBg);
+   font-size: 20px;
+   transition: all .5s ease;
+   cursor: pointer;
+
+}
+.sectionTable-1 table tr td form button:hover{
+background-color: #481E14;
+color: var(--colorFOnt);
+
+}
+.sectionTable-1 table tfoot tr td:last-child{
+
+
+    border-bottom: #1e1e1e00 3px solid;
+
+}
+
+
+.sectionTable-1 table tfoot tr td .paginate{
+    width: 100%;
+    background-color: rgba(128, 255, 0, 0);
+
+display: flex;
+justify-content: right;
+align-items: center;
+padding: 15px;
+gap: 25px;
+}
+
+.sectionTable-1 table tfoot tr td .paginate .bntPrev , .btnNext{
+width: 70px;
+height: 50px;
+background-color: var(--secdtBg);
+color: var(--firstBg);
+display: flex;
+justify-content: center;
+align-items: center;
+text-decoration: none;
+border-radius: 8px;
+box-shadow: #000 5px 10px 5px;
+transition: all .5s ease;
+}
+.sectionTable-1 table tfoot tr td .paginate .bntPrev:hover , .btnNext:hover {
+    background-color: #d9d9d9;
+    color: var(--firstBg);
+}
+/* .sectionTable-1 table  tr td a{
+    text-decoration: none;
+    color: #F2613F;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+} */
+.sectionTable-1 .notFoundMsg {
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 15px 10px;
+    background-color: rgba(137, 43, 226, 0);
+    transition: all .5s ease;
+    border: 1px solid rgba(137, 43, 226, 0) ;
+
+
+    flex-direction: row;
+}
+
+.nameClient {
+   background-color: rgba(0, 0, 255, 0.018);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 20px;
+   right: 0;
+
+}
+.nameClient input{
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    accent-color: var(--firstBg);
+
+}
+.nameClient .gerecredi a{
+text-decoration: none;
+color: #F2613F;
+text-align: center;
+font-family: var(--fontText);
+font-size: 25px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+
+}
+.btnPay{
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+width: 50px;
+height:  50px;
+border: none;
+border-radius: 8px;
+background-color: #151515;
+color: #7cfc4aee;
+font-size: 20px;
+transition: all .5s ease;
+cursor: pointer;
+
+}
+
+
+
+/* party parameter*/
+
+.sectionAjouteporduit-1{
+    width: 85%;
+min-height: 500px;
+flex-shrink: 0;
+border-radius: 19px;
+background: #F2613F;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 15px;
+
+}
+.sectionAjouteporduit-1 form{
+background-color: rgba(208, 255, 0, 0);
+width: 90%;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+gap: 20px;
+
+}
+.sectionAjouteporduit-1  form .unitearty{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgba(93, 0, 255, 0);
+}
+.sectionAjouteporduit-1  form .unitearty .titlenom{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.sectionAjouteporduit-1 form .unitearty input{
+
+    width: 500px;
+    height: 69px;
+    flex-shrink: 0;
+    border-radius: 15px;
+background: #60352A;
+border: none;
+outline: none;
+color: #FFF;
+text-align: left;
+font-family: var(--fontText);
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 0 15px;
+
+}
+
+
+.sectionAjouteporduit-1 form .unitearty input::placeholder{
+
+
+    color: #ffffffbd;
+    text-align: left;
+    font-family: var(--fontText);
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    }
+.sectionAjouteporduit-1 form .unitearty ul {
+        width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: auto;
+    background-color: rgba(0, 0, 255, 0);
+    }
+.sectionAjouteporduit-1 form .unitearty ul li{
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+        list-style-type: none;
+        gap: 20px;
+    }
+.sectionAjouteporduit-1 form button{
+        width: 404px;
+        height: 68px;
+        flex-shrink: 0;
+        border-radius: 18px;
+    background: #1E1E1E;
+    color: #FFF;
+    text-align: center;
+    font-family: var(--fontText);
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+    margin: auto;
+    cursor: pointer;
+}
+.btnfromdelete{
+    background-color: crimson;
+}
+
+.btnAjoute{
+   width: 300px;
+height: 63px;
+flex-shrink: 0;
+border-radius: 11px;
+border: 1px solid #D9D9D9;
+background: rgba(217, 217, 217, 0);
+color: var(--colorFOnt);
+text-align: center;
+font-family: var(--fontText);
+font-size: 25px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration: none;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: all .5s ease;
+position: absolute;
+right: 0;
+top: 0;
+gap: 15px;
+padding: 0 20px;
+}
+.btnAjoute:hover{
+
+    background-color: var(--secdtBg);
+    color: var(--firstBg);
+    border: 1px solid var(--firstBg);
+  }
+/*party all produit*/
+.edittd table tr td{
+font-size: 20px;
+}
+.edittd table tr th{
+font-size: 20px;
+}

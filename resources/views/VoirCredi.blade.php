@@ -1,6 +1,10 @@
 
 @extends('index')
-
+@section('script')
+<link href="https://unpkg.com/tabulator-tables@6.2.0/dist/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.0/dist/js/tabulator.min.js"></script>
+<link href="/dist/css/tabulator_simple.min.css" rel="stylesheet">
+@endsection
 @section('Content')
 <div class="container">
     <div class="dashbordHome">
@@ -14,7 +18,7 @@
                     </a>
 
                 </li>
-                <li id="focueBtn">
+                <li  >
                     <a href="{{ route('Vente') }}" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M42.0597 29.3333H17.631L18.1764 32H40.5446C41.828 32 42.7792 33.1918 42.4948 34.4433L42.0351 36.4663C43.5927 37.2223 44.6667 38.819 44.6667 40.6667C44.6667 43.2668 42.5401 45.3703 39.9313 45.3328C37.4461 45.2971 35.4022 43.2803 35.3351 40.7956C35.2984 39.4383 35.8422 38.2082 36.7353 37.3333H19.2647C20.1294 38.1804 20.6667 39.3605 20.6667 40.6667C20.6667 43.3178 18.456 45.4526 15.7775 45.3282C13.3992 45.2178 11.4649 43.2961 11.3399 40.9184C11.2434 39.0823 12.2096 37.4638 13.6775 36.6196L7.82358 8H2C0.895417 8 0 7.10459 0 6V4.66667C0 3.56209 0.895417 2.66667 2 2.66667H10.5441C11.4942 2.66667 12.3131 3.33509 12.5035 4.26584L13.2673 8H45.9992C47.2826 8 48.2338 9.19175 47.9494 10.4433L44.01 27.7766C43.8031 28.6872 42.9936 29.3333 42.0597 29.3333ZM33.5857 18.6667H30V13.6667C30 13.1144 29.5522 12.6667 29 12.6667H27C26.4477 12.6667 26 13.1144 26 13.6667V18.6667H22.4142C21.5233 18.6667 21.0772 19.7438 21.7072 20.3738L27.2929 25.9595C27.6834 26.35 28.3166 26.35 28.7072 25.9595L34.2929 20.3738C34.9228 19.7438 34.4767 18.6667 33.5857 18.6667Z" fill="#D9D9D9"/>
@@ -28,8 +32,8 @@
                           </svg>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('Voir_Credi',['clientOrFrouni'=>'client']) }}">
+                <li id="focueBtn">
+                    <a href="{{ route('Voir_Credi',['clientOrFrouni'=>'client']) }}" id="focueBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M12 39C9.8 39 7.91667 38.2411 6.35 36.7234C4.78333 35.2057 4 33.3813 4 31.25V15.75C4 13.6188 4.78333 11.7943 6.35 10.2766C7.91667 8.75885 9.8 8 12 8H36C38.2 8 40.0833 8.75885 41.65 10.2766C43.2167 11.7943 44 13.6188 44 15.75V31.25C44 33.3813 43.2167 35.2057 41.65 36.7234C40.0833 38.2411 38.2 39 36 39H12ZM12 15.75H36C36.7333 15.75 37.4333 15.8307 38.1 15.9922C38.7667 16.1536 39.4 16.412 40 16.7672V15.75C40 14.6844 39.6087 13.7725 38.826 13.0142C38.042 12.2547 37.1 11.875 36 11.875H12C10.9 11.875 9.95867 12.2547 9.176 13.0142C8.392 13.7725 8 14.6844 8 15.75V16.7672C8.6 16.412 9.23333 16.1536 9.9 15.9922C10.5667 15.8307 11.2667 15.75 12 15.75ZM8.3 22.0469L30.55 27.2781C30.85 27.3427 31.15 27.3427 31.45 27.2781C31.75 27.2135 32.0333 27.0844 32.3 26.8906L39.25 21.2719C38.8833 20.7875 38.4167 20.3923 37.85 20.0861C37.2833 19.7787 36.6667 19.625 36 19.625H12C11.1333 19.625 10.3753 19.8426 9.726 20.2779C9.07533 20.7145 8.6 21.3042 8.3 22.0469Z" fill="#D9D9D9"/>
                       </svg></a>
@@ -81,15 +85,45 @@
                 </div>
             </div>
             <div class="sectionConteent">
-                <div class="titleAjoute">Vente Produit
+                <div class="titleAjoute">
+                   Credi
+                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <g clip-path="url(#clip0_8_320)">
+                      <path d="M9.00268 30C8.17743 30 7.47122 29.7065 6.88405 29.1195C6.29587 28.5315 6.00179 27.825 6.00179 27C6.00179 26.175 6.29587 25.4685 6.88405 24.8805C7.47122 24.2935 8.17743 24 9.00268 24C9.82792 24 10.5341 24.2935 11.1213 24.8805C11.7095 25.4685 12.0036 26.175 12.0036 27C12.0036 27.825 11.7095 28.5315 11.1213 29.1195C10.5341 29.7065 9.82792 30 9.00268 30ZM24.0071 30C23.1819 30 22.4757 29.7065 21.8885 29.1195C21.3003 28.5315 21.0063 27.825 21.0063 27C21.0063 26.175 21.3003 25.4685 21.8885 24.8805C22.4757 24.2935 23.1819 24 24.0071 24C24.8324 24 25.5391 24.2935 26.1273 24.8805C26.7145 25.4685 27.008 26.175 27.008 27C27.008 27.825 26.7145 28.5315 26.1273 29.1195C25.5391 29.7065 24.8324 30 24.0071 30ZM9.00268 22.5C7.87734 22.5 7.02709 22.006 6.45192 21.018C5.87675 20.031 5.85174 19.05 6.3769 18.075L8.4025 14.4L3.00089 3H1.46294C1.03781 3 0.687705 2.856 0.412623 2.568C0.137541 2.281 0 1.925 0 1.5C0 1.075 0.144043 0.7185 0.432129 0.4305C0.719214 0.1435 1.07532 0 1.50045 0H3.93867C4.21375 0 4.47633 0.0750001 4.72641 0.225C4.97648 0.375 5.16404 0.5875 5.28907 0.8625L6.30188 3H28.4335C29.1087 3 29.5713 3.25 29.8214 3.75C30.0714 4.25 30.0589 4.775 29.7839 5.325L24.4573 14.925C24.1822 15.425 23.8196 15.8125 23.3695 16.0875C22.9193 16.3625 22.4067 16.5 21.8315 16.5H10.6532L9.00268 19.5H25.5451C25.9702 19.5 26.3203 19.6435 26.5954 19.9305C26.8705 20.2185 27.008 20.575 27.008 21C27.008 21.425 26.864 21.781 26.5759 22.068C26.2888 22.356 25.9327 22.5 25.5076 22.5H9.00268Z" fill="#F2613F"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_8_320">
+                        <rect width="30" height="30" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                   <div class="nameClient">
+                    <input type="radio"  onchange="myfunNext(event)" name="Client" id="idClient" value="client">
+                    <label for="idClient"> Client </label>
+                    <input type="radio"  onchange="myfunNext(event)" name="Client" id="idFournisseur" value="fournisseur">
+                    <label for="idFournisseur">Fournisseur</label>
 
+
+                    <a hidden href="" id="bntnext"></a>
+                    {{-- <div class="gerecredi">
+                            @if ($clientOrFrounistring=='client')
+                            <a href="{{ route('Gere_Credi',['clientOrFrouni'=>'client']) }}">Gere les Credi</a>
+                            @elseif ($clientOrFrounistring=='fournisseur')
+                            <a href="{{ route('Gere_Credi',['clientOrFrouni'=>'fournisseur']) }}">Gere les Credi</a>
+
+                    @endif
+                    </div> --}}
                 </div>
-                @if (session()->has('errorMessage'))
+                </div>
+                @if ($errors->any())
                 <div class="errorsStyle">
-                  {{ session()->get('errorMessage')}}
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
-
                 @if (session()->has('success'))
                     <div class="messageSucc">{{ session()->get('success') }}</div>
                 @endif
@@ -98,48 +132,93 @@
                 @endif
 
 
-                <div class="sectionAjouteporduit">
-                    <form action="{{ route('Vente_One_of_groupe_Produit') }}" method="post">
-                        @csrf
-                         <div class="unitearty">
-                                <ul>
-                                    <li><div class="titlenom">Produit  : </div></li>
-                                    <li>
-                                        <select onchange="myfinc({{ $dataProduit }})" name="selectproduit" id="selectproduit">
-                                            <option value="refr">select produit</option>
-                                            @foreach ( $dataProduit as $produit)
-                                            <option  value="{{ $produit->id }}" id="{{ $produit->Prix }}" >{{ $produit->Nom_Prod }}</option>
-                                            @endforeach
-                                        </select>
-                                      </li>
-                                </ul>
-                            </div>
-                            <div class="unitearty">
-                                <ul>
-                                    <li><div class="titlenom">Quantite :</div></li>
-                                    <li><input type="text" oninput="myfinc2()" name="quantite" id="quantite" value="1" placeholder="quantite produit"></li>
-                                </ul>
-                            </div>
-                            <div class="unitearty">
-                                <ul>
-                                    <li><div class="titlenom">Prix :</div></li>
-                                    <li>
-                                        <input type="number" name="prix" id="prix"  placeholder="prix produit"></li>
-                                </ul>
-                            </div>
-                            <div class="unitearty">
-                                <ul>
-                                    <li><div class="titlenom">Client :</div></li>
-                                    <li>
-                                        <input type="hidden" name="id_client" value="{{ $dataClientOne->id }}">
-                                        <input type="text" readonly id="id_client" value="{{ $dataClientOne->nom_Complet }}">
+                <div class="sectionAjoutegroupporduit">
+                    <div class="sectionTable-1">
+                        {{-- {{ dd($dataPrint->count() ) }} --}}
+                   @if (!$dataPrint->count()  )
 
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="notFoundMsg">Data Not Found</div>
+                    @else
+                        <table id="tbld" style="padding: 10px">
+                            <thead>
+                                <tr>
+                                    <th>ID  </th>
+                                    <th>Nom Complet</th>
 
-                            <button type="submit">Ajoute</button>
-                    </form>
+                                    <th>Email </th>
+                                    <th>Telephone </th>
+                                    <th>Montant </th>
+                                    <th>Pay </th>
+                                    <th>delete </th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="table">
+
+
+                                    @foreach ($dataPrint as $key=> $itmproduit)
+                                    <tr>
+                                            <td>{{$itmproduit->id}}</td>
+                                            <td >{{  $itmproduit->nom_Complet}}</td>
+
+                                            <td>{{Str::limit($itmproduit->email, 10, '...')  }}</td>
+                                            <td>{{  $itmproduit->telephone}}</td>
+                                            <td>{{  $itmproduit->Montant}}</td>
+                                            <td>
+                                                <a class="btnPay" href="{{ route('Gere_Credi',['clientOrFrouni'=>$clientOrFrounistring,'idClientOrFourni'=>$itmproduit->id]) }}">
+                                                <i class="fa-solid fa-sack-dollar"></i></a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('Voir_Credi',['clientOrFrouni'=>$clientOrFrounistring]) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <input type="hidden"  name="idClientOrFourni" value="{{ $itmproduit->id }}">
+                                                    <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
+
+                                                </form>
+                                            </td>
+
+
+                                        </tr>
+                                    @endforeach
+
+
+
+
+                            {{-- {{ dd($dataPrint) }} --}}
+
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        @if ($dataPrint)
+                                            <div class="paginate">
+                                                @if ($dataPrint->lastPage()>1)
+
+
+                                                        @if ( $dataPrint->currentPage()>$dataPrint->lastPage())
+
+                                                        <a class="bntPrev" href="?page={{ $dataPrint->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
+                                                        @endif
+                                                        <div class="pageCureent">{{ $dataPrint->currentPage() }}  Page [ {{ $dataPrint->lastPage() }} ]</div>
+                                                        @if ( $dataPrint->currentPage()<$dataPrint->lastPage())
+                                                        <a class="btnNext" href="?page={{ $dataPrint->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
+                                                        @endif
+                                                @endif
+                                            </div>
+                                        @endif
+
+
+
+                                    </td>
+                                </tr>
+
+
+                            </tfoot>
+                         @endif
+                        </table>
+                    </div>
 
                 </div>
 
@@ -150,7 +229,7 @@
 
     </div>
 
-</div>
+{{-- </div>
 <script>
     const selectproduit = document.getElementById('selectproduit');
     const prix = document.getElementById('prix');
@@ -162,8 +241,8 @@
         let dataprix=element.Prix
             if(element.id == selectproduit.value){
                 return prix.value=element.Prix
-            }else if(selectproduit.value=='refr'){
-                return prix.value=0
+            }else{
+                return prix.value=dataprix
             }
           });
     }
@@ -171,7 +250,7 @@
         // console.log(quantite.value ,prix.value);
         let dataprix=prix.value
         dataprixTotal =quantite.value*prix.value
-        if(quantite.value>1){
+        if(quantite.value>0){
             return prix.value = dataprixTotal
         }else if(quantite.value==0){
             return prix.value = dataprix
@@ -180,6 +259,51 @@
     }
 
 
-</script>
+</script> --}}
+<Script>
+    //     const tbale=document.querySelectorAll('.table tr')
+    //     console.log(tbale.length);
+    //     const myfunprintPor=()=>{
+    //         const NumProduit=document.getElementById('NumProduit')
+    //         console.log(NumProduit.innerHTML);
+    //         return NumProduit.innerHTML=tbale.length;
+    //     }
+    //     myfunprintPor()
+    //     const tbaleprix=document.querySelectorAll('.table tr #prix')
+    //     // console.log(tbaleprix);
+    //     const myfunprintPrix=(tbaleprix)=>{
+    //         const NumPrixTotal=document.getElementById('NumPrixTotal')
+    //         let NumPrix=0
+    //         tbaleprix.forEach(element => {
+
+    //           return  NumPrix+=parseInt(element.innerHTML)
+    //         });
+    //         console.log(NumPrixTotal.innerHTML);
+    //             return NumPrixTotal.innerHTML=NumPrix
+    //         // console.log(NumPrixTotal);
+    //         // return NumProduit.innerHTML=tbale.length;
+    //     }
+    //     myfunprintPrix(tbaleprix)
+    //     const selectproduit=document.getElementById('selectproduit')
+
+    //    const myfunselect =(event)=>{
+    //     const btnchange=document.getElementById('btnchange');
+
+    //      btnchange.href=`${selectproduit.value}`;
+
+
+
+    //           return  btnchange.click();
+    //    }
+
+    const bntnext=document.getElementById('bntnext');
+        const myfunNext=(event)=>{
+            console.log(bntnext,event.target.value);
+            bntnext.href=`${event.target.value}`;
+            return bntnext.click();
+        }
+
+
+</Script>
 
 @endsection

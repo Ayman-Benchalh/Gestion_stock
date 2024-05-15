@@ -1,12 +1,16 @@
 
 @extends('index')
-
+@section('script')
+<link href="https://unpkg.com/tabulator-tables@6.2.0/dist/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.0/dist/js/tabulator.min.js"></script>
+<link href="/dist/css/tabulator_simple.min.css" rel="stylesheet">
+@endsection
 @section('Content')
 <div class="container">
     <div class="dashbordHome">
         <div class="partyNav">
             <ul>
-                <li >
+                <li  id="focueBtn">
                     <a href="{{ route('DashBord_user') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34" fill="none">
                         <path d="M16 34V22H24V34H34V18H40L20 0L0 18H6V34H16Z" fill="#D9D9D9"/>
@@ -14,7 +18,7 @@
                     </a>
 
                 </li>
-                <li id="focueBtn">
+                <li >
                     <a href="{{ route('Vente') }}" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M42.0597 29.3333H17.631L18.1764 32H40.5446C41.828 32 42.7792 33.1918 42.4948 34.4433L42.0351 36.4663C43.5927 37.2223 44.6667 38.819 44.6667 40.6667C44.6667 43.2668 42.5401 45.3703 39.9313 45.3328C37.4461 45.2971 35.4022 43.2803 35.3351 40.7956C35.2984 39.4383 35.8422 38.2082 36.7353 37.3333H19.2647C20.1294 38.1804 20.6667 39.3605 20.6667 40.6667C20.6667 43.3178 18.456 45.4526 15.7775 45.3282C13.3992 45.2178 11.4649 43.2961 11.3399 40.9184C11.2434 39.0823 12.2096 37.4638 13.6775 36.6196L7.82358 8H2C0.895417 8 0 7.10459 0 6V4.66667C0 3.56209 0.895417 2.66667 2 2.66667H10.5441C11.4942 2.66667 12.3131 3.33509 12.5035 4.26584L13.2673 8H45.9992C47.2826 8 48.2338 9.19175 47.9494 10.4433L44.01 27.7766C43.8031 28.6872 42.9936 29.3333 42.0597 29.3333ZM33.5857 18.6667H30V13.6667C30 13.1144 29.5522 12.6667 29 12.6667H27C26.4477 12.6667 26 13.1144 26 13.6667V18.6667H22.4142C21.5233 18.6667 21.0772 19.7438 21.7072 20.3738L27.2929 25.9595C27.6834 26.35 28.3166 26.35 28.7072 25.9595L34.2929 20.3738C34.9228 19.7438 34.4767 18.6667 33.5857 18.6667Z" fill="#D9D9D9"/>
@@ -81,33 +85,105 @@
                 </div>
             </div>
             <div class="sectionConteent">
-                <div class="titleAjoute">Type vante </div>
+                <div class="titleAjoute">
+                    Stock de produit
+
+
+                </div>
+                @if ($errors->any())
+                <div class="errorsStyle">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+                @if (session()->has('success'))
+                    <div class="messageSucc">{{ session()->get('success') }}</div>
+                @endif
+                @if (session()->has('errorMessage'))
+                    <div class="errorsStyle">{{ session()->get('errorMessage') }}</div>
+                @endif
+
+
+                <div class="sectionAjoutegroupporduit">
+                    <div class="sectionTable-1">
+                        @if (!$dataProduit->count())
+                        <div class="notFoundMsg">Data Not Found</div>
+
+                        @else
+                        <table id="tbld" style="padding: 10px">
+                            <thead>
+                                <tr>
+                                    <th>ID  </th>
+                                    <th>Nom Produit</th>
+                                    <th>Designation</th>
+                                    <th>Quantité </th>
+                                    <th>Prix </th>
+                                    <th>Fournisseur </th>
+                                    <th>delete </th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="table">
+                                @foreach ($dataProduit as $key=> $itmproduit)
+                                <tr>
+                                        <td>{{$itmproduit->id}}</td>
+                                        <td >{{  $itmproduit->Nom_Prod}}</td>
+                                        <td >{{ Str::limit($itmproduit->Designation_Prod, 15, '...') }}</td>
+
+                                            @if ($itmproduit->Quantité<=3)
+                                                    <td  style="background-color:crimson">   {{  $itmproduit->Quantité}}</td>
+                                                @else
+                                                    <td  style="background-color:rgb(4, 181, 4)">   {{  $itmproduit->Quantité}}</td>
+                                            @endif
+
+                                        <td>{{  $itmproduit->Prix}}</td>
+                                        <td>{{  $itmproduit->Nom_Fournisseur}}</td>
+                                        <td>
+                                            <form action="" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden"  name="idProduit" value="{{ $itmproduit->id }}">
+                                                <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
+
+                                            </form>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
 
 
 
-                <div class="sectionVente">
-                 <form action="{{ route('Vente') }}" method="post">
-                    @csrf
-                    <div class="sectionCart">
-                         <label for="redio1" class="cart">
-                        <img src="{{ asset('Image/9402212 1.png') }}" alt="img">
-                        <div class="typecart">1</div>
-                        <div class="titlecart"> produit</div>
-                        <input type="radio" checked  name="btn1" id="redio1" value="1_Produit">
-                    </label>
-                    <label for="redio2" class="cart">
-                        <img src="{{ asset('Image/4062005 1.png') }}" alt="img">
-                        <div class="typecart">plusieurs </div>
-                        <div class="titlecart"> produit</div>
-                        <input type="radio" name="btn1" id="redio2" value="pluse_produit">
-                    </label>
 
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <div class="paginate">
+
+                                            <a class="bntPrev" href="?page={{ $dataProduit->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
+                                            <div class="pageCureent">{{ $dataProduit->currentPage() }}  Page [ {{ $dataProduit->lastPage() }} ]</div>
+                                            @if ( $dataProduit->currentPage()<$dataProduit->lastPage())
+                                             <a class="btnNext" href="?page={{ $dataProduit->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
+                                             @endif
+
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+
+
+                            </tfoot>
+
+                        </table>
+
+
+                        @endif
                     </div>
 
-
-                    <button type="submit">Continuer</button>
-
-                </form>
                 </div>
 
 
@@ -117,7 +193,75 @@
 
     </div>
 
-</div>
+{{-- </div>
+<script>
+    const selectproduit = document.getElementById('selectproduit');
+    const prix = document.getElementById('prix');
+    const quantite = document.getElementById('quantite');
+    // selectproduit.onchange=myfinc;
+    const myfinc=(data)=>{
 
+     return  data.forEach(element => {
+        let dataprix=element.Prix
+            if(element.id == selectproduit.value){
+                return prix.value=element.Prix
+            }else{
+                return prix.value=dataprix
+            }
+          });
+    }
+    const myfinc2=()=>{
+        // console.log(quantite.value ,prix.value);
+        let dataprix=prix.value
+        dataprixTotal =quantite.value*prix.value
+        if(quantite.value>0){
+            return prix.value = dataprixTotal
+        }else if(quantite.value==0){
+            return prix.value = dataprix
+        }
+
+    }
+
+
+</script> --}}
+<Script>
+    //     const tbale=document.querySelectorAll('.table tr')
+    //     console.log(tbale.length);
+    //     const myfunprintPor=()=>{
+    //         const NumProduit=document.getElementById('NumProduit')
+    //         console.log(NumProduit.innerHTML);
+    //         return NumProduit.innerHTML=tbale.length;
+    //     }
+    //     myfunprintPor()
+    //     const tbaleprix=document.querySelectorAll('.table tr #prix')
+    //     // console.log(tbaleprix);
+    //     const myfunprintPrix=(tbaleprix)=>{
+    //         const NumPrixTotal=document.getElementById('NumPrixTotal')
+    //         let NumPrix=0
+    //         tbaleprix.forEach(element => {
+
+    //           return  NumPrix+=parseInt(element.innerHTML)
+    //         });
+    //         console.log(NumPrixTotal.innerHTML);
+    //             return NumPrixTotal.innerHTML=NumPrix
+    //         // console.log(NumPrixTotal);
+    //         // return NumProduit.innerHTML=tbale.length;
+    //     }
+    //     myfunprintPrix(tbaleprix)
+    //     const selectproduit=document.getElementById('selectproduit')
+
+    //    const myfunselect =(event)=>{
+    //     const btnchange=document.getElementById('btnchange');
+
+    //      btnchange.href=`${selectproduit.value}`;
+
+
+
+    //           return  btnchange.click();
+    //    }
+
+
+
+</Script>
 
 @endsection

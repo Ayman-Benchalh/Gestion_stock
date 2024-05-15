@@ -125,10 +125,10 @@
                     <td style="text-align: end">
                         <div class="client-details">
                         <h2> Details du client</h2>
-                        <p>Nom du client : {{ $dataFournisseur->nom_Complet }}</p>
+                        <p>Nom du client : {{ $dataClient->nom_Complet }}</p>
                         <p>Adresse du client : Hay El andalous</p>
-                        <p>Email : {{ $dataFournisseur->email }}</p>
-                        <p>Telephone : {{ $dataFournisseur->telephone }}</p>
+                        <p>Email : {{ $dataClient->email }}</p>
+                        <p>Telephone : {{ $dataClient->telephone }}</p>
                     </div>
                     </td>
 
@@ -153,7 +153,7 @@
                     $TTc=$dataPayment->Montant_Pay+$Tva;
              @endphp
             <tbody>
-                @foreach ($dataAchat as $key=>$itemAchat)
+                {{-- @foreach ($dataAchat as $key=>$itemAchat)
                     <tr>
                         <td> {{ $key+1 }}</td>
                         <td>{{ $itemAchat->produits->Nom_Prod}}</td>
@@ -164,16 +164,13 @@
                     @php
                        $Ht+=$itemAchat->Prix_Achat
                     @endphp
-                @endforeach
+                @endforeach --}}
 
 
-                {{-- <tr>
-                    <td>N 1</td>
-                    <td>{{ $dataVente->produits->Nom_Prod }}</td>
-                    <td>{{ $dataVente->Quantite_vente }}</td>
-                    <td>{{ $dataVente->produits->Prix }}</td>
-                    <td>{{ $dataVente->Prix_Vente }}</td>
-                </tr> --}}
+                <tr>
+                    <td>#{{ date('Ymd') }}</td>
+                    <td colspan="5">Credi de client</td>
+                </tr>
    {{-- {{ dd($dataVente->produits ) }} --}}
 
 
@@ -198,11 +195,11 @@
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: end; padding:0 15px;"> Total TTC : </td>
-                    <td style="font-size: 25px;font-weight: 600;">{{number_format($TTc) }}  DH</td>
+                    <td style="font-size: 25px;font-weight: 600;">{{number_format($TTc )  }}  DH</td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: end; padding:0 15px;"> Montant de paiement restant : </td>
-                    <td style="font-size: 10px;">{{number_format($dataPayment->fournisseurs->Montant)  }} DH</td>
+                    <td style="font-size: 10px;">{{number_format($dataPayment->Clients->Montant)  }} DH</td>
                 </tr>
             </tfoot>
         </table>

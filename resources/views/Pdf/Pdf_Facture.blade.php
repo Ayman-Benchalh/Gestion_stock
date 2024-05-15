@@ -198,11 +198,11 @@
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: end; padding:0 15px;"> Total TTC : </td>
-                    <td style="font-size: 25px;font-weight: 600;">{{  $TTc }}  DH</td>
+                    <td style="font-size: 25px;font-weight: 600;">{{number_format($TTc)}}  DH</td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: end; padding:0 15px;"> Montant de paiement restant : </td>
-                    <td style="font-size: 10px;">{{ $dataPayment->Clients->Montant }} DH</td>
+                    <td style="font-size: 10px;">{{ number_format($dataPayment->Clients->Montant )}} DH</td>
                 </tr>
             </tfoot>
         </table>

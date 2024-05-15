@@ -33,13 +33,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('Voir_Credi',['clientOrFrouni'=>'client']) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M12 39C9.8 39 7.91667 38.2411 6.35 36.7234C4.78333 35.2057 4 33.3813 4 31.25V15.75C4 13.6188 4.78333 11.7943 6.35 10.2766C7.91667 8.75885 9.8 8 12 8H36C38.2 8 40.0833 8.75885 41.65 10.2766C43.2167 11.7943 44 13.6188 44 15.75V31.25C44 33.3813 43.2167 35.2057 41.65 36.7234C40.0833 38.2411 38.2 39 36 39H12ZM12 15.75H36C36.7333 15.75 37.4333 15.8307 38.1 15.9922C38.7667 16.1536 39.4 16.412 40 16.7672V15.75C40 14.6844 39.6087 13.7725 38.826 13.0142C38.042 12.2547 37.1 11.875 36 11.875H12C10.9 11.875 9.95867 12.2547 9.176 13.0142C8.392 13.7725 8 14.6844 8 15.75V16.7672C8.6 16.412 9.23333 16.1536 9.9 15.9922C10.5667 15.8307 11.2667 15.75 12 15.75ZM8.3 22.0469L30.55 27.2781C30.85 27.3427 31.15 27.3427 31.45 27.2781C31.75 27.2135 32.0333 27.0844 32.3 26.8906L39.25 21.2719C38.8833 20.7875 38.4167 20.3923 37.85 20.0861C37.2833 19.7787 36.6667 19.625 36 19.625H12C11.1333 19.625 10.3753 19.8426 9.726 20.2779C9.07533 20.7145 8.6 21.3042 8.3 22.0469Z" fill="#D9D9D9"/>
                       </svg></a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('parametre_page') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="49" height="48" viewBox="0 0 49 48" fill="none">
                         <path d="M39.1343 25.88C39.2141 25.28 39.2541 24.66 39.2541 24C39.2541 23.36 39.2141 22.72 39.1143 22.12L43.1679 18.96C43.5274 18.68 43.6272 18.14 43.4076 17.74L39.5736 11.1C39.3339 10.66 38.8347 10.52 38.3954 10.66L33.6229 12.58C32.6244 11.82 31.5661 11.18 30.3879 10.7L29.6691 5.61999C29.5892 5.13999 29.1898 4.79999 28.7106 4.79999H21.0426C20.5633 4.79999 20.1839 5.13999 20.104 5.61999L19.3852 10.7C18.207 11.18 17.1287 11.84 16.1502 12.58L11.3777 10.66C10.9384 10.5 10.4392 10.66 10.1995 11.1L6.3855 17.74C6.14588 18.16 6.22575 18.68 6.62513 18.96L10.6788 22.12C10.5789 22.72 10.4991 23.38 10.4991 24C10.4991 24.62 10.539 25.28 10.6388 25.88L6.58519 29.04C6.22575 29.32 6.12591 29.86 6.34556 30.26L10.1796 36.9C10.4192 37.34 10.9184 37.48 11.3577 37.34L16.1303 35.42C17.1287 36.18 18.187 36.82 19.3652 37.3L20.0841 42.38C20.1839 42.86 20.5633 43.2 21.0426 43.2H28.7106C29.1898 43.2 29.5892 42.86 29.6491 42.38L30.368 37.3C31.5461 36.82 32.6244 36.18 33.6029 35.42L38.3754 37.34C38.8148 37.5 39.314 37.34 39.5536 36.9L43.3876 30.26C43.6272 29.82 43.5274 29.32 43.148 29.04L39.1343 25.88ZM24.8766 31.2C20.9228 31.2 17.6878 27.96 17.6878 24C17.6878 20.04 20.9228 16.8 24.8766 16.8C28.8304 16.8 32.0653 20.04 32.0653 24C32.0653 27.96 28.8304 31.2 24.8766 31.2Z" fill="#D9D9D9"/>
                       </svg>
@@ -47,7 +47,7 @@
                 </li>
             </ul>
             <div class="bntclose">
-                <a href="#">
+                <a href="{{ route('logOute') }}">
 
 
                 <span>
@@ -69,7 +69,7 @@
             <div class="navSide">
                 <div class="titleNav">Droguerie Issam</div>
                 <div class="ProFileNav">
-                    <a href="#">
+                    <a href="{{ route('parametre_page') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                     <g clip-path="url(#clip0_4_67)">
                       <path d="M15 16.875C19.6582 16.875 23.4375 13.0957 23.4375 8.4375C23.4375 3.7793 19.6582 0 15 0C10.3418 0 6.5625 3.7793 6.5625 8.4375C6.5625 13.0957 10.3418 16.875 15 16.875ZM22.5 18.75H19.2715C17.9707 19.3477 16.5234 19.6875 15 19.6875C13.4766 19.6875 12.0352 19.3477 10.7285 18.75H7.5C3.35742 18.75 0 22.1074 0 26.25V27.1875C0 28.7402 1.25977 30 2.8125 30H27.1875C28.7402 30 30 28.7402 30 27.1875V26.25C30 22.1074 26.6426 18.75 22.5 18.75Z" fill="#D9D9D9" fill-opacity="0.7"/>
@@ -89,7 +89,7 @@
                     Achat groupe
 
                     <div class="nameClient">
-                        Nom Client :  @if($dataFourniOne){{ $dataFourniOne->nom_Complet }} @endif
+                        Nom Fournisseur :  @if($dataFourniOne){{ $dataFourniOne->nom_Complet }} @endif
                     </div>
                     <div class="selectClient">
                         <select name="selectproduit" id="selectproduit" onchange="myfunselect(event)">
@@ -101,7 +101,7 @@
                                 @endforeach
 
                             </select>
-                            <a id="btnchange" href=""></a>
+                            <a  id="btnchange"  href=""></a>
 
 
                     </div>
@@ -180,98 +180,6 @@
 
                                 @endif
 
-                                {{-- <tr>
-                                    <td>1</td>
-                                    <td>iphone 12 pro</td>
-                                    <td>2</td>
-                                    <td id="prix">7510</td>
-                                    <td><form action="" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <input type="hidden" name="id_vente">
-                                        <button type="submit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                            <g clip-path="url(#clip0_25_260)">
-                                              <path d="M10.5 33.25C10.5 35.175 12.075 36.75 14 36.75H28C29.925 36.75 31.5 35.175 31.5 33.25V12.25H10.5V33.25ZM33.25 7H27.125L25.375 5.25H16.625L14.875 7H8.75V10.5H33.25V7Z" fill="#F2613F"/>
-                                            </g>
-                                            <defs>
-                                              <clipPath id="clip0_25_260">
-                                                <rect width="42" height="42" fill="white"/>
-                                              </clipPath>
-                                            </defs>
-                                          </svg>
-                                        </button>
-                                    </form></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>iphone 12 pro</td>
-                                    <td>2</td>
-                                    <td id="prix">570</td>
-                                    <td><form action="" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <input type="hidden" name="id_vente">
-                                        <button type="submit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                            <g clip-path="url(#clip0_25_260)">
-                                              <path d="M10.5 33.25C10.5 35.175 12.075 36.75 14 36.75H28C29.925 36.75 31.5 35.175 31.5 33.25V12.25H10.5V33.25ZM33.25 7H27.125L25.375 5.25H16.625L14.875 7H8.75V10.5H33.25V7Z" fill="#F2613F"/>
-                                            </g>
-                                            <defs>
-                                              <clipPath id="clip0_25_260">
-                                                <rect width="42" height="42" fill="white"/>
-                                              </clipPath>
-                                            </defs>
-                                          </svg>
-                                        </button>
-                                    </form></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>iphone 12 pro</td>
-                                    <td>2</td>
-                                    <td id="prix">300</td>
-                                    <td><form action="" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <input type="hidden" name="id_vente">
-                                        <button type="submit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                            <g clip-path="url(#clip0_25_260)">
-                                              <path d="M10.5 33.25C10.5 35.175 12.075 36.75 14 36.75H28C29.925 36.75 31.5 35.175 31.5 33.25V12.25H10.5V33.25ZM33.25 7H27.125L25.375 5.25H16.625L14.875 7H8.75V10.5H33.25V7Z" fill="#F2613F"/>
-                                            </g>
-                                            <defs>
-                                              <clipPath id="clip0_25_260">
-                                                <rect width="42" height="42" fill="white"/>
-                                              </clipPath>
-                                            </defs>
-                                          </svg>
-                                        </button>
-                                    </form></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>iphone 12 pro</td>
-                                    <td>2</td>
-                                    <td id="prix">110</td>
-                                    <td><form action="" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <input type="hidden" name="id_vente">
-                                        <button type="submit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                            <g clip-path="url(#clip0_25_260)">
-                                              <path d="M10.5 33.25C10.5 35.175 12.075 36.75 14 36.75H28C29.925 36.75 31.5 35.175 31.5 33.25V12.25H10.5V33.25ZM33.25 7H27.125L25.375 5.25H16.625L14.875 7H8.75V10.5H33.25V7Z" fill="#F2613F"/>
-                                            </g>
-                                            <defs>
-                                              <clipPath id="clip0_25_260">
-                                                <rect width="42" height="42" fill="white"/>
-                                              </clipPath>
-                                            </defs>
-                                          </svg>
-                                        </button>
-                                    </form></td>
-                                </tr> --}}
 
 
 
@@ -279,19 +187,10 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="5">
-                                        <form action="{{ route('Achat_one_for_Groupe') }}" method="post">
-                                            @csrf
-                                            <input type="hidden">
-                                                @if($dataFourniOne)
 
-                                                    <input type="hidden" name="id_Fournisseur" id="id_client" value="{{ $dataFourniOne->id }}">
-                                                    <button type="submit">Ajoute produit</button>
-
-                                                @endif
-
-
-
-                                        </form>
+                                        @if($dataFourniOne)
+                                        <a class="btnAjoute" href="{{ route('Achat_one_for_Groupe',['idFournisseur'=>$dataFourniOne->id]) }}">Ajoute produit</a>
+                                        @endif
                                      </td>
                                 </tr>
                             </tfoot>
@@ -334,37 +233,6 @@
 
     </div>
 
-{{-- </div>
-<script>
-    const selectproduit = document.getElementById('selectproduit');
-    const prix = document.getElementById('prix');
-    const quantite = document.getElementById('quantite');
-    // selectproduit.onchange=myfinc;
-    const myfinc=(data)=>{
-
-     return  data.forEach(element => {
-        let dataprix=element.Prix
-            if(element.id == selectproduit.value){
-                return prix.value=element.Prix
-            }else{
-                return prix.value=dataprix
-            }
-          });
-    }
-    const myfinc2=()=>{
-        // console.log(quantite.value ,prix.value);
-        let dataprix=prix.value
-        dataprixTotal =quantite.value*prix.value
-        if(quantite.value>0){
-            return prix.value = dataprixTotal
-        }else if(quantite.value==0){
-            return prix.value = dataprix
-        }
-
-    }
-
-
-</script> --}}
 <Script>
         const tbale=document.querySelectorAll('.table tr')
         console.log(tbale.length);
@@ -375,7 +243,7 @@
         }
         myfunprintPor()
         const tbaleprix=document.querySelectorAll('.table tr #prix')
-        // console.log(tbaleprix);
+
         const myfunprintPrix=(tbaleprix)=>{
             const NumPrixTotal=document.getElementById('NumPrixTotal')
             let NumPrix=0
@@ -385,8 +253,7 @@
             });
             console.log(NumPrixTotal.innerHTML);
                 return NumPrixTotal.innerHTML=NumPrix
-            // console.log(NumPrixTotal);
-            // return NumProduit.innerHTML=tbale.length;
+
         }
         myfunprintPrix(tbaleprix)
         const selectproduit=document.getElementById('selectproduit')

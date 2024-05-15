@@ -122,7 +122,80 @@ class PaymentClientController extends Controller
 
 
     }
+    public function  paiement_Cred_Client(){
+        $dataClient=Client::all();
+        return view('Pay_Credi_Client',compact('dataClient'));
+    }
+    public function  paiement_Cred_Client_ps(Request $request){
+        $selectClientId=$request->selectClient;
+        $MontantCredi=$request->MontantCredi;
+        $prixPay=$request->prixPay;
+        $restPay=$request->restPay;
 
+        request()->validate([
+            'selectClient'=>['required','exists:clients,id'],
+            'MontantCredi'=>['required','exists:clients,Montant'],
+            'prixPay'=>['required',],
+            'restPay'=>['required'],
+        ]);
+        $dataClient=Client::where('id',$selectClientId)->where('Montant','>',0)->get()->ToArray();
+
+        if($dataClient){
+            // dd($dataClient);
+            $dataPay=Payment_Client::where('id_Client',$selectClientId)->first();
+
+
+            if(!$dataPay){
+                Payment_Client::create([
+                        'id_Client'=>$selectClientId,
+                        'Montant_Pay'=>$prixPay
+                    ]);
+            }else{
+                Payment_Client::where('id_Client',$selectClientId)->update([
+                'Montant_Pay'=>$prixPay
+            ]);
+            }
+
+            Client::findOrfail($selectClientId)->update([
+                'Montant'=>$restPay,
+            ]);
+            // return redirect()->route('Pay_Cre_client')->with('success','payment has bin successfule');
+            $controllerPay=new PaymentClientController();
+
+            return $controllerPay->show2($selectClientId);
+
+        }else{
+            return redirect()->route('Pay_Cre_client')->with('errorMessage','vous nave pas aucen credi');
+        }
+
+
+        // $dataClient=Client::all();
+        // return view('Pay_Credi_Client',compact('dataClient'));
+    }
+
+    public  function show2($idClient)
+    {
+        $dataClient=Client::findOrFail($idClient);
+        $dataVente=Vente::where('id_client',$idClient)->where('facture_imprimé',0)->get();
+        $dataPayment=Payment_Client::where('id_client',$idClient)->first();
+        $dataUser=User::findOrFail(session()->get('id_User'));
+
+        // // $dataVente=Vente::findOrFail(12);
+        // dd($dataVente,$dataPayment);
+        // vente::where('id_client',$idClient)->update([
+        //     'facture_imprimé'=>true,
+        // ]);
+        // $dataVenteAll=Vente::where('id_client',$idClient)->get();
+        // dd($dataVenteAll);
+        $data = compact( 'dataClient','dataVente','dataUser','dataPayment');
+        $html = view('Pdf.Pdf_Facture3', $data)->render();
+            // return to_route('Pdf_facture',['idClient'=>1]);
+        return SnappyPdf::loadHTML($html)->inline('Facture_'.$dataClient->nom_Complet.'.pdf');
+
+
+
+
+    }
     /**
      * Show the form for editing the specified resource.
      */

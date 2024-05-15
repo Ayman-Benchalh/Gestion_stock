@@ -59,9 +59,13 @@ class UserController extends Controller
                         'Nom_Complet'=>$string_NomComplet,
                         'email'=>$email,
                         'password'=>$password,
+                        'Nom_commercial'=>'',
+                        'Telephone'=>'',
+                        'Adresse'=>'',
                     ]);
 
-               $token = Str::random(4);
+            //    $token = Str::random(4);
+               $token = rand(1000,9999);
                 Mail::send('TempletVerfi',['token'=>$token],function($message){
                         $message->to(request()->email);
                         $message->subject('OTP Verif Account');
@@ -116,7 +120,8 @@ class UserController extends Controller
         request()->validate([
             'email'=>['email','required','min:8','exists:users,email']
         ]);
-        $token=str::random(4);
+        // $token=str::random(4);
+        $token=rand(1000,9999);
         Session(['forgetToken'=>$token]);
         Mail::send('TempletVerfi',['token'=> $token],function($message){
             $message->to(Request()->email);
@@ -159,7 +164,44 @@ class UserController extends Controller
         $dataAchat= Achat::all()->count();
         $dataVente= Vente::all()->count();
         $dataVenteall= Vente::all();
-
-        return view('dashBordPage' ,compact('dataClient','dataFourni','dataProduit','dataAchat','dataVente','dataVenteall'));
+        $dataproduitMinthre=Produit::where('Quantité','<=',3)->get();
+        // dd($dataproduitMinthre);
+        return view('dashBordPage' ,compact('dataClient','dataFourni','dataProduit','dataAchat','dataVente','dataVenteall','dataproduitMinthre'));
      }
+
+     public function logOut(){
+        session()->flush();
+        Auth::logout();
+        return to_route('IndexUser');
+     }
+
+     public function ParametreEdite(){
+        $dataUser=User::findOrfail(session()->get('id_User'));
+        // dd($dataUser);
+        return view('Parametre_page',compact('dataUser'));
+     }
+     public function ParametreUpdate(Request $request){
+        $NomComplet=$request->NomComplet;
+        $Email=$request->Email;
+        $Adresse=$request->Adresse;
+        $NomCommercial=$request->NomCommercial;
+        $Telephone=$request->Telephone;
+        request()->validate([
+            'NomComplet'=>['required','exists:users,Nom_Complet'],
+            'Email'=>['required','exists:users,email'],
+            'Adresse'=>['required'],
+            'NomCommercial'=>['required'],
+            'Telephone'=>['required'],
+        ]);
+        User::where('Nom_Complet',$NomComplet)->where('email',$Email)->update([
+            'Adresse'=>$Adresse,
+            'Nom_commercial'=>$NomCommercial,
+            'Telephone'=>$Telephone,
+        ]);
+        $dataUser=User::findOrfail(session()->get('id_User'));
+        return redirect()->route('parametre_page',compact('dataUser'))->with('success',"les informations  de {$NomComplet} est changé");
+        // dd($NomComplet,$Email, $NomCommercial,$Telephone);
+     }
+
+
 }

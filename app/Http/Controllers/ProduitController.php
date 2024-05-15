@@ -31,12 +31,14 @@ class ProduitController extends Controller
         $nomproduit=$request->nomproduit;
         $designation=$request->designation;
         $quantité=$request->quantité;
+        $Catégorie=$request->Catégorie;
         $prix=$request->prix;
         $dataProduit= Produit::where('Nom_Prod',$nomproduit)->first();
 
         $request->validate([
             'nomproduit'=>['required','min:4'],
             'designation'=>['required','min:4'],
+            'Catégorie'=>['required','min:1'],
             'quantité'=>['required','min:1'],
             'prix'=>['required','min:1'],
         ]);
@@ -45,6 +47,7 @@ class ProduitController extends Controller
                     'Nom_Prod'=>$nomproduit,
                     'Designation_Prod'=> $designation,
                     'Quantité'=>$quantité,
+                    'Catégorie'=>$Catégorie ,
                     'Prix'=>$prix,
                     'Nom_Fournisseur'=>null,
                 ]);
@@ -67,7 +70,9 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
+        $dataProduit = Produit::paginate(5);
+
+        return view('All_produit_page',compact('dataProduit'));
     }
 
     /**

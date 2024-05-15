@@ -66,9 +66,11 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show()
     {
-        //
+        $dataClient = Client::paginate(5);
+
+        return view('All_client_page',compact('dataClient'));
     }
 
     /**
@@ -90,8 +92,17 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client)
+    public function destroy(Request $request)
     {
-        //
+
+        $dataClient = Client::paginate(5);
+      $dataClientAll=  Client::findOrfail($request->idClient);
+      if($dataClientAll){
+        $dataClientAll->delete();
+        return redirect()->route('Ajoute_Client_all',compact('dataClient'))->with('success','Client est supprimer bien');
+      }else{
+        return redirect()->route('Ajoute_Client_all',compact('dataClient'))->with('errorMessage','Error le Client est Ne pas supprimer ');
+      }
+
     }
 }

@@ -6,7 +6,7 @@
     <div class="dashbordHome">
         <div class="partyNav">
             <ul>
-                <li >
+                <li id="focueBtn">
                     <a href="{{ route('DashBord_user') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34" fill="none">
                         <path d="M16 34V22H24V34H34V18H40L20 0L0 18H6V34H16Z" fill="#D9D9D9"/>
@@ -14,7 +14,7 @@
                     </a>
 
                 </li>
-                <li id="focueBtn">
+                <li >
                     <a href="{{ route('Vente') }}" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <path d="M42.0597 29.3333H17.631L18.1764 32H40.5446C41.828 32 42.7792 33.1918 42.4948 34.4433L42.0351 36.4663C43.5927 37.2223 44.6667 38.819 44.6667 40.6667C44.6667 43.2668 42.5401 45.3703 39.9313 45.3328C37.4461 45.2971 35.4022 43.2803 35.3351 40.7956C35.2984 39.4383 35.8422 38.2082 36.7353 37.3333H19.2647C20.1294 38.1804 20.6667 39.3605 20.6667 40.6667C20.6667 43.3178 18.456 45.4526 15.7775 45.3282C13.3992 45.2178 11.4649 43.2961 11.3399 40.9184C11.2434 39.0823 12.2096 37.4638 13.6775 36.6196L7.82358 8H2C0.895417 8 0 7.10459 0 6V4.66667C0 3.56209 0.895417 2.66667 2 2.66667H10.5441C11.4942 2.66667 12.3131 3.33509 12.5035 4.26584L13.2673 8H45.9992C47.2826 8 48.2338 9.19175 47.9494 10.4433L44.01 27.7766C43.8031 28.6872 42.9936 29.3333 42.0597 29.3333ZM33.5857 18.6667H30V13.6667C30 13.1144 29.5522 12.6667 29 12.6667H27C26.4477 12.6667 26 13.1144 26 13.6667V18.6667H22.4142C21.5233 18.6667 21.0772 19.7438 21.7072 20.3738L27.2929 25.9595C27.6834 26.35 28.3166 26.35 28.7072 25.9595L34.2929 20.3738C34.9228 19.7438 34.4767 18.6667 33.5857 18.6667Z" fill="#D9D9D9"/>
@@ -81,33 +81,61 @@
                 </div>
             </div>
             <div class="sectionConteent">
-                <div class="titleAjoute">Type vante </div>
+                <div class="titleAjoute">Paiement Credi
+
+                </div>
+                @if (session()->has('errorMessage'))
+                <div class="errorsStyle">
+                  {{ session()->get('errorMessage')}}
+                </div>
+            @endif
+
+                @if (session()->has('success'))
+                    <div class="messageSucc">{{ session()->get('success') }}</div>
+                @endif
 
 
+                <div class="sectionAjouteporduit">
+                    <form action="{{ route('Gere_Credi_ps') }}" method="post">
+                        @csrf
+                         <div class="unitearty">
+                                <ul>
+                                    <li><div class="titlenom">Credi  : </div></li>
+                                    <li>
+                                        {{-- <select onchange="myfinc({{ $dataClient }})" name="selectClient" id="selectClientall">
+                                            <option value="refr">select produit</option>
+                                            @foreach ( $dataClient as $clientItm)
+                                            <option  value="{{ $clientItm->id }}" id="{{ $clientItm->Montant }}" >{{ $clientItm->nom_Complet }}</option>
+                                            @endforeach
+                                        </select> --}}
+                                        <input type="hidden" name="typeConte" value="{{ $typeConte }}">
+                                        <input type="text" value="{{ $data->nom_Complet }}" id="idClientOrFourn" name="Nom_complet">
+                                      </li>
+                                </ul>
+                            </div>
+                            <div class="unitearty">
+                                <ul>
+                                    <li><div class="titlenom">Montant :</div></li>
+                                    <li><input type="text" readonly name="MontantCredi" id="MontantCredi" value="{{ $data->Montant }}"  placeholder="Montant Credi"></li>
+                                </ul>
+                            </div>
+                            <div class="unitearty">
+                                <ul>
+                                    <li><div class="titlenom">Prix Paiement:</div></li>
+                                    <li>
+                                        <input type="number" oninput="myfinc2(event)" name="prixPay" max="{{ $data->Montant }}" id="prixPay" placeholder="prix total"></li>
+                                </ul>
+                            </div>
+                            <div class="unitearty">
+                                <ul>
+                                    <li><div class="titlenom">Rest Credi:</div></li>
+                                    <li><input type="number" readonly name="restPay" id="restPay"  placeholder="Rest Credi"></li>
+                                </ul>
+                            </div>
 
-                <div class="sectionVente">
-                 <form action="{{ route('Vente') }}" method="post">
-                    @csrf
-                    <div class="sectionCart">
-                         <label for="redio1" class="cart">
-                        <img src="{{ asset('Image/9402212 1.png') }}" alt="img">
-                        <div class="typecart">1</div>
-                        <div class="titlecart"> produit</div>
-                        <input type="radio" checked  name="btn1" id="redio1" value="1_Produit">
-                    </label>
-                    <label for="redio2" class="cart">
-                        <img src="{{ asset('Image/4062005 1.png') }}" alt="img">
-                        <div class="typecart">plusieurs </div>
-                        <div class="titlecart"> produit</div>
-                        <input type="radio" name="btn1" id="redio2" value="pluse_produit">
-                    </label>
+                            <button type="submit">Ajoute</button>
+                    </form>
 
-                    </div>
-
-
-                    <button type="submit">Continuer</button>
-
-                </form>
                 </div>
 
 
@@ -118,6 +146,46 @@
     </div>
 
 </div>
+<script>
+    const selectClientall = document.getElementById('selectClientall');
+    const MontantCredi = document.getElementById('MontantCredi');
+    const idClientOrFourn = document.getElementById('idClientOrFourn');
+    const prixPay = document.getElementById('prixPay');
+    const restPay = document.getElementById('restPay');
+    const quantite = document.getElementById('quantite');
+    // selectproduit.onchange=myfinc;
+    // const myfinc=()=>{
+    //     prixPay.max=idClientOrFourn.value;
+    //     console.log(prix.value);
+    //  return  data.forEach(element => {
+    //     let dataprix=element.Prix
+    //         if(element.id == selectClientall.value){
 
+    //             // dataargenConvert=new Intl.NumberFormat().format(element.Montant);
+    //             prixPay.max=element.Montant;
+    //             return MontantCredi.value=element.Montant;
+    //         }else if(selectClientall.value=='refr'){
+    //             prixPay.max=0;
+    //             return MontantCredi.value=0
+    //         }
+    //       });
+    // }
+    // myfinc()
+    const myfinc2=()=>{
+        // console.log(prixPay.value,MontantCredi.value);
+        prixPaytotel=MontantCredi.value-prixPay.value
+        // let dataprix=prix.value
+        // dataprixTotal =quantite.value*prix.value
+
+        if(prixPay.value>1){
+            return restPay.value =prixPaytotel
+        }else if(prixPay.value==0){
+            return restPay.value = 0
+        }
+
+    }
+
+
+</script>
 
 @endsection

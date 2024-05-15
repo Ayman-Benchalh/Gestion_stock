@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('Nom_Prod');
             $table->string('Designation_Prod');
             $table->string('Quantité');
+            $table->string('Catégorie');
             $table->string('Prix');
             $table->string('Nom_Fournisseur');
             $table->timestamps();

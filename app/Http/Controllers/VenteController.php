@@ -63,6 +63,8 @@ class VenteController extends Controller
 
         if(!$dataVente->count()){
 
+            $dataProduit=  Produit::findOrfail($selectproduitId);
+            // dd($dataProduit);
             Vente::create([
                 'id_produit'=> $selectproduitId,
                 'id_client'=> $selectClientID,
@@ -71,17 +73,21 @@ class VenteController extends Controller
                 'validation_Vente'=> false,
                 'facture_imprimé'=>false
                 ]);
-                History_Vente::create([
-                'id_produit'=> $selectproduitId,
-                'id_client'=> $selectClientID,
-                'Quantite_vente'=> $quantite,
-                'Prix_Vente'=> $prix,
+                Produit::findOrfail($selectproduitId)->update([
+                    'Quantité'=> $dataProduit->Quantité - $quantite,
                 ]);
+                // History_Vente::create([
+                // 'id_produit'=> $selectproduitId,
+                // 'id_client'=> $selectClientID,
+                // 'Quantite_vente'=> $quantite,
+                // 'Prix_Vente'=> $prix,
+                // ]);
 
             return to_route('Pay_client',['codeClient'=>$selectClientID])->with('success',"La vente s'est bien passée, elle est maintenant payée.");
         }else{
             $dataVenteall=Vente::where('id_client',$selectClientID)->where('id_produit',$selectproduitId)->get()->toArray();
-
+            $dataProduit=  Produit::findOrfail($selectproduitId);
+            // dd($dataProduit);
             if(!$dataVenteall){
                 Vente::create([
                         'id_produit'=> $selectproduitId,
@@ -91,13 +97,15 @@ class VenteController extends Controller
                         'validation_Vente'=> false,
                         'facture_imprimé'=>false
                         ]);
-
-                         History_Vente::create([
-                            'id_produit'=> $selectproduitId,
-                            'id_client'=> $selectClientID,
-                            'Quantite_vente'=> $quantite,
-                            'Prix_Vente'=> $prix,
-                            ]);
+                        Produit::findOrfail($selectproduitId)->update([
+                            'Quantité'=> $dataProduit->Quantité - $quantite,
+                        ]);
+                        //  History_Vente::create([
+                        //     'id_produit'=> $selectproduitId,
+                        //     'id_client'=> $selectClientID,
+                        //     'Quantite_vente'=> $quantite,
+                        //     'Prix_Vente'=> $prix,
+                        //     ]);
                     return to_route('Pay_client',['codeClient'=>$selectClientID])->with('success',"La vente s'est bien passée, elle est maintenant payée.");
 
             }else{
@@ -108,6 +116,9 @@ class VenteController extends Controller
                     'Prix_Vente'=>  $prix* $quantite,
                     'validation_Vente'=> false,
                     'facture_imprimé'=>false
+                ]);
+                Produit::findOrfail($selectproduitId)->update([
+                    'Quantité'=> $dataProduit->Quantité - $quantite,
                 ]);
                 return to_route('Pay_client',['codeClient'=>$selectClientID])->with('success',"la Vente est encore Ajoute un foise");
 
@@ -158,7 +169,7 @@ class VenteController extends Controller
             'id_client'=>['required','exists:clients,id'],
         ]);
        $dataVente = Vente::where('id_client',$ClientId)->where('id_produit',$selectproduitId)->get()->ToArray();
-
+       $dataProduit=  Produit::findOrfail($selectproduitId);
         if(!$dataVente){
             Vente::create([
                 'id_produit'=> $selectproduitId,
@@ -168,12 +179,15 @@ class VenteController extends Controller
                 'validation_Vente'=> false,
                 'facture_imprimé'=>false
                 ]);
-            History_Vente::create([
-                    'id_produit'=> $selectproduitId,
-                    'id_client'=> $ClientId,
-                    'Quantite_vente'=> $quantite,
-                    'Prix_Vente'=> $prix,
-                    ]);
+                Produit::findOrfail($selectproduitId)->update([
+                    'Quantité'=> $dataProduit->Quantité - $quantite,
+                ]);
+            // History_Vente::create([
+            //         'id_produit'=> $selectproduitId,
+            //         'id_client'=> $ClientId,
+            //         'Quantite_vente'=> $quantite,
+            //         'Prix_Vente'=> $prix,
+            //         ]);
 
             return to_route('Vente_Groupe_produit',['IdClient'=> $ClientId])->with('success',"La vente s'est bien Ajoute dans les groupe de vente");
         }else{
@@ -184,6 +198,9 @@ class VenteController extends Controller
                 'Prix_Vente'=> $prix,
                 'validation_Vente'=> false,
                 'facture_imprimé'=>false
+            ]);
+            Produit::findOrfail($selectproduitId)->update([
+                'Quantité'=> $dataProduit->Quantité - $quantite,
             ]);
             return to_route('Vente_Groupe_produit',['IdClient'=> $ClientId])->with('success',"la Vente est encore Ajoute un foise ");
         }
