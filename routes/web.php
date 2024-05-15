@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/Vente_produit',[VenteController::class,'create'])->name('Vente_produit');
     Route::post('/Vente_produit',[VenteController::class,'store2'])->name('Vente_produit');
 
-
+    Route::get('/Vente_Groupe_produit/{IdClient?}',[VenteController::class,'show'])->name('Vente_Groupe_produit');
     Route::post('/Vente_Groupe_produit_P',[VenteController::class,'store2'])->name('Vente_Groupe_produit_P');
     Route::delete('/Vente_Groupe_produit_D',[VenteController::class,'destroy'])->name('Vente_Groupe_produit_D');
 

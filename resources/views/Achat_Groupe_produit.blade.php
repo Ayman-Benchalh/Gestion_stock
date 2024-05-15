@@ -88,7 +88,7 @@
                 <div class="titleAjoute">
                     Achat groupe
 
-                    <div class="nameClient">
+                    <div class="nameClient" >
                         Nom Fournisseur :  @if($dataFourniOne){{ $dataFourniOne->nom_Complet }} @endif
                     </div>
                     <div class="selectClient">

@@ -13,6 +13,7 @@ class Produit extends Model
         'Nom_Prod',
         'Designation_Prod',
         'Quantité',
+        'Catégorie',
         'Prix',
         'Nom_Fournisseur',
 

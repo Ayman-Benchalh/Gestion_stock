@@ -31,7 +31,7 @@ class ProduitController extends Controller
         $nomproduit=$request->nomproduit;
         $designation=$request->designation;
         $quantité=$request->quantité;
-        $Catégorie=$request->Catégorie;
+        $catégorie=$request->Catégorie;
         $prix=$request->prix;
         $dataProduit= Produit::where('Nom_Prod',$nomproduit)->first();
 
@@ -43,11 +43,12 @@ class ProduitController extends Controller
             'prix'=>['required','min:1'],
         ]);
         if(!$dataProduit){
+            // dd($Catégorie);
                 Produit::create([
                     'Nom_Prod'=>$nomproduit,
                     'Designation_Prod'=> $designation,
                     'Quantité'=>$quantité,
-                    'Catégorie'=>$Catégorie ,
+                    'Catégorie'=>$catégorie,
                     'Prix'=>$prix,
                     'Nom_Fournisseur'=>null,
                 ]);

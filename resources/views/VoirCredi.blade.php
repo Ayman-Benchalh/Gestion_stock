@@ -97,7 +97,7 @@
                       </clipPath>
                     </defs>
                   </svg>
-                   <div class="nameClient">
+                   <div class="nameClient" style="right:0px">
                     <input type="radio"  onchange="myfunNext(event)" name="Client" id="idClient" value="client">
                     <label for="idClient"> Client </label>
                     <input type="radio"  onchange="myfunNext(event)" name="Client" id="idFournisseur" value="fournisseur">

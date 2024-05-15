@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="sectionConteent">
-                <div class="titleAjoute">Paiement Client
+                <div class="titleAjoute">Parametre Account
 
                 </div>
                 @if ($errors->any())
