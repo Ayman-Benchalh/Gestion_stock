@@ -112,7 +112,7 @@ class UserController extends Controller
     public function Forget_Pas(){
 
 
-        return view('authentif.ForgetPassword');
+        return view('authentif.ForgetPassword');  
     }
     public function Forget_Pas_post(Request $request){
         $email=$request->email;

@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_Client');
             $table->float('Montant_Pay');
-            $table->foreign('id_Client')->references('id')->on('clients');
+            $table->foreign('id_Client')->references('id')->on('clients')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');;
             $table->timestamps();
         });
     }

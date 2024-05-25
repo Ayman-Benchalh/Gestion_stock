@@ -2330,3 +2330,56 @@ font-size: 20px;
 .edittd table tr th{
 font-size: 20px;
 }
+
+
+.notifactionRemove{
+    min-width: 400px;
+    min-height: 250px;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+    border-radius: 10px;
+    color: #eeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: var(--fontText);
+    gap: 15px;
+    display: none;
+}
+.notifactionRemove .message{
+    width: 85%;
+ font-size: 25px;
+text-align: center;
+ background-color: #05d22e02
+}
+
+.notifactionRemove .bntgourpe{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+gap: 10px;
+cursor: pointer;
+}
+.notifactionRemove .bntgourpe a{
+    width: 150px;
+    height: 55px;
+    flex-shrink: 0;
+   background-color: blueviolet;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 8px;
+   font-size: 20px;
+}
+.notifactionRemove .bntgourpe #btnAnnule{
+  background-color: crimson;
+}
+.notifactionRemove .bntgourpe #btnConfir{
+  background-color: #3965E3;
+}

@@ -19,8 +19,12 @@ return new class extends Migration
             $table->integer('Prix_Achat');
             $table->boolean('validation_Achat');
             $table->boolean('facture_imprimé');
-            $table->foreign('id_fournisseur')->references('id')->on('fournisseurs');
-            $table->foreign('id_produit')->references('id')->on('produits');
+            $table->foreign('id_fournisseur')->references('id')->on('fournisseurs')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');;
+            $table->foreign('id_produit')->references('id')->on('produits')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');;
             $table->timestamps();
         });
     }

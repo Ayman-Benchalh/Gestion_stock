@@ -112,6 +112,16 @@
 
                 <div class="sectionAjoutegroupporduit">
                     <div class="sectionTable-1">
+                        <div class="notifactionRemove" id="notifactionRemove">
+                            <div class="message" id="message">
+                                Voulez-vous vraiment supprimer ce client ? <span id="NameUSer" style="color: chocolate"></span>
+                            </div>
+                            <div class="bntgourpe">
+                                <a id="btnAnnule" onclick="myfunsubmtAnuule()">Annuler</a>
+                                <a id="btnConfir" dataID='' onclick="myfunsubmtConfi(event)">Oui</a>
+                            </div>
+                        </div>
+
                    @if (!$dataClient )
 
                         <div class="notFoundMsg">Data Not Found</div>
@@ -145,10 +155,11 @@
                                             <td>{{  $itmClient->Montant}}</td>
 
                                             <td>
-                                                <form action="{{ route('Ajoute_Client_dl') }}" method="post">
+                                                <form action="{{ route('Ajoute_Client_dl') }}" onsubmit="myfunsubmt(event)" method="post" id="formSumb">
                                                     @csrf
                                                     @method('delete')
-                                                    <input type="hidden"  name="idClient" value="{{ $itmClient->id }}">
+                                                    <input type="hidden"  name="NameClient" value="{{ $itmClient->nom_Complet }}">
+                                                    <input type="hidden"  id="idClient"  name="idClient" value="{{ $itmClient->id }}">
                                                     <button id="btnfromdelete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
 
                                                 </form>
@@ -204,82 +215,48 @@
 
 
     </div>
-
-{{-- </div>
 <script>
-    const selectproduit = document.getElementById('selectproduit');
-    const prix = document.getElementById('prix');
-    const quantite = document.getElementById('quantite');
-    // selectproduit.onchange=myfinc;
-    const myfinc=(data)=>{
-
-     return  data.forEach(element => {
-        let dataprix=element.Prix
-            if(element.id == selectproduit.value){
-                return prix.value=element.Prix
-            }else{
-                return prix.value=dataprix
-            }
-          });
-    }
-    const myfinc2=()=>{
-        // console.log(quantite.value ,prix.value);
-        let dataprix=prix.value
-        dataprixTotal =quantite.value*prix.value
-        if(quantite.value>0){
-            return prix.value = dataprixTotal
-        }else if(quantite.value==0){
-            return prix.value = dataprix
+    const NameUSer=document.getElementById('NameUSer')
+    const notifactionRemove=document.getElementById('notifactionRemove')
+    const message=document.getElementById('message')
+    const btnConfir=document.getElementById('btnConfir')
+    const formSumb=document.getElementById('formSumb')
+    const idClient=document.getElementById('idClient')
+    const data_confirm=document.getElementsByClassName('data_confirm')
+    const  myfunsubmt = (event) =>{
+    event.preventDefault();
+    NameUSer.innerHTML=event.target[2].value;
+    btnConfir.setAttribute('dataID',event.target[3].value)
+   console.log(event.target[3].value);
+    message.innerHTML=`Voulez-vous vraiment supprimer ce client ? <span id="NameUSer" style="color: chocolate">${event.target[2].value}</span>`
+    btnConfir.innerHTML='Oui'
+    btnConfir.style.background='#3965E3'
+    btnConfir.removeAttribute('data-confirm')
+    notifactionRemove.style.display='flex';
+    console.log(NameUSer);
+  }
+    const  myfunsubmtAnuule = () =>{
+        btnConfir.removeAttribute('data-confirm')
+        notifactionRemove.style.display='none';
         }
+    const  myfunsubmtConfi= (event) =>{
 
+
+        if(event.target.hasAttribute('data-confirm')){
+            idClient.value=btnConfir.getAttribute('dataID');
+
+            formSumb.submit();
+
+
+        }else{
+            message.innerHTML=`Le client : <span id='NameUSer' style="color: chocolate">${NameUSer.innerHTML} </span> va être supprimé maintenant. Veuillez confirmer, s'il vous plaît.`
+            event.target.setAttribute('data-confirm','ConfirmNow');
+            event.target.innerHTML='confirmer';
+            event.target.style.background='#05d22ee8';
+       
+        }
     }
 
-
-</script> --}}
-<Script>
-    //     const tbale=document.querySelectorAll('.table tr')
-    //     console.log(tbale.length);
-    //     const myfunprintPor=()=>{
-    //         const NumProduit=document.getElementById('NumProduit')
-    //         console.log(NumProduit.innerHTML);
-    //         return NumProduit.innerHTML=tbale.length;
-    //     }
-    //     myfunprintPor()
-    //     const tbaleprix=document.querySelectorAll('.table tr #prix')
-    //     // console.log(tbaleprix);
-    //     const myfunprintPrix=(tbaleprix)=>{
-    //         const NumPrixTotal=document.getElementById('NumPrixTotal')
-    //         let NumPrix=0
-    //         tbaleprix.forEach(element => {
-
-    //           return  NumPrix+=parseInt(element.innerHTML)
-    //         });
-    //         console.log(NumPrixTotal.innerHTML);
-    //             return NumPrixTotal.innerHTML=NumPrix
-    //         // console.log(NumPrixTotal);
-    //         // return NumProduit.innerHTML=tbale.length;
-    //     }
-    //     myfunprintPrix(tbaleprix)
-    //     const selectproduit=document.getElementById('selectproduit')
-
-    //    const myfunselect =(event)=>{
-    //     const btnchange=document.getElementById('btnchange');
-
-    //      btnchange.href=`${selectproduit.value}`;
-
-
-
-    //           return  btnchange.click();
-    //    }
-
-    // const bntnext=document.getElementById('bntnext');
-    //     const myfunNext=(event)=>{
-    //         console.log(bntnext,event.target.value);
-    //         bntnext.href=`${event.target.value}`;
-    //         return bntnext.click();
-    //     }
-
-
-</Script>
+</script>
 
 @endsection
