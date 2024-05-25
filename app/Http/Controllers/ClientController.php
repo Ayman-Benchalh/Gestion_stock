@@ -98,8 +98,8 @@ class ClientController extends Controller
         $dataClient = Client::paginate(5);
       $dataClientAll=  Client::findOrfail($request->idClient);
       if($dataClientAll){
-        dd('Client is deleted',  $dataClientAll);
-        // $dataClientAll->delete();
+        // dd('Client is deleted',  $dataClientAll);
+        $dataClientAll->delete();
         return redirect()->route('Ajoute_Client_all',compact('dataClient'))->with('success','Client est supprimer bien');
       }else{
         return redirect()->route('Ajoute_Client_all',compact('dataClient'))->with('errorMessage','Error le Client est Ne pas supprimer ');

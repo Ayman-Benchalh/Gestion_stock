@@ -2350,6 +2350,7 @@ font-size: 20px;
     font-family: var(--fontText);
     gap: 15px;
     display: none;
+    padding: 15px;
 }
 .notifactionRemove .message{
     width: 85%;

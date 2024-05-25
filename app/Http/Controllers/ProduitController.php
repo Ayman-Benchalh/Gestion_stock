@@ -95,8 +95,15 @@ class ProduitController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produit $produit)
-    {
-        //
+    public function destroy(Request $request)
+    { $dataProduit= Produit::paginate(5);
+        $dataProduitAll=  Produit::findOrfail($request->idClient);
+        if($dataProduitAll){
+          $dataProduitAll->delete();
+          return redirect()->route('Ajoute_produit_all',compact('dataProduit'))->with('success','Client est supprimer bien');
+        }else{
+          return redirect()->route('Ajoute_produit_all',compact('dataProduit'))->with('errorMessage','Error le Client est Ne pas supprimer ');
+        }
+
     }
 }

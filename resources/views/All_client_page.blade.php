@@ -113,6 +113,19 @@
                 <div class="sectionAjoutegroupporduit">
                     <div class="sectionTable-1">
                         <div class="notifactionRemove" id="notifactionRemove">
+                            <dotlottie-player
+                                src="https://lottie.host/80c5f992-fb3c-4536-a947-1544a3e66f53/bkra6CPmBm.json"
+                                background="transparent"
+                                speed="0.4"
+                                style="width: 200px; height: 200px"
+                                color="#eeee"
+                                direction="1"
+                                playMode="normal"
+                                loop
+
+                                autoplay>
+                            </dotlottie-player>
+
                             <div class="message" id="message">
                                 Voulez-vous vraiment supprimer ce client ? <span id="NameUSer" style="color: chocolate"></span>
                             </div>
@@ -253,7 +266,7 @@
             event.target.setAttribute('data-confirm','ConfirmNow');
             event.target.innerHTML='confirmer';
             event.target.style.background='#05d22ee8';
-       
+
         }
     }
 
