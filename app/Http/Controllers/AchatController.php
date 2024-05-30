@@ -23,11 +23,11 @@ class AchatController extends Controller
      */
     public function create($IdFournisseur=null)
     {
+
         // dd($IdFournisseur);
         $dataFourni = Fournisseur::all();
         $dataFourniOne = Fournisseur::findOrfail($IdFournisseur);
         // $dataCLientone = Fournisseur::find($IdFournisseur);
-
         // $dataCLientt = Fournisseur::all();
         $dataProduit = Produit::where('Nom_Fournisseur',$dataFourniOne->nom_Complet)->get();
 

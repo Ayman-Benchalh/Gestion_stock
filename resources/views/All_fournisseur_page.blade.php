@@ -127,7 +127,7 @@
                             </dotlottie-player>
 
                             <div class="message" id="message">
-                                Voulez-vous vraiment supprimer ce client ? <span id="NameUSer" style="color: chocolate"></span>
+                                Voulez-vous vraiment supprimer ce Fournisseur ? <span id="NameUSer" style="color: chocolate"></span>
                             </div>
                             <div class="bntgourpe">
                                 <a id="btnAnnule" onclick="myfunsubmtAnuule()">Annuler</a>
@@ -190,19 +190,25 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="6">
+                                    <td colspan="7">
                                         @if ($dataFourni)
                                             <div class="paginate">
                                                 @if ($dataFourni->lastPage()>1)
 
 
-                                                        @if ( $dataFourni->currentPage()>$dataFourni->lastPage())
+                                                        @if ( $dataFourni->currentPage()>1)
 
                                                         <a class="bntPrev" href="?page={{ $dataFourni->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
+                                                        @else
+                                                        <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-left"></i></a>
+
                                                         @endif
                                                         <div class="pageCureent">{{ $dataFourni->currentPage() }}  Page [ {{ $dataFourni->lastPage() }} ]</div>
                                                         @if ( $dataFourni->currentPage()<$dataFourni->lastPage())
                                                         <a class="btnNext" href="?page={{ $dataFourni->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
+                                                        @else
+                                                        <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-right"></i></a>
+
                                                         @endif
                                                 @endif
                                             </div>
@@ -240,7 +246,7 @@
         NameUSer.innerHTML=event.target[2].value;
         btnConfir.setAttribute('dataID',event.target[3].value)
        console.log(event.target[3].value);
-        message.innerHTML=`Voulez-vous vraiment supprimer ce client ? <span id="NameUSer" style="color: chocolate">${event.target[2].value}</span>`
+        message.innerHTML=`Voulez-vous vraiment supprimer ce Fournisseur ? <span id="NameUSer" style="color: chocolate">${event.target[2].value}</span>`
         btnConfir.innerHTML='Oui'
         btnConfir.style.background='#3965E3'
         btnConfir.removeAttribute('data-confirm')
@@ -261,7 +267,7 @@
 
 
             }else{
-                message.innerHTML=`Le client : <span id='NameUSer' style="color: chocolate">${NameUSer.innerHTML} </span> va être supprimé maintenant. Veuillez confirmer, s'il vous plaît.`
+                message.innerHTML=`Le Fournisseur : <span id='NameUSer' style="color: chocolate">${NameUSer.innerHTML} </span> va être supprimé maintenant. Veuillez confirmer, s'il vous plaît.`
                 event.target.setAttribute('data-confirm','ConfirmNow');
                 event.target.innerHTML='confirmer';
                 event.target.style.background='#05d22ee8';

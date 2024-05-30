@@ -191,19 +191,24 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="6">
+                                    <td colspan="7">
                                         @if ($dataClient)
                                             <div class="paginate">
                                                 @if ($dataClient->lastPage()>1)
 
 
-                                                        @if ( $dataClient->currentPage()>$dataClient->lastPage())
+                                                        @if ( $dataClient->currentPage()>1)
 
                                                         <a class="bntPrev" href="?page={{ $dataClient->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
+                                                        @else
+                                                        <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-left"></i></a>
                                                         @endif
                                                         <div class="pageCureent">{{ $dataClient->currentPage() }}  Page [ {{ $dataClient->lastPage() }} ]</div>
                                                         @if ( $dataClient->currentPage()<$dataClient->lastPage())
                                                         <a class="btnNext" href="?page={{ $dataClient->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
+                                                        @else
+                                                        <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-right"></i></a>
+
                                                         @endif
                                                 @endif
                                             </div>
