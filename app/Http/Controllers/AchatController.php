@@ -24,14 +24,21 @@ class AchatController extends Controller
     public function create($IdFournisseur=null)
     {
 
-        // dd($IdFournisseur);
         $dataFourni = Fournisseur::all();
-        $dataFourniOne = Fournisseur::findOrfail($IdFournisseur);
-        // $dataCLientone = Fournisseur::find($IdFournisseur);
+        // $dataFourniOne = Fournisseur::find(15);
+        $dataFourniOne = Fournisseur::find($IdFournisseur);
         // $dataCLientt = Fournisseur::all();
-        $dataProduit = Produit::where('Nom_Fournisseur',$dataFourniOne->nom_Complet)->get();
+        // dd($dataFourniOne );
+        // dd( $dataFourniOne);
+        if($dataFourniOne==null){
+            $dataProduit =Produit::all();
+        
+        }else{
+            $dataProduit = Produit::where('Nom_Fournisseur',$dataFourniOne->nom_Complet)->get();
 
-        // dd( $dataProduit);
+
+        }
+
         return view('Achat_Produit',compact('dataProduit','dataFourni','dataFourniOne'));
     }
 
@@ -43,7 +50,7 @@ class AchatController extends Controller
        $btn1 =$request->btn1;
         // dd($btn1);
         if($btn1=='1_Produit'){
-            return to_route('Achat_produit_de',['IdFournisseur'=>1]);
+            return to_route('Achat_produit_de',['IdFournisseur'=>0]);
         }else{
             return to_route('Achat_Groupe_produit',['IdFournisseur'=>0]);
         }

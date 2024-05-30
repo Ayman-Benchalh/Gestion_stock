@@ -93,7 +93,7 @@
                     </div>
                     <div class="selectClient">
                         <select name="selectproduit" id="selectproduit" onchange="myfunselect(event)">
-                            <Option>Select Client</Option>
+                            <Option>Select Fournisseur</Option>
                             @foreach ( $dataFourni as $fournitem)
                                 <option value="{{ $fournitem->id }}">
                                         {{ $fournitem->nom_Complet }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fournisseur;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        return view('AjouteProduits');
+        $dataFourni=Fournisseur::all();
+        return view('AjouteProduits',compact('dataFourni'));
     }
 
     /**
@@ -33,6 +35,7 @@ class ProduitController extends Controller
         $quantité=$request->quantité;
         $catégorie=$request->Catégorie;
         $prix=$request->prix;
+        $Nom_fourni=$request->Nom_fourni;
         $dataProduit= Produit::where('Nom_Prod',$nomproduit)->first();
 
         $request->validate([
@@ -41,6 +44,7 @@ class ProduitController extends Controller
             'Catégorie'=>['required','min:1'],
             'quantité'=>['required','min:1'],
             'prix'=>['required','min:1'],
+            'Nom_fourni'=>['required','exists:fournisseurs,nom_Complet'],
         ]);
         if(!$dataProduit){
             // dd($Catégorie);
@@ -50,15 +54,16 @@ class ProduitController extends Controller
                     'Quantité'=>$quantité,
                     'Catégorie'=>$catégorie,
                     'Prix'=>$prix,
-                    'Nom_Fournisseur'=>null,
+                    'Nom_Fournisseur'=>$Nom_fourni,
                 ]);
-                return to_route('Ajoute_produit')->with('success','Le produit est Bien Ajoute ');
+                return to_route('Ajoute_produit_all')->with('success','Le produit est Bien Ajoute ');
         }else{
             Produit::where('Nom_Prod',$nomproduit)->update([
+                'Nom_Fournisseur'=>$Nom_fourni,
                 'Quantité'=>$quantité,
                 'Prix'=>$prix,
             ]);
-            return to_route('Ajoute_produit')->with('success','Le produit est bien mise à jour');
+            return to_route('Ajoute_produit_all')->with('success','Le produit est bien mise à jour');
 
         }
 

@@ -178,10 +178,14 @@ class voirCrediController extends Controller
     {
         $idClientOrFourni=$request->idClientOrFourni;
         if($clientOrFrouni=='client'){
-            Client::findOrfail($idClientOrFourni)->delete();
+            Client::findOrfail($idClientOrFourni)->update([
+                'Montant'=>0
+            ]);
 
         }elseif($clientOrFrouni=='fournisseur'){
-            Fournisseur::findOrfail($idClientOrFourni)->delete();
+            Fournisseur::findOrfail($idClientOrFourni)->update([
+                'Montant'=>0
+            ]);
         }
         return redirect()->route('Voir_Credi',compact('clientOrFrouni'))->with('success',"Le {$clientOrFrouni} est bien supprimé.");
     //  dd($request->idClientOrFourni,$clientOrFrouni);

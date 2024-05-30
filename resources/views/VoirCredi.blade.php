@@ -134,6 +134,29 @@
 
                 <div class="sectionAjoutegroupporduit">
                     <div class="sectionTable-1">
+                        <div class="notifactionRemove" id="notifactionRemove">
+                            <dotlottie-player
+                                src="https://lottie.host/80c5f992-fb3c-4536-a947-1544a3e66f53/bkra6CPmBm.json"
+                                background="transparent"
+                                speed="0.4"
+                                style="width: 200px; height: 200px"
+                                color="#eeee"
+                                direction="1"
+                                playMode="normal"
+                                loop
+
+                                autoplay>
+                            </dotlottie-player>
+
+                            <div class="message" id="message">
+                                Voulez-vous vraiment supprimer ce Credi ? <span id="NameUSer" style="color: chocolate"></span>
+                            </div>
+                            <div class="bntgourpe">
+                                <a id="btnAnnule" onclick="myfunsubmtAnuule()">Annuler</a>
+                                <a id="btnConfir" dataID='' onclick="myfunsubmtConfi(event)">Oui</a>
+                            </div>
+                        </div>
+
                         {{-- {{ dd($dataPrint->count() ) }} --}}
                    @if (!$dataPrint->count()  )
 
@@ -169,9 +192,10 @@
                                                 <i class="fa-solid fa-sack-dollar"></i></a>
                                             </td>
                                             <td>
-                                                <form action="{{ route('Voir_Credi',['clientOrFrouni'=>$clientOrFrounistring]) }}" method="post">
+                                                <form action="{{ route('Voir_Credi',['clientOrFrouni'=>$clientOrFrounistring]) }}" onsubmit="myfunsubmt(event)"  id="formSumb" method="post">
                                                     @csrf
                                                     @method('delete')
+                                                    <input type="hidden"  name="NameClient" value="{{ $itmproduit->nom_Complet }}">
                                                     <input type="hidden"  name="idClientOrFourni" value="{{ $itmproduit->id }}">
                                                     <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
 
@@ -197,13 +221,19 @@
                                                 @if ($dataPrint->lastPage()>1)
 
 
-                                                        @if ( $dataPrint->currentPage()>$dataPrint->lastPage())
+                                                        @if ( $dataPrint->currentPage()>1)
 
                                                         <a class="bntPrev" href="?page={{ $dataPrint->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
+                                                        @else
+                                                        <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-right"></i></a>
+
                                                         @endif
                                                         <div class="pageCureent">{{ $dataPrint->currentPage() }}  Page [ {{ $dataPrint->lastPage() }} ]</div>
                                                         @if ( $dataPrint->currentPage()<$dataPrint->lastPage())
                                                         <a class="btnNext" href="?page={{ $dataPrint->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
+                                                        @else
+                                                        <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-right"></i></a>
+
                                                         @endif
                                                 @endif
                                             </div>
@@ -305,5 +335,48 @@
 
 
 </Script>
+<script>
+    const NameUSer=document.getElementById('NameUSer')
+    const notifactionRemove=document.getElementById('notifactionRemove')
+    const message=document.getElementById('message')
+    const btnConfir=document.getElementById('btnConfir')
+    const formSumb=document.getElementById('formSumb')
+    const idClient=document.getElementById('idClient')
+    const data_confirm=document.getElementsByClassName('data_confirm')
+    const  myfunsubmt = (event) =>{
+    event.preventDefault();
+    NameUSer.innerHTML=event.target[2].value;
+    btnConfir.setAttribute('dataID',event.target[3].value)
+   console.log(event.target[3].value);
+    message.innerHTML=`Voulez-vous vraiment supprimer ce Credi ? <span id="NameUSer" style="color: chocolate">${event.target[2].value}</span>`
+    btnConfir.innerHTML='Oui'
+    btnConfir.style.background='#3965E3'
+    btnConfir.removeAttribute('data-confirm')
+    notifactionRemove.style.display='flex';
+    console.log(NameUSer);
+  }
+    const  myfunsubmtAnuule = () =>{
+        btnConfir.removeAttribute('data-confirm')
+        notifactionRemove.style.display='none';
+        }
+    const  myfunsubmtConfi= (event) =>{
+
+
+        if(event.target.hasAttribute('data-confirm')){
+            idClient.value=btnConfir.getAttribute('dataID');
+
+            formSumb.submit();
+
+
+        }else{
+            message.innerHTML=`Credi : <span id='NameUSer' style="color: chocolate">${NameUSer.innerHTML} </span> va être supprimé maintenant. Veuillez confirmer, s'il vous plaît.`
+            event.target.setAttribute('data-confirm','ConfirmNow');
+            event.target.innerHTML='confirmer';
+            event.target.style.background='#05d22ee8';
+
+        }
+    }
+
+</script>
 
 @endsection

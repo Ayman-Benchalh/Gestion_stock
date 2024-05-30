@@ -131,6 +131,20 @@
                                     <li><input type="number" name="prix" id="prix" value="{{ old('prix') }}" placeholder="Prix de produit"></li>
                                 </ul>
                             </div>
+                            <div class="unitearty">
+                                <ul>
+                                    <li><div class="titlenom">Frouni  :</div></li>
+                                    <li>
+                                        <select name="Nom_fourni" id="">
+                                            <option>select Fournisseur</option>
+                                            <option value="null">Aucun Frouni</option>
+                                            @foreach ($dataFourni as $itmFourn )
+                                                <option value="{{ $itmFourn->nom_Complet }}">{{ $itmFourn->nom_Complet }}</option>
+                                            @endforeach
+                                        </select>
+                                    </li>
+                                </ul>
+                            </div>
 
                             <button type="submit">Ajoute</button>
                     </form>
