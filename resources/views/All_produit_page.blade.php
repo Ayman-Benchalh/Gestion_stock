@@ -4,6 +4,7 @@
 <link href="https://unpkg.com/tabulator-tables@6.2.0/dist/css/tabulator.min.css" rel="stylesheet">
 <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.0/dist/js/tabulator.min.js"></script>
 <link href="/dist/css/tabulator_simple.min.css" rel="stylesheet">
+
 @endsection
 @section('Content')
 <div class="container">
@@ -166,12 +167,12 @@
                                             <td>{{Str::limit($itmProduit->Quantité, 10, '...')  }}</td>
                                             <td>{{Str::limit(  $itmProduit->Prix, 6, '...')}}</td>
                                             @if($itmProduit->Catégorie)
-                                            <td style="background-color: rgba(23, 220, 20, 0.684)">{{Str::limit(  $itmProduit->Catégorie, 6, '...')}}</td>
+                                            <td style="background-color: rgba(23, 220, 20, 0.684)" data_title="{{  $itmProduit->Catégorie }}">{{Str::limit(  $itmProduit->Catégorie, 6, '...')}}</td>
                                             @else
                                             <td style="background-color: rgba(220, 20, 60, 0.684)">Null</td>
                                              @endif
                                             @if($itmProduit->Nom_Fournisseur)
-                                            <td style="background-color: rgba(23, 220, 20, 0.684)">{{Str::limit(  $itmProduit->Nom_Fournisseur, 6, '...')}}</td>
+                                            <td style="background-color: rgba(67, 20, 220, 0.684)" data_title="{{  $itmProduit->Nom_Fournisseur }}">{{Str::limit(  $itmProduit->Nom_Fournisseur, 6, '...')}}</td>
                                             @else
                                             <td style="background-color: rgba(220, 20, 60, 0.684)">Null</td>
                                              @endif

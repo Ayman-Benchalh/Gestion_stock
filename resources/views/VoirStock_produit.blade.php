@@ -140,7 +140,7 @@
                                             @endif
 
                                         <td>{{  $itmproduit->Prix}}</td>
-                                        <td>{{  $itmproduit->Nom_Fournisseur}}</td>
+                                        <td style="background-color: rgba(67, 20, 220, 0.684)">{{  $itmproduit->Nom_Fournisseur}}</td>
                                         <td>
                                             <form action="" method="post">
                                                 @csrf
@@ -162,12 +162,27 @@
                                 <tr>
                                     <td colspan="7">
                                         <div class="paginate">
+                                            @if ($dataProduit->lastPage()>1)
+                                                @if ( $dataProduit->currentPage()>1)
 
-                                            <a class="bntPrev" href="?page={{ $dataProduit->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
-                                            <div class="pageCureent">{{ $dataProduit->currentPage() }}  Page [ {{ $dataProduit->lastPage() }} ]</div>
-                                            @if ( $dataProduit->currentPage()<$dataProduit->lastPage())
-                                             <a class="btnNext" href="?page={{ $dataProduit->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
-                                             @endif
+                                                         <a class="bntPrev" href="?page={{ $dataProduit->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
+                                                         @else
+                                                         <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-left"></i></a>
+
+                                                         @endif
+                                                         <div class="pageCureent">{{ $dataProduit->currentPage() }}  Page [ {{ $dataProduit->lastPage() }} ]</div>
+                                                         @if ( $dataProduit->currentPage()<$dataProduit->lastPage())
+                                                         <a class="btnNext" href="?page={{ $dataProduit->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
+                                                         @else
+                                                         <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-right"></i></a>
+
+                                                         @endif
+
+
+
+
+                                                 @endif
+
 
                                         </div>
 

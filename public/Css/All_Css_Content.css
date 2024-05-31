@@ -2384,3 +2384,38 @@ cursor: pointer;
 .notifactionRemove .bntgourpe #btnConfir{
   background-color: #3965E3;
 }
+
+
+tbody tr td{
+position: relative;
+transition: all 1s ease;
+cursor: pointer;
+}
+
+tbody tr td[data_title]::after{
+    min-width:auto;
+    content: attr(data_title);
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0C0C0C;
+    padding: 10px;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 99999;
+
+
+}
+tbody tr td[data_title]:hover::after{
+    min-width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    bottom: -10%;
+    transform: translate(-50%, 0);
+}
