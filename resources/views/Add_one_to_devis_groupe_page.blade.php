@@ -1,16 +1,12 @@
 
 @extends('index')
-@section('script')
-<link href="https://unpkg.com/tabulator-tables@6.2.0/dist/css/tabulator.min.css" rel="stylesheet">
-<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.0/dist/js/tabulator.min.js"></script>
-<link href="/dist/css/tabulator_simple.min.css" rel="stylesheet">
-@endsection
+
 @section('Content')
 <div class="container">
     <div class="dashbordHome">
         <div class="partyNav">
             <ul>
-                <li  id="focueBtn">
+                <li id="focueBtn">
                     <a href="{{ route('DashBord_user') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34" fill="none">
                         <path d="M16 34V22H24V34H34V18H40L20 0L0 18H6V34H16Z" fill="#D9D9D9"/>
@@ -85,20 +81,15 @@
                 </div>
             </div>
             <div class="sectionConteent">
-                <div class="titleAjoute">
-                    Stock de produit
-
+                <div class="titleAjoute">Devis Produit
 
                 </div>
-                @if ($errors->any())
+                @if (session()->has('errorMessage'))
                 <div class="errorsStyle">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                  {{ session()->get('errorMessage')}}
                 </div>
             @endif
+
                 @if (session()->has('success'))
                     <div class="messageSucc">{{ session()->get('success') }}</div>
                 @endif
@@ -107,97 +98,48 @@
                 @endif
 
 
-                <div class="sectionAjoutegroupporduit">
-                    <div class="sectionTable-1">
-                        @if (!$dataProduit->count())
-                        <div class="notFoundMsg">Data Not Found</div>
+                <div class="sectionAjouteporduit">
+                    <form action="{{ route('Devis_complite.page') }}" method="post">
+                        @csrf
+                         <div class="unitearty">
+                                <ul>
+                                    <li><div class="titlenom">Produit  : </div></li>
+                                    <li>
+                                        <select onchange="myfinc({{ $dataProduit }})" name="selectproduit" id="selectproduit">
+                                            <option value="refr">select produit</option>
+                                            @foreach ( $dataProduit as $produit)
+                                            <option  value="{{ $produit->id }}" id="{{ $produit->Prix }}" >{{ $produit->Nom_Prod }}</option>
+                                            @endforeach
+                                        </select>
+                                      </li>
+                                </ul>
+                            </div>
+                            <div class="unitearty">
+                                <ul>
+                                    <li><div class="titlenom">Quantite :</div></li>
+                                    <li><input type="text" oninput="myfinc2()" name="quantite" id="quantite" value="1" placeholder="quantite produit"></li>
+                                </ul>
+                            </div>
+                            <div class="unitearty">
+                                <ul>
+                                    <li><div class="titlenom">Prix :</div></li>
+                                    <li>
+                                        <input type="number" name="prix" id="prix"  placeholder="prix produit"></li>
+                                </ul>
+                            </div>
+                            <div class="unitearty">
+                                {{-- <ul>
+                                    <li><div class="titlenom">Client :</div></li>
+                                    <li>
+                                        <input type="hidden" name="id_client" value="{{ $dataClientOne->id }}">
+                                        <input type="text" readonly id="id_client" value="{{ $dataClientOne->nom_Complet }}">
 
-                        @else
-                        <table id="tbld" style="padding: 10px">
-                            <thead>
-                                <tr>
-                                    <th>ID  </th>
-                                    <th>Nom Produit</th>
-                                    <th>Designation</th>
-                                    <th>Quantité </th>
-                                    <th>Prix </th>
-                                    <th>Fournisseur </th>
-                                    <th>delete </th>
+                                    </li>
+                                </ul> --}}
+                            </div>
 
-                                </tr>
-                            </thead>
-                            <tbody class="table">
-                                @foreach ($dataProduit as $key=> $itmproduit)
-                                <tr>
-                                        <td>{{$itmproduit->id}}</td>
-                                        <td >{{  $itmproduit->Nom_Prod}}</td>
-                                        <td >{{ Str::limit($itmproduit->Designation_Prod, 15, '...') }}</td>
-
-                                            @if ($itmproduit->Quantité<=3)
-                                                    <td  style="background-color:crimson">   {{  $itmproduit->Quantité}}</td>
-                                                @else
-                                                    <td  style="background-color:rgb(4, 181, 4)">   {{  $itmproduit->Quantité}}</td>
-                                            @endif
-
-                                        <td>{{  $itmproduit->Prix}}</td>
-                                        <td style="background-color: rgba(67, 20, 220, 0.684)" data_title="{{  $itmproduit->Nom_Fournisseur }}">{{Str::limit($itmproduit->Nom_Fournisseur, 6, '...') }}</td>
-                                        <td>
-                                            <form action="" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <input type="hidden"  name="idProduit" value="{{ $itmproduit->id }}">
-                                                <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
-
-                                            </form>
-                                        </td>
-
-                                    </tr>
-                                @endforeach
-
-
-
-
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="7">
-                                        <div class="paginate">
-                                            @if ($dataProduit->lastPage()>1)
-                                                @if ( $dataProduit->currentPage()>1)
-
-                                                         <a class="bntPrev" href="?page={{ $dataProduit->currentPage()-1 }}"><i class="fa-solid fa-chevron-left"></i></a>
-                                                         @else
-                                                         <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-left"></i></a>
-
-                                                         @endif
-                                                         <div class="pageCureent">{{ $dataProduit->currentPage() }}  Page [ {{ $dataProduit->lastPage() }} ]</div>
-                                                         @if ( $dataProduit->currentPage()<$dataProduit->lastPage())
-                                                         <a class="btnNext" href="?page={{ $dataProduit->currentPage()+1 }}"><i class="fa-solid fa-chevron-right"></i></a>
-                                                         @else
-                                                         <a class="bntPrev" style="cursor: no-drop" disabled><i class="fa-solid fa-chevron-right"></i></a>
-
-                                                         @endif
-
-
-
-
-                                                 @endif
-
-
-                                        </div>
-
-
-                                    </td>
-                                </tr>
-
-
-                            </tfoot>
-
-                        </table>
-
-
-                        @endif
-                    </div>
+                            <button type="submit">Ajoute</button>
+                    </form>
 
                 </div>
 
@@ -208,7 +150,7 @@
 
     </div>
 
-{{-- </div>
+</div>
 <script>
     const selectproduit = document.getElementById('selectproduit');
     const prix = document.getElementById('prix');
@@ -220,8 +162,8 @@
         let dataprix=element.Prix
             if(element.id == selectproduit.value){
                 return prix.value=element.Prix
-            }else{
-                return prix.value=dataprix
+            }else if(selectproduit.value=='refr'){
+                return prix.value=0
             }
           });
     }
@@ -229,7 +171,7 @@
         // console.log(quantite.value ,prix.value);
         let dataprix=prix.value
         dataprixTotal =quantite.value*prix.value
-        if(quantite.value>0){
+        if(quantite.value>1){
             return prix.value = dataprixTotal
         }else if(quantite.value==0){
             return prix.value = dataprix
@@ -238,45 +180,6 @@
     }
 
 
-</script> --}}
-<Script>
-    //     const tbale=document.querySelectorAll('.table tr')
-    //     console.log(tbale.length);
-    //     const myfunprintPor=()=>{
-    //         const NumProduit=document.getElementById('NumProduit')
-    //         console.log(NumProduit.innerHTML);
-    //         return NumProduit.innerHTML=tbale.length;
-    //     }
-    //     myfunprintPor()
-    //     const tbaleprix=document.querySelectorAll('.table tr #prix')
-    //     // console.log(tbaleprix);
-    //     const myfunprintPrix=(tbaleprix)=>{
-    //         const NumPrixTotal=document.getElementById('NumPrixTotal')
-    //         let NumPrix=0
-    //         tbaleprix.forEach(element => {
-
-    //           return  NumPrix+=parseInt(element.innerHTML)
-    //         });
-    //         console.log(NumPrixTotal.innerHTML);
-    //             return NumPrixTotal.innerHTML=NumPrix
-    //         // console.log(NumPrixTotal);
-    //         // return NumProduit.innerHTML=tbale.length;
-    //     }
-    //     myfunprintPrix(tbaleprix)
-    //     const selectproduit=document.getElementById('selectproduit')
-
-    //    const myfunselect =(event)=>{
-    //     const btnchange=document.getElementById('btnchange');
-
-    //      btnchange.href=`${selectproduit.value}`;
-
-
-
-    //           return  btnchange.click();
-    //    }
-
-
-
-</Script>
+</script>
 
 @endsection

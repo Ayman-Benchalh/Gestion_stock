@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AchatController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DevisController;
 use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\PaymentClientController;
 use App\Http\Controllers\PaymentFournissersController;
@@ -104,6 +105,14 @@ Route::middleware(['auth'])->group(function(){
         /*party Parametre  */
         Route::get('/Parametre',[UserController::class,'ParametreEdite'])->name('parametre_page');
         Route::post('/Parametre',[UserController::class,'ParametreUpdate'])->name('parametre_page_ps');
+
+        Route::get('/Devis',[DevisController::class,'index'])->name('Devis.page');
+        Route::get('/Devis/Ajoute_produit_to_groupe_devis',[DevisController::class,'Ajoute_produit_to_groupe_devis'])->name('Devis_Ajoute.page');
+        Route::post('/Devis/addProduit',[DevisController::class,'store'])->name('Devis_complite.page');
+        Route::post('/Devis-pdf',[DevisController::class,'ImprimePdf'])->name('Devis_ImprimPdf.page');
+        Route::post('/Devis-ticket',[DevisController::class,'ImprimeTickt'])->name('Devis_ImprimTickt.page');
+        Route::delete('/Devis_produit',[DevisController::class,'distroy'])->name('Devis_delete.page');
+        Route::delete('/Devis_deleteAll',[DevisController::class,'distroy2'])->name('Devis_deleteAll.page');
 
     Route::get('/Pdf_Facture',[PaymentClientController::class,'show'])->name('Pdf_facture');
     Route::get('logOut',[UserController::class,'logOut'])->name('logOute');
