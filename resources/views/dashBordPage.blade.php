@@ -140,7 +140,11 @@
                     </div>
                 </div>
                 <div class="userProfil">
-                    <div class="profile">
+                    <div class="Section_devis"><a href="{{ route('Devis.page') }}">Devis <img src="{{ asset('Image/devis 1.png') }}" alt=""></a></div>
+                    <div class="Section_devis"><a href="{{ route('Devis.page') }}">Bon de Commande</a></div>
+                    <div class="Section_devis"><a href="{{ route('Devis.page') }}">Facture</a></div>
+
+                    {{-- <div class="profile">
                         <svg xmlns="http://www.w3.org/2000/svg" width="125" height="125" viewBox="0 0 125 125" fill="none">
                             <g clip-path="url(#clip0_4_7)">
                               <path d="M62.5 70.3125C81.9092 70.3125 97.6562 54.5654 97.6562 35.1562C97.6562 15.7471 81.9092 0 62.5 0C43.0908 0 27.3438 15.7471 27.3438 35.1562C27.3438 54.5654 43.0908 70.3125 62.5 70.3125ZM93.75 78.125H80.2979C74.8779 80.6152 68.8477 82.0312 62.5 82.0312C56.1523 82.0312 50.1465 80.6152 44.7021 78.125H31.25C13.9893 78.125 0 92.1143 0 109.375V113.281C0 119.751 5.24902 125 11.7188 125H113.281C119.751 125 125 119.751 125 113.281V109.375C125 92.1143 111.011 78.125 93.75 78.125Z" fill="#D9D9D9" fill-opacity="0.7"/>
@@ -151,11 +155,11 @@
                               </clipPath>
                             </defs>
                           </svg>
-                    </div>
+                    </div> --}}
                     @php
                         $MontantTotal=0
                     @endphp
-                    <div class="Nomomplet">{{ session()->get('Nom_Complet') }}
+                    {{-- <div class="Nomomplet">{{ session()->get('Nom_Complet') }}
                         <div class="TotalPrix"><span>&dollar;</span>
                             @foreach ($dataVenteall as $itemVente)
                                 @php
@@ -165,9 +169,9 @@
                             {{number_format($MontantTotal) }}
 
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="editBar">
+                    {{-- <div class="editBar">
                         <ul>
                             <li>
 
@@ -186,7 +190,10 @@
                             </li>
 
                         </ul>
-                    </div>
+                    </div> --}}
+                <div class="partmesg">
+
+
                     <div class="titlemaessage">
                             Notification
                             <span>
@@ -228,6 +235,7 @@
                                     </div>
                         @endif
                     </div>
+                </div>
                 </div>
 
             </div>
