@@ -89,9 +89,11 @@ Libraries & Tools
 ## 📸 Screenshots
 
 Create a folder named **screenshots** inside the project and add your images.
+### Auth
+![Dashboard](public/img/GST_Auth.png)
 
 ### Dashboard
-![Dashboard](screenshots/01-dashboard.png)
+![Dashboard](screenshots/GST_dashboard.png)
 
 ### Products Management
 ![Products](screenshots/02-products.png)
