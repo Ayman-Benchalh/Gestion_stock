@@ -95,15 +95,6 @@ Create a folder named **screenshots** inside the project and add your images.
 ### Dashboard
 ![Dashboard](public/Image/GST_dashbord.png)
 
-### Products Management
-![Products](screenshots/02-products.png)
-
-### Sales System
-![Sales](screenshots/03-sales.png)
-
-### Stock Overview
-![Stock](screenshots/04-stock.png)
-
 ---
 
 ## 📂 Project Structure
