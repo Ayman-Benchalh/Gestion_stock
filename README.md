@@ -1,66 +1,206 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 Gestion_stock — Inventory & Sales Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A complete **inventory and sales management web application** built using **Laravel, PHP, and MySQL**.
 
-## About Laravel
+The system helps businesses manage products, suppliers, clients, purchases, sales, payments, and stock levels through a centralized dashboard.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🔗 Project Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Gestion_stock is a business management application designed to simplify stock monitoring and commercial operations.
 
-## Learning Laravel
+The system allows companies to:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Manage product inventory
+- Track purchases and suppliers
+- Manage clients and sales
+- Monitor stock levels
+- Handle payments and credits
+- Generate invoices and documents
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+This project demonstrates **full business workflow implementation using Laravel MVC architecture.**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## ✨ Key Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 📦 Inventory Management
+- Add new products
+- Update stock quantities
+- View all products
+- Monitor low stock alerts
 
-### Premium Partners
+### 👥 Client Management
+- Register new clients
+- View client list
+- Manage client orders
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 🏭 Supplier Management
+- Add suppliers
+- Manage supplier purchases
+- Track supplier payments
 
-## Contributing
+### 💰 Sales System
+- Create product sales
+- Sell single or multiple products
+- Automatically update stock
+- Track sales history
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🛒 Purchase System
+- Record product purchases
+- Update stock quantities
+- Link purchases to suppliers
 
-## Code of Conduct
+### 💳 Payment Management
+- Client payment tracking
+- Supplier payment tracking
+- Credit / debt management
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 📄 Invoice & PDF
+- Generate invoices
+- Export documents as PDF
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🧰 Tech Stack
 
-## License
+Backend
+- Laravel 11
+- PHP 8.2
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Database
+- MySQL
+
+Frontend
+- Blade Templates
+- HTML5
+- CSS3
+- JavaScript
+
+Libraries & Tools
+- Laravel Sanctum
+- DomPDF
+- Snappy PDF
+- Vite
+
+---
+
+## 📸 Screenshots
+
+Create a folder named **screenshots** inside the project and add your images.
+
+### Dashboard
+![Dashboard](screenshots/01-dashboard.png)
+
+### Products Management
+![Products](screenshots/02-products.png)
+
+### Sales System
+![Sales](screenshots/03-sales.png)
+
+### Stock Overview
+![Stock](screenshots/04-stock.png)
+
+---
+
+## 📂 Project Structure
+
+```
+Gestion_stock/
+
+app/
+database/
+resources/
+routes/
+public/
+screenshots/
+config/
+README.md
+```
+
+---
+
+## 🚀 Installation
+
+Clone the repository
+
+```
+git clone https://github.com/Ayman-Benchalh/Gestion_stock.git
+```
+
+Move the project to your server directory
+
+Example (XAMPP)
+
+```
+xampp/htdocs/
+```
+
+Install dependencies
+
+```
+composer install
+```
+
+Create environment file
+
+```
+cp .env.example .env
+```
+
+Generate application key
+
+```
+php artisan key:generate
+```
+
+Configure database in `.env`
+
+Run migrations
+
+```
+php artisan migrate
+```
+
+Start the server
+
+```
+php artisan serve
+```
+
+Open in browser
+
+```
+http://localhost:8000
+```
+
+---
+
+## 🎯 What I Learned
+
+- Laravel MVC architecture
+- Inventory management systems
+- Sales and purchase workflows
+- Payment tracking systems
+- Database relationship design
+- PDF invoice generation
+
+---
+
+## 🔮 Future Improvements
+
+- Advanced reporting dashboard
+- Product barcode system
+- Multi-user role management
+- REST API for mobile applications
+- Improved security and validation
+
+---
+
+## 👨‍💻 Author
+
+Ayman Benchalh
+
+GitHub  
+https://github.com/Ayman-Benchalh
